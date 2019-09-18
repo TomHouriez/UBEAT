@@ -17,7 +17,9 @@
             alt=""
           />
           <figcaption>
-            <a href="https://music.apple.com/us/album/babymetal/984334432?uo=4">Babymetal</a>
+            <a href="https://music.apple.com/us/album/babymetal/984334432?uo=4"
+              >Babymetal
+            </a>
           </figcaption>
         </figure>
       </li>
@@ -28,9 +30,12 @@
             alt=""
           />
           <figcaption>
-            <a href="https://music.apple.com/us/album/metal-resistance/1086229979?uo=4">Metal Resistance</a>
+            <a
+              href="https://music.apple.com/us/album/metal-resistance/1086229979?uo=4"
+              >Metal Resistance
+            </a>
           </figcaption>
-        </figure> 
+        </figure>
       </li>
       <li class="album">
         <figure>
@@ -39,7 +44,10 @@
             alt=""
           />
           <figcaption>
-            <a href="https://music.apple.com/us/album/metal-galaxy/1475662687?uo=4">METAL GALAXY</a>
+            <a
+              href="https://music.apple.com/us/album/metal-galaxy/1475662687?uo=4"
+              >METAL GALAXY
+            </a>
           </figcaption>
         </figure>
       </li>
@@ -50,8 +58,11 @@
             alt=""
           />
           <figcaption>
-            <a href="https://music.apple.com/us/album/starlight-single/1437899646?uo=4">Starlight - Single</a>
-          </figcaption> 
+            <a
+              href="https://music.apple.com/us/album/starlight-single/1437899646?uo=4"
+              >Starlight - Single
+            </a>
+          </figcaption>
         </figure>
       </li>
       <li class="album">
@@ -61,57 +72,59 @@
             alt=""
           />
           <figcaption>
-            <a href="https://music.apple.com/us/album/distortion-single/1376826384?uo=4">Distortion - Single</a>
+            <a
+              href="https://music.apple.com/us/album/distortion-single/1376826384?uo=4"
+              >Distortion - Single
+            </a>
           </figcaption>
         </figure>
       </li>
     </ul>
-</div>
+  </div>
 </template>
 
 <style>
 body {
-    background: gray;
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-    padding: 0;
-    margin: 0;
+  background: gray;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  padding: 0;
+  margin: 0;
 }
 
 .albumList {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    text-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }
 
 .album {
-    max-width: 200px;
-    margin: auto;
-    margin-bottom: 20px;
+  max-width: 200px;
+  margin: auto;
+  margin-bottom: 20px;
 }
 
-.album>figure {
-    margin: 10px;
-    max-width: 200px;
-    overflow: hidden;
-    text-align: center;
+.album > figure {
+  margin: 10px;
+  max-width: 200px;
+  overflow: hidden;
+  text-align: center;
 }
 
-.album>figure>img {
-    border: 1px solid black;
-    border-radius: 3%;
-    box-shadow: 3px 3px 1px 1px rgba(0, 0, 0, .3);
-    max-width: 330px;
-    margin: 0;
-    padding: 0;
+.album > figure > img {
+  border: 1px solid black;
+  border-radius: 3%;
+  box-shadow: 3px 3px 1px 1px rgba(0, 0, 0, 0.3);
+  max-width: 330px;
+  margin: 0;
+  padding: 0;
 }
 
-.album>figure>figcaption {
-    color: crimson;
-    text-shadow: 1px 1px 3px gray;
+.album > figure > figcaption {
+  color: crimson;
+  text-shadow: 1px 1px 3px gray;
 }
-
 </style>

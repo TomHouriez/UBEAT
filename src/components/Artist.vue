@@ -1,5 +1,5 @@
 <template>
-  <div class="artistPage">
+<div class="artistPage">
     <h1 class="artistName">BABYMETAL</h1>
     <div>
       <a

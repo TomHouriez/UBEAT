@@ -1,4 +1,4 @@
-<template>
+<!--<template>
   <section class="team-navbar">
     <b-icon icon="settings" class="myIcon"></b-icon>
     <div class="boxe box1">
@@ -72,7 +72,7 @@
       </div>
     </section>
   </section>
-</template>
+</template> -->
 
 <script>
 export default {

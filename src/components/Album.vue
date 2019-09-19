@@ -12,10 +12,10 @@
         <p>13 songs</p>
         <a href="https://geo.music.apple.com/ca/album/alive-2007/742555152?mt=1&app=music" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/en-us/badge-lrg.svg?releaseDate=2007-11-14&kind=album&bubble=apple_music) no-repeat;width:158px;height:45px;"></a>
       </div>
-      
+
       <div class="albumTracksContainer">
         <b-table class="trackTable"
-          :data="trackList" 
+          :data="trackList"
           :hoverable="true">
 
           <template slot-scope="props">
@@ -57,7 +57,7 @@ import Vue from 'vue'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 
-//test icons 
+//test icons
 Vue.use(Buefy, { defaultIconPack: 'fal' });
 
 export default {
@@ -287,7 +287,6 @@ export default {
 .albumDataContainer > p {
   text-align: center;
 }
-
 
 .albumTracksContainer {
   min-width: 500px;

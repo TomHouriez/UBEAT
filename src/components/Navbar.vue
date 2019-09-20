@@ -14,29 +14,22 @@
       <a class="navbar-item search-tablet-show-only">
         <div class="control has-icons-left"  >
           <input class="input" type="search" placeholder="Select or search for musics.....">
-          <span class="icon is-left">
-              <i class="fas fa-search"></i>
-             </span>
-
         </div>
       </a>
 
       <div class="dropdown is-hoverable user-tablet-show-only">
         <div class="dropdown-trigger">
           <a  aria-haspopup="true" aria-controls="dropdown-menu">
-                          <span>
-                             <img src="https://s3.amazonaws.com/uifaces/faces/twitter/heyimjuani/128.jpg"  class="img-menu">
-                          </span>
+                  <span>
+                     <img src="https://s3.amazonaws.com/uifaces/faces/twitter/heyimjuani/128.jpg"  class="img-menu">
+                  </span>
             <b-icon icon="menu-down" type="is-white"></b-icon>
-            <span class="icon is-small">
-                            <i class="fas fa-angle-down" aria-hidden="true"></i>
-                          </span>
           </a>
         </div>
         <div class="dropdown-menu" id="dropdown-menu" role="menu">
           <div class="dropdown-content">
             <a href="#" class="dropdown-item">
-              Active dropdown item
+              Profile
             </a>
             <a href="#" class="dropdown-item">
               Settings
@@ -63,10 +56,6 @@
         <a class="navbar-item desktop tablet">
           <div class="control has-icons-left"  >
             <input class="input search" type="search" placeholder="Select or search for musics....">
-            <span class="icon is-left">
-                <i class="fas fa-search"></i>
-             </span>
-
           </div>
         </a>
 
@@ -74,10 +63,9 @@
       <div class="navbar-end">
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">
-            <span class="icon is-medium"><i class="fa fa-user"></i></span>
             <span>
-                             <img src="https://s3.amazonaws.com/uifaces/faces/twitter/heyimjuani/128.jpg"  class="img-menu">
-                        </span>
+                 <img src="https://s3.amazonaws.com/uifaces/faces/twitter/heyimjuani/128.jpg"  class="img-menu">
+            </span>
           </a>
           <div class="navbar-dropdown">
             <a class="navbar-item">
@@ -99,30 +87,11 @@
     export default {
         name: "Navbar2",
         mounted() {
-            document.addEventListener('DOMContentLoaded', () => {
-
-                // Get all "navbar-burger" elements
-                const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-
-                // Check if there are any navbar burgers
-                if ($navbarBurgers.length > 0) {
-
-                    // Add a click event on each of them
-                    $navbarBurgers.forEach( el => {
-                        el.addEventListener('click', () => {
-
-                            // Get the target from the "data-target" attribute
-                            const target = el.dataset.target;
-                            const $target = document.getElementById(target);
-
-                            // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-                            el.classList.toggle('is-active');
-                            $target.classList.toggle('is-active');
-
-                        });
-                    });
-                }
-
+            const burger = document.querySelector('.burger');
+            const nav = document.querySelector('#'+burger.dataset.target);
+            burger.addEventListener('click', function() {
+                burger.classList.toggle('is-active');
+                nav.classList.toggle('is-active');
             });
         }
     }

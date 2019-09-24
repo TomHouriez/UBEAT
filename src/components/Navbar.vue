@@ -2,19 +2,20 @@
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item">
-        <img
-          src="../assets/A19Team01-logo-white.png"
-          alt="A19-Team-01"
-          class="logo"
-        >
+        <h2 class="subtitle has-text-white">Ubeat</h2>
       </a>
+
       <a class="navbar-item listes-tablet-show-only is-white">
-        Listes de lectures
+        Musics lists
       </a>
       <a class="navbar-item search-tablet-show-only">
         <div class="control has-icons-left"  >
-          <input class="input" type="search" placeholder="Select or search for musics.....">
+          <input class="input is-rounded " type="search" placeholder="Select or search for musics.....">
+           <span class="icon is-left">
+          <i class="fas fa-search"></i>
+        </span>
         </div>
+        
       </a>
 
       <div class="dropdown is-hoverable user-tablet-show-only">
@@ -51,21 +52,23 @@
     <div id="navMenu" class="navbar-menu">
       <div class="navbar-start">
         <a class="navbar-item desktop is-white" href="#">
-          Listes de lectures
+          Musics Lists
         </a>
         <a class="navbar-item desktop tablet">
-          <div class="control has-icons-left"  >
-            <input class="input search" type="search" placeholder="Select or search for musics....">
+          
+          <div class="control">
+            <input class="input search is-rounded" type="search" placeholder="Select or search for musics....">
+              
           </div>
         </a>
 
       </div>
       <div class="navbar-end">
-        <div class="navbar-item has-dropdown is-hoverable">
+        <div class="navbar-item has-dropdown is-hoverable is-boxed">
           <a class="navbar-link">
-            <span>
+            <figure class="image">
                  <img src="https://s3.amazonaws.com/uifaces/faces/twitter/heyimjuani/128.jpg"  class="img-menu">
-            </span>
+            </figure>
           </a>
           <div class="navbar-dropdown">
             <a class="navbar-item">

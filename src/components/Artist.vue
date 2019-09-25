@@ -1,14 +1,14 @@
 <template>
   <div class="artistPage">
-    <section class="artistName">
+    <section class="artistInfos">
       <h1>BABYMETAL</h1>
       <a
         href="https://geo.music.apple.com/ca/artist/babymetal/477101776?mt=1&app=music&ls=1"
         style="display:inline-block;overflow:hidden;background:url(https://tools.applemusic.com/en-us/lockup.svg?kind=artist&bubble=apple_music&style=standard-black) no-repeat;width:140px;height:30px;"
       ></a>
+      <h3>Genre: Metal</h3>
+      <h2>Albums</h2>
     </section>
-    <h3>Genre: Metal</h3>
-    <h2>Albums</h2>
     <ul class="albumList">
       <li class="album">
         <figure>
@@ -85,8 +85,7 @@
 
 <style>
 body {
-  /* background: #242028; */
-  background: darkgray;
+  background: rgb(127, 127, 127);
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   padding: 0;
   margin: 0;
@@ -96,9 +95,8 @@ body {
   color: whitesmoke;
 }
 
-.artistName {
+.artistInfos {
   float: left;
-  /* left: 30px; */
 }
 
 .albumList {
@@ -112,13 +110,15 @@ body {
 }
 
 @media only screen and (max-width: 768px) {
-  .artistName {
-    display: flex;
-    flex-direction: column;
+  .artistInfos {
+    float: center;
+    /* display: inline-block; */
+    /* flex-direction: column; */
   }
 
   .albumList {
-    flex-direction: column;
+    display: inline-block;
+    /* flex-direction: column; */
   }
 }
 
@@ -145,7 +145,14 @@ body {
 }
 
 .album > figure > figcaption {
-  color: crimson;
   text-shadow: 1px 1px 3px gray;
+}
+
+.album > figure > figcaption > a {
+  color: gold;
+}
+
+.album > figure > figcaption > a:hover {
+  color: red;
 }
 </style>

@@ -1,12 +1,12 @@
 <template>
-<div class="artistPage">
-    <h1 class="artistName">BABYMETAL</h1>
-    <div>
+  <div class="artistPage">
+    <section class="artistName">
+      <h1>BABYMETAL</h1>
       <a
         href="https://geo.music.apple.com/ca/artist/babymetal/477101776?mt=1&app=music&ls=1"
         style="display:inline-block;overflow:hidden;background:url(https://tools.applemusic.com/en-us/lockup.svg?kind=artist&bubble=apple_music&style=standard-black) no-repeat;width:140px;height:30px;"
       ></a>
-    </div>
+    </section>
     <h3>Genre: Metal</h3>
     <h2>Albums</h2>
     <ul class="albumList">
@@ -85,10 +85,20 @@
 
 <style>
 body {
-  background: gray;
+  /* background: #242028; */
+  background: darkgray;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   padding: 0;
   margin: 0;
+}
+
+.artistPage {
+  color: whitesmoke;
+}
+
+.artistName {
+  float: left;
+  /* left: 30px; */
 }
 
 .albumList {
@@ -99,6 +109,17 @@ body {
   margin: 0;
   padding: 0;
   text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .artistName {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .albumList {
+    flex-direction: column;
+  }
 }
 
 .album {

@@ -85,7 +85,7 @@
 
 <style>
 body {
-  background: rgb(127, 127, 127);
+  /* background: rgb(127, 127, 127); */
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   padding: 0;
   margin: 0;

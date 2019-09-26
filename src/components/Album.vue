@@ -37,13 +37,8 @@
           :mobile-cards="false">
 
           <template slot-scope="props">
-                <b-table-column field="trackNumber" label="#" width="60">
-                    <span class="trackNumber">
-                      {{ props.row.trackNumber }}
-                    </span>
-                    <!-- <span class="playIcon">
-                        <a href="#"><b-icon  pack="fas" icon="play-circle" type="is-success" /></a>
-                    </span> -->
+                <b-table-column field="trackNumber" label="#">
+                    {{ props.row.trackNumber }}
                 </b-table-column>   
                 <b-table-column field="trackName" label="Title">
                     {{ props.row.trackName }}
@@ -64,12 +59,8 @@
                 </b-table-column> 
             </template>
         </b-table>
-
-
       </div>
     </div>
-
-    <div></div>
   </div>
 </template>
 
@@ -82,7 +73,6 @@ import 'buefy/dist/buefy.css'
 Vue.use(Buefy, { defaultIconPack: 'fal' });
 
 export default {
-  name: 'HelloWorld',
   data () {
     return {
       albumData: {
@@ -239,15 +229,146 @@ export default {
           "primaryGenreName": "Alternative",
           "contentAdvisoryRating": "Explicit",
           "radioStationUrl": "https://itunes.apple.com/station/idra.325479"
+      }, 
+      {
+          "artistName": "Daft Punk",
+          "collectionName": "Alive 2007",
+          "trackName": "Robot Rock / Oh Yeah",
+          "collectionCensoredName": "Alive 2007",
+          "trackCensoredName": "Robot Rock / Oh Yeah",
+          "artistViewUrl": "https://itunes.apple.com/us/artist/blink-182/id116851?uo=4",
+          "collectionViewUrl": "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
+          "trackViewUrl": "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
+          "previewUrl": "http://a816.phobos.apple.com/us/r1000/118/Music/e6/86/40/mzm.xhlwhbtm.aac.p.m4a",
+          "artworkUrl30": "http://a1.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.30x30-50.jpg",
+          "artworkUrl60": "http://a3.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.60x60-50.jpg",
+          "artworkUrl100": "http://a2.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.100x100-75.jpg",
+          "collectionPrice": 9.99,
+          "trackPrice": 1.29,
+          "releaseDate": "1999-05-25T07:00:00Z",
+          "collectionExplicitness": "explicit",
+          "trackExplicitness": "explicit",
+          "discCount": 1,
+          "discNumber": 1,
+          "trackCount": 12,
+          "trackNumber": 1,
+          "trackTimeMillis": 627000,
+          "country": "USA",
+          "currency": "USD",
+          "primaryGenreName": "Alternative",
+          "contentAdvisoryRating": "Explicit",
+          "radioStationUrl": "https://itunes.apple.com/station/idra.325479"
+      },
+      {
+          "wrapperType": "track",
+          "kind": "song",
+          "artistId": 116851,
+          "collectionId": 325483,
+          "trackId": 325479,
+          "artistName": "Daft Punk",
+          "collectionName": "Alive 2007",
+          "trackName": "Touch It / Technologic",
+          "collectionCensoredName": "Alive 2007",
+          "trackCensoredName": "Touch It / Technologic",
+          "artistViewUrl": "https://itunes.apple.com/us/artist/blink-182/id116851?uo=4",
+          "collectionViewUrl": "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
+          "trackViewUrl": "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
+          "previewUrl": "http://a816.phobos.apple.com/us/r1000/118/Music/e6/86/40/mzm.xhlwhbtm.aac.p.m4a",
+          "artworkUrl30": "http://a1.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.30x30-50.jpg",
+          "artworkUrl60": "http://a3.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.60x60-50.jpg",
+          "artworkUrl100": "http://a2.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.100x100-75.jpg",
+          "collectionPrice": 9.99,
+          "trackPrice": 1.29,
+          "releaseDate": "1999-05-25T07:00:00Z",
+          "collectionExplicitness": "explicit",
+          "trackExplicitness": "explicit",
+          "discCount": 1,
+          "discNumber": 1,
+          "trackCount": 12,
+          "trackNumber": 1,
+          "trackTimeMillis": 143862,
+          "country": "USA",
+          "currency": "USD",
+          "primaryGenreName": "Alternative",
+          "contentAdvisoryRating": "Explicit",
+          "radioStationUrl": "https://itunes.apple.com/station/idra.325479"
+      },
+      {
+          "wrapperType": "track",
+          "kind": "song",
+          "artistId": 116851,
+          "collectionId": 325483,
+          "trackId": 325479,
+          "artistName": "Daft Punk",
+          "collectionName": "Alive 2007",
+          "trackName": "Television Rules the Nation / Crescendolls",
+          "collectionCensoredName": "Alive 2007",
+          "trackCensoredName": "Television Rules the Nation / Crescendolls",
+          "artistViewUrl": "https://itunes.apple.com/us/artist/blink-182/id116851?uo=4",
+          "collectionViewUrl": "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
+          "trackViewUrl": "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
+          "previewUrl": "http://a816.phobos.apple.com/us/r1000/118/Music/e6/86/40/mzm.xhlwhbtm.aac.p.m4a",
+          "artworkUrl30": "http://a1.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.30x30-50.jpg",
+          "artworkUrl60": "http://a3.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.60x60-50.jpg",
+          "artworkUrl100": "http://a2.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.100x100-75.jpg",
+          "collectionPrice": 9.99,
+          "trackPrice": 1.29,
+          "releaseDate": "1999-05-25T07:00:00Z",
+          "collectionExplicitness": "explicit",
+          "trackExplicitness": "explicit",
+          "discCount": 1,
+          "discNumber": 1,
+          "trackCount": 12,
+          "trackNumber": 1,
+          "trackTimeMillis": 143862,
+          "country": "USA",
+          "currency": "USD",
+          "primaryGenreName": "Alternative",
+          "contentAdvisoryRating": "Explicit",
+          "radioStationUrl": "https://itunes.apple.com/station/idra.325479"
+      },
+      {
+          "wrapperType": "track",
+          "kind": "song",
+          "artistId": 116851,
+          "collectionId": 325483,
+          "trackId": 325479,
+          "artistName": "Daft Punk",
+          "collectionName": "Alive 2007",
+          "trackName": "Too Long / Steam Machine",
+          "collectionCensoredName": "Alive 2007",
+          "trackCensoredName": "Too Long / Steam Machine",
+          "artistViewUrl": "https://itunes.apple.com/us/artist/blink-182/id116851?uo=4",
+          "collectionViewUrl": "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
+          "trackViewUrl": "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
+          "previewUrl": "http://a816.phobos.apple.com/us/r1000/118/Music/e6/86/40/mzm.xhlwhbtm.aac.p.m4a",
+          "artworkUrl30": "http://a1.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.30x30-50.jpg",
+          "artworkUrl60": "http://a3.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.60x60-50.jpg",
+          "artworkUrl100": "http://a2.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.100x100-75.jpg",
+          "collectionPrice": 9.99,
+          "trackPrice": 1.29,
+          "releaseDate": "1999-05-25T07:00:00Z",
+          "collectionExplicitness": "explicit",
+          "trackExplicitness": "explicit",
+          "discCount": 1,
+          "discNumber": 1,
+          "trackCount": 12,
+          "trackNumber": 1,
+          "trackTimeMillis": 143862,
+          "country": "USA",
+          "currency": "USD",
+          "primaryGenreName": "Alternative",
+          "contentAdvisoryRating": "Explicit",
+          "radioStationUrl": "https://itunes.apple.com/station/idra.325479"
       }
       ],
     }
   },
   methods: {
     millisToMinutes: function (timeMillis) {
-      var result = "";
-      var minutes = parseInt(timeMillis / 60000);
-      var seconds = timeMillis % 60000;
+      let result = "";
+      let minutes = parseInt(timeMillis / 60000);
+      let seconds = timeMillis % 60000;
       seconds = (seconds + "").slice(0, 2);
       result = minutes + "." + seconds;
       return result
@@ -262,31 +383,30 @@ export default {
 .componentPage {
   width: 100%;
   height: 100%;
-  background-color: #242028;
-  color: white;
 }
 
 .container {
+  margin-top: 10px;
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 /* Album image and description */
 .albumDataContainer {
-  width: 100%;
+  min-width: 300px;
+  flex: 1;
   padding: 15px;
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 /* image */
 .albumImageContainer {
-  width: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -294,19 +414,19 @@ export default {
   align-items: center;
 }
 .albumImageContainer > img {
-  max-width: 100px;
-  min-width: 30px;
-  min-height: 30px;
-  width: 75%;
+  width: 200px;
   overflow: hidden; 
   margin: 10px;
+}
+.albumImageContainer > a {
+  margin-top:10px;
+  margin-bottom: 10px;
 }
 
 /* description */
 .albumDescription {
-  margin-top: 20px;
   min-width: 200px;
-  width: fit-content;
+  margin: 0 auto;
 }
 .albumDescription > table {
   border-collapse: separate;
@@ -320,36 +440,12 @@ export default {
 /* Tracks */
 .albumTracksContainer {
   padding: 15px;
+  flex: 4;
+  margin-top:10px;
 }
 
-.albumTracksContainer > a:hover, a:visited {
-  color: white;
+a {
+  color: rgb(54, 54, 54);
 }
 
-.trackTable .table { 
-    background: #242028; 
-    color: white;    
-}
-/* hover on row => color */
-.trackTable .table.is-hoverable tbody tr:not(.is-selected):hover {
-    background-color: rgb(51, 47, 54);
-}
-/* hover on row => display playIcon */
-/* .trackTable .table.is-hoverable tbody tr:not(.is-selected):hover  .playIcon{
-    display: block;
-}
-.trackTable .table.is-hoverable tbody tr:not(.is-selected):hover  .trackNumber{
-    display: none;
-}
-
-.playIcon{
-    display: none;
-} */
-
-.table thead td, .table thead th {
-    color: white;
-}
-.b-table-column {
-    color: white;
-}
 </style>

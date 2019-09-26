@@ -62,22 +62,30 @@
       <div class="secondContainer">
         <div class="artistContainer">
           <div class="artistCard">
-            <img :src="artistsList[0].image" />
+            <router-link to="/artist" class="imageArtistContainer">
+              <img :src="artistsList[0].image" />
+            </router-link>
             <p class="artistName">{{ albumData[0].artistName }}</p>
             <p class="genreName">{{ albumData[0].primaryGenreName }}</p>
           </div>
           <div class="artistCard">
-            <img :src="artistsList[0].image" />
+            <router-link to="/artist" class="imageArtistContainer">
+              <img :src="artistsList[0].image" />
+            </router-link>
             <p class="artistName">{{ albumData[0].artistName }}</p>
             <p class="genreName">{{ albumData[0].primaryGenreName }}</p>
           </div>
           <div class="artistCard">
-            <img :src="artistsList[0].image" />
+            <router-link to="/artist" class="imageArtistContainer">
+              <img :src="artistsList[0].image" />
+            </router-link>
             <p class="artistName">{{ albumData[0].artistName }}</p>
             <p class="genreName">{{ albumData[0].primaryGenreName }}</p>
           </div>
           <div class="artistCard">
-            <img :src="artistsList[0].image" />
+            <router-link to="/artist" class="imageArtistContainer">
+              <img :src="artistsList[0].image" />
+            </router-link>
             <p class="artistName">{{ albumData[0].artistName }}</p>
             <p class="genreName">{{ albumData[0].primaryGenreName }}</p>
           </div>
@@ -247,13 +255,13 @@ export default {
   margin: 20px;
   text-align: center;
 }
-.artistCard > img {
+.artistCard > .imageArtistContainer > img {
   width: 200px;
   height: 200px;
   cursor: pointer;
   object-fit: cover;
 }
-.artistCard > img:hover {
+.artistCard > .imageArtistContainer > img:hover {
   opacity: 0.7;
   cursor: pointer;
 }

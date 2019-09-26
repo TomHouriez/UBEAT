@@ -14,6 +14,7 @@
       <a class="navbar-item desktop tablet">
         <div class="control has-icons-left">
           <input class="input" type="search" placeholder="Search or Select your music">
+          <span class="icon is-left"><i class="fa fa-search" aria-hidden="true"></i></span>
         </div>
       </a>
       <div class="dropdown is-hoverable desktop tablet">
@@ -26,15 +27,15 @@
         <div class="dropdown-menu" id="dropdown-menu3" role="menu">
           <div class="dropdown-content">
             <a class="dropdown-item">
-              <span class="icon"><i class="fa fa-sign-out"></i></span>
+              <span class="icon"><i class="fa fa-cog"></i></span>
               <span>Settings</span>
             </a>
             <a class="dropdown-item">
-              <span class="icon"><i class="fa fa-sign-out"></i></span>
+              <span class="icon"><i class="fa fa-user"></i></span>
               <span>Profile</span>
             </a>
             <a class="dropdown-item">
-              <span class="icon"><i class="fa fa-cog"></i></span>
+              <span class="icon"><i class="fa fa-times" aria-hidden="true"></i></span>
               <span>Sign Out</span>
             </a>
           </div>
@@ -55,6 +56,7 @@
         <a class="navbar-item desktop tablet" id="input-item">
           <div class="control has-icons-left"  >
             <input class="input" type="search" placeholder="Search or Select your music" id="navbar-input">
+            
           </div>
         </a>
       </div>
@@ -66,15 +68,15 @@
           </a>
           <div class="navbar-dropdown">
             <a class="navbar-item">
-              <span class="icon"><i class="fa fa-sign-out"></i></span>
+              <span class="icon"><i class="fa fa-cog"></i></span>
               <span>Settings</span>
             </a>
             <a class="navbar-item">
-              <span class="icon"><i class="fa fa-sign-out"></i></span>
+              <span class="icon"><i class="fa fa-user"></i></span>
               <span>Profile</span>
             </a>
             <a class="navbar-item">
-              <span class="icon"><i class="fa fa-cog"></i></span>
+              <span class="icon"><i class="fa fa-times" aria-hidden="true"></i></span>
               <span>Sign Out</span>
             </a>
           </div>

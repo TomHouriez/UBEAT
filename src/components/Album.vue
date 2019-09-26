@@ -43,26 +43,26 @@
           :mobile-cards="false"
         >
           <template slot-scope="props">
-            <b-table-column field="trackNumber" label="#">{{
-              props.row.trackNumber
-            }}</b-table-column>
-            <b-table-column field="trackName" label="Title">{{
-              props.row.trackName
-            }}</b-table-column>
+            <b-table-column field="trackNumber" label="#">
+              {{ props.row.trackNumber }}
+            </b-table-column>
+            <b-table-column field="trackName" label="Title">
+              {{ props.row.trackName }}
+            </b-table-column>
             <b-table-column
               class="artistName"
               field="artistName"
               label="Artists"
             >
               <span>
-                <a :href="props.row.artistViewUrl">{{
-                  props.row.artistName
-                }}</a>
+                <a :href="props.row.artistViewUrl">
+                  {{ props.row.artistName }}
+                </a>
               </span>
             </b-table-column>
-            <b-table-column field="trackLength" label="Length">{{
-              millisToMinutes(props.row.trackTimeMillis)
-            }}</b-table-column>
+            <b-table-column field="trackLength" label="Length">
+              {{ millisToMinutes(props.row.trackTimeMillis) }}
+            </b-table-column>
 
             <b-table-column field="play" label="Play">
               <span>
@@ -163,8 +163,7 @@ export default {
           trackName: "Touch It / Technologic",
           collectionCensoredName: "Alive 2007",
           trackCensoredName: "Touch It / Technologic",
-          artistViewUrl:
-            "https://music.apple.com/us/artist/daft-punk/5468295",
+          artistViewUrl: "https://music.apple.com/us/artist/daft-punk/5468295",
           collectionViewUrl:
             "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
           trackViewUrl:
@@ -204,8 +203,7 @@ export default {
           trackName: "Television Rules the Nation / Crescendolls",
           collectionCensoredName: "Alive 2007",
           trackCensoredName: "Television Rules the Nation / Crescendolls",
-          artistViewUrl:
-            "https://music.apple.com/us/artist/daft-punk/5468295",
+          artistViewUrl: "https://music.apple.com/us/artist/daft-punk/5468295",
           collectionViewUrl:
             "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
           trackViewUrl:
@@ -245,8 +243,7 @@ export default {
           trackName: "Too Long / Steam Machine",
           collectionCensoredName: "Alive 2007",
           trackCensoredName: "Too Long / Steam Machine",
-          artistViewUrl:
-            "https://music.apple.com/us/artist/daft-punk/5468295",
+          artistViewUrl: "https://music.apple.com/us/artist/daft-punk/5468295",
           collectionViewUrl:
             "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
           trackViewUrl:
@@ -281,8 +278,7 @@ export default {
           trackName: "Robot Rock / Oh Yeah",
           collectionCensoredName: "Alive 2007",
           trackCensoredName: "Robot Rock / Oh Yeah",
-          artistViewUrl:
-            "https://music.apple.com/us/artist/daft-punk/5468295",
+          artistViewUrl: "https://music.apple.com/us/artist/daft-punk/5468295",
           collectionViewUrl:
             "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
           trackViewUrl:
@@ -322,8 +318,7 @@ export default {
           trackName: "Touch It / Technologic",
           collectionCensoredName: "Alive 2007",
           trackCensoredName: "Touch It / Technologic",
-          artistViewUrl:
-            "https://music.apple.com/us/artist/daft-punk/5468295",
+          artistViewUrl: "https://music.apple.com/us/artist/daft-punk/5468295",
           collectionViewUrl:
             "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
           trackViewUrl:
@@ -363,8 +358,7 @@ export default {
           trackName: "Television Rules the Nation / Crescendolls",
           collectionCensoredName: "Alive 2007",
           trackCensoredName: "Television Rules the Nation / Crescendolls",
-          artistViewUrl:
-            "https://music.apple.com/us/artist/daft-punk/5468295",
+          artistViewUrl: "https://music.apple.com/us/artist/daft-punk/5468295",
           collectionViewUrl:
             "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
           trackViewUrl:
@@ -404,8 +398,7 @@ export default {
           trackName: "Too Long / Steam Machine",
           collectionCensoredName: "Alive 2007",
           trackCensoredName: "Too Long / Steam Machine",
-          artistViewUrl:
-            "https://music.apple.com/us/artist/daft-punk/5468295",
+          artistViewUrl: "https://music.apple.com/us/artist/daft-punk/5468295",
           collectionViewUrl:
             "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
           trackViewUrl:

@@ -1,158 +1,179 @@
 <template>
-  <div class="artistPage">
-    <section class="artistInfos">
-      <h1>BABYMETAL</h1>
-      <a
-        href="https://geo.music.apple.com/ca/artist/babymetal/477101776?mt=1&app=music&ls=1"
-        style="display:inline-block;overflow:hidden;background:url(https://tools.applemusic.com/en-us/lockup.svg?kind=artist&bubble=apple_music&style=standard-black) no-repeat;width:140px;height:30px;"
-      ></a>
-      <h3>Genre: Metal</h3>
-      <h2>Albums</h2>
-    </section>
-    <ul class="albumList">
-      <li class="album">
-        <figure>
+  <div class="componentPage">
+    <div class="container">
+      <div class="topRow">
+        <section class="artistImageContainer">
           <img
-            src="https://is2-ssl.mzstatic.com/image/thumb/Music69/v4/72/e1/67/72e1674e-91a4-b1fb-dfee-7274a618bc6c/source/100x100bb.jpg"
-            alt=""
+            src="
+          https://geo-media.beatport.com/image/db2552bf-aae0-4ad4-8f44-8999db32b4b8.jpg"
           />
-          <figcaption>
-            <a href="https://music.apple.com/us/album/babymetal/984334432?uo=4"
-              >Babymetal
-            </a>
-          </figcaption>
-        </figure>
-      </li>
-      <li class="album">
-        <figure>
-          <img
-            src="https://is5-ssl.mzstatic.com/image/thumb/Music5/v4/cf/b1/1d/cfb11dea-618f-ec99-831e-e3518fbd1c6c/source/100x100bb.jpg"
-            alt=""
-          />
-          <figcaption>
-            <a
-              href="https://music.apple.com/us/album/metal-resistance/1086229979?uo=4"
-              >Metal Resistance
-            </a>
-          </figcaption>
-        </figure>
-      </li>
-      <li class="album">
-        <figure>
-          <img
-            src="https://is2-ssl.mzstatic.com/image/thumb/Music113/v4/44/74/df/4474df97-5a4d-8b15-3286-111f708a497d/source/100x100bb.jpg"
-            alt=""
-          />
-          <figcaption>
-            <a
-              href="https://music.apple.com/us/album/metal-galaxy/1475662687?uo=4"
-              >METAL GALAXY
-            </a>
-          </figcaption>
-        </figure>
-      </li>
-      <li class="album">
-        <figure>
-          <img
-            src="https://is2-ssl.mzstatic.com/image/thumb/Music128/v4/7a/a0/a5/7aa0a50a-571c-d320-6f4f-0b01c312add9/source/100x100bb.jpg"
-            alt=""
-          />
-          <figcaption>
-            <a
-              href="https://music.apple.com/us/album/starlight-single/1437899646?uo=4"
-              >Starlight - Single
-            </a>
-          </figcaption>
-        </figure>
-      </li>
-      <li class="album">
-        <figure>
-          <img
-            src="https://is4-ssl.mzstatic.com/image/thumb/Music128/v4/a2/f3/f0/a2f3f0fa-e1d8-9289-80f6-87920aa98a57/source/100x100bb.jpg"
-            alt=""
-          />
-          <figcaption>
-            <a
-              href="https://music.apple.com/us/album/distortion-single/1376826384?uo=4"
-              >Distortion - Single
-            </a>
-          </figcaption>
-        </figure>
-      </li>
-    </ul>
+          <a
+            href="https://geo.music.apple.com/us/artist/daft-punk/5468295?mt=1&app=music&ls=1"
+            style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/en-us/lockup.svg?kind=artist&bubble=apple_music&style=standard-black) no-repeat;width:140px;height:30px;"
+          ></a>
+          <p>Genre: House</p>
+        </section>
+        <aside class="artistBiographyContainer">
+          Daft Punk is a French electronic music duo formed in Paris in 1993 by
+          Guy-Manuel de Homem-Christo and Thomas Bangalter (born January 3,
+          1975) They achieved popularity in the late 1990s as part of the French
+          house movement; they also had success in the years following,
+          combining elements of house music with funk, techno, disco, rock and
+          synthpop. They have worn ornate helmets and gloves to assume robot
+          personas in most public appearances since 1999[11] and rarely grant
+          interviews or appear on television. The duo were managed from 1996 to
+          2008 by Pedro Winter (also known as Busy P), the head of Ed Banger
+          Records. After Bangalter and Homem-Christo's indie rock band Darlin'
+          disbanded, they began experimenting with drum machines and
+          synthesisers. Their debut studio album Homework was released by Virgin
+          Records in 1997 to positive reviews, backed by singles "Around the
+          World" and "Da Funk". Their second album, Discovery, had further
+          success, supported by hit singles "One More Time", "Digital Love" and
+          "Harder, Better, Faster, Stronger". In March 2005, Daft Punk released
+          their third album, Human After All, to mixed reviews, though the
+          singles "Robot Rock" and "Technologic" achieved success in the United
+          Kingdom. Daft Punk toured throughout 2006 and 2007 and released the
+          live album Alive 2007, which won a Grammy Award for Best
+          Electronic/Dance Album. They composed the score for the film Tron:
+          Legacy, which was released in 2010 alongside its soundtrack album. In
+          2013, Daft Punk left Virgin for Columbia Records, and released their
+          fourth album, Random Access Memories, to acclaim; lead single "Get
+          Lucky" reached the top 10 in the charts of 32 countries. Random Access
+          Memories won five Grammy Awards in 2014, including Album of the Year
+          and Record of the Year for "Get Lucky". In 2016, Daft Punk gained
+          their first number one on the Billboard Hot 100 with the song
+          "Starboy", a collaboration with The Weeknd. As of 2015, Daft Punk had
+          sold over 12 million albums worldwide.
+        </aside>
+      </div>
+      <aside class="artistAlbumsContainer" id="artistAlbumsContainerId">
+        <section>
+          <b-table
+            :data="isEmpty ? [] : data"
+            :bordered="isBordered"
+            :striped="isStriped"
+            :narrowed="isNarrowed"
+            :hoverable="isHoverable"
+            :loading="isLoading"
+            :focusable="isFocusable"
+            :mobile-cards="hasMobileCards"
+          >
+            <template slot-scope="props">
+              <b-table-column field="title" label="Title">
+                {{ props.row.title }}
+              </b-table-column>
+
+              <b-table-column field="date" label="Date" centered>
+                <span class="tag is-success">
+                  {{ props.row.year }}
+                </span>
+              </b-table-column>
+            </template>
+
+            <template slot="empty">
+              <section class="section">
+                <div class="content has-text-grey has-text-centered">
+                  <p>
+                    <b-icon icon="emoticon-sad" size="is-large"> </b-icon>
+                  </p>
+                  <p>Nothing here.</p>
+                </div>
+              </section>
+            </template>
+          </b-table>
+        </section>
+      </aside>
+    </div>
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    const data = [
+      {
+        title: "Homework",
+        year: "1997"
+      },
+      {
+        title: "Discovery",
+        year: "2001"
+      },
+      {
+        title: "Human After All",
+        year: "2005"
+      },
+      {
+        title: "Random Access Memories",
+        year: "2013"
+      }
+    ];
+
+    return {
+      data,
+      isEmpty: false,
+      isBordered: false,
+      isStriped: false,
+      isNarrowed: false,
+      isHoverable: true,
+      isFocusable: false,
+      isLoading: false,
+      hasMobileCards: true
+    };
+  }
+};
+</script>
+
 <style>
-body {
-  /* background: rgb(127, 127, 127); */
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  padding: 0;
-  margin: 0;
+.componentPage {
+  width: 100%;
+  height: 100%;
 }
 
-.artistPage {
-  color: whitesmoke;
+.container {
+  margin-top: 10px;
+  width: 100%;
+  height: 100%;
 }
 
-.artistInfos {
-  float: left;
-}
-
-.albumList {
+.topRow {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  text-align: center;
+  justify-content: center;
 }
 
-@media only screen and (max-width: 768px) {
-  .artistInfos {
-    float: center;
-    /* display: inline-block; */
-    /* flex-direction: column; */
-  }
-
-  .albumList {
-    display: inline-block;
-    /* flex-direction: column; */
-  }
+.artistImageContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  margin-top: 10px;
+  max-width: 40%;
 }
-
-.album {
-  max-width: 200px;
-  margin: auto;
-  margin-bottom: 20px;
-}
-
-.album > figure {
-  margin: 10px;
-  max-width: 200px;
-  overflow: hidden;
-  text-align: center;
-}
-
-.album > figure > img {
+.artistImageContainer > img {
   border: 1px solid black;
-  border-radius: 3%;
+  border-radius: 50%;
   box-shadow: 3px 3px 1px 1px rgba(0, 0, 0, 0.3);
-  max-width: 330px;
-  margin: 0;
-  padding: 0;
+  margin: 5px;
+  overflow: hidden;
 }
 
-.album > figure > figcaption {
-  text-shadow: 1px 1px 3px gray;
+.artistBiographyContainer {
+  min-width: 300px;
+  flex: 1;
+  padding: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  /* justify-content: flex-start; */
 }
 
-.album > figure > figcaption > a {
-  color: gold;
+a {
+  color: rgb(54, 54, 54);
 }
 
-.album > figure > figcaption > a:hover {
-  color: red;
+a:hover {
+  color: rgba(214, 38, 61, 0.882);
 }
 </style>

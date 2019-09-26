@@ -43,9 +43,9 @@
                 <b-table-column field="trackName" label="Title">
                     {{ props.row.trackName }}
                 </b-table-column>
-                <b-table-column field="artistName" label="Artists">
+                <b-table-column class="artistName" field="artistName" label="Artists">
                     <span>
-                      <a href="#">{{ props.row.artistName }}</a>
+                      <a :href="props.row.artistViewUrl" >{{ props.row.artistName }}</a>
                     </span>
                 </b-table-column>
                 <b-table-column field="trackLength" label="Length">
@@ -105,7 +105,7 @@ export default {
           "trackName": "Robot Rock / Oh Yeah",
           "collectionCensoredName": "Alive 2007",
           "trackCensoredName": "Robot Rock / Oh Yeah",
-          "artistViewUrl": "https://itunes.apple.com/us/artist/blink-182/id116851?uo=4",
+          "artistViewUrl": "https://music.apple.com/us/artist/daft-punk/5468295",
           "collectionViewUrl": "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
           "trackViewUrl": "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
           "previewUrl": "http://a816.phobos.apple.com/us/r1000/118/Music/e6/86/40/mzm.xhlwhbtm.aac.p.m4a",
@@ -444,8 +444,17 @@ export default {
   margin-top:10px;
 }
 
+/* .albumTracksContainer .artistName:hover  {
+  font: red;
+} */
+
+
 a {
   color: rgb(54, 54, 54);
+} 
+
+a:hover {
+  color: rgba(214, 38, 61, 0.882);
 }
 
 </style>

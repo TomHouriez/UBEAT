@@ -11,7 +11,7 @@
             style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/en-us/badge-lrg.svg?releaseDate=2007-11-14&kind=album&bubble=apple_music) no-repeat;width:158px;height:45px;"
           ></a>
         </div>
-        <div class="albumDescription">
+        <div class="albumTableDescription">
           <table>
             <tr>
               <td>Album:</td>
@@ -495,15 +495,15 @@ export default {
 }
 
 /* description */
-.albumDescription {
+.albumTableDescription {
   min-width: 200px;
   margin: 0 auto;
 }
-.albumDescription > table {
+.albumTableDescription > table {
   border-collapse: separate;
   border-spacing: 20px 3px;
 }
-.albumDescription > td {
+.albumTableDescription > td {
   padding-left: 30px 0;
 }
 

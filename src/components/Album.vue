@@ -164,7 +164,7 @@ export default {
           collectionCensoredName: "Alive 2007",
           trackCensoredName: "Touch It / Technologic",
           artistViewUrl:
-            "https://itunes.apple.com/us/artist/blink-182/id116851?uo=4",
+            "https://music.apple.com/us/artist/daft-punk/5468295",
           collectionViewUrl:
             "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
           trackViewUrl:
@@ -185,7 +185,7 @@ export default {
           discCount: 1,
           discNumber: 1,
           trackCount: 12,
-          trackNumber: 1,
+          trackNumber: 2,
           trackTimeMillis: 143862,
           country: "USA",
           currency: "USD",
@@ -205,7 +205,7 @@ export default {
           collectionCensoredName: "Alive 2007",
           trackCensoredName: "Television Rules the Nation / Crescendolls",
           artistViewUrl:
-            "https://itunes.apple.com/us/artist/blink-182/id116851?uo=4",
+            "https://music.apple.com/us/artist/daft-punk/5468295",
           collectionViewUrl:
             "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
           trackViewUrl:
@@ -226,7 +226,7 @@ export default {
           discCount: 1,
           discNumber: 1,
           trackCount: 12,
-          trackNumber: 1,
+          trackNumber: 3,
           trackTimeMillis: 143862,
           country: "USA",
           currency: "USD",
@@ -246,7 +246,7 @@ export default {
           collectionCensoredName: "Alive 2007",
           trackCensoredName: "Too Long / Steam Machine",
           artistViewUrl:
-            "https://itunes.apple.com/us/artist/blink-182/id116851?uo=4",
+            "https://music.apple.com/us/artist/daft-punk/5468295",
           collectionViewUrl:
             "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
           trackViewUrl:
@@ -267,7 +267,7 @@ export default {
           discCount: 1,
           discNumber: 1,
           trackCount: 12,
-          trackNumber: 1,
+          trackNumber: 4,
           trackTimeMillis: 143862,
           country: "USA",
           currency: "USD",
@@ -282,7 +282,7 @@ export default {
           collectionCensoredName: "Alive 2007",
           trackCensoredName: "Robot Rock / Oh Yeah",
           artistViewUrl:
-            "https://itunes.apple.com/us/artist/blink-182/id116851?uo=4",
+            "https://music.apple.com/us/artist/daft-punk/5468295",
           collectionViewUrl:
             "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
           trackViewUrl:
@@ -303,7 +303,7 @@ export default {
           discCount: 1,
           discNumber: 1,
           trackCount: 12,
-          trackNumber: 1,
+          trackNumber: 5,
           trackTimeMillis: 627000,
           country: "USA",
           currency: "USD",
@@ -323,7 +323,7 @@ export default {
           collectionCensoredName: "Alive 2007",
           trackCensoredName: "Touch It / Technologic",
           artistViewUrl:
-            "https://itunes.apple.com/us/artist/blink-182/id116851?uo=4",
+            "https://music.apple.com/us/artist/daft-punk/5468295",
           collectionViewUrl:
             "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
           trackViewUrl:
@@ -344,7 +344,7 @@ export default {
           discCount: 1,
           discNumber: 1,
           trackCount: 12,
-          trackNumber: 1,
+          trackNumber: 6,
           trackTimeMillis: 143862,
           country: "USA",
           currency: "USD",
@@ -364,7 +364,7 @@ export default {
           collectionCensoredName: "Alive 2007",
           trackCensoredName: "Television Rules the Nation / Crescendolls",
           artistViewUrl:
-            "https://itunes.apple.com/us/artist/blink-182/id116851?uo=4",
+            "https://music.apple.com/us/artist/daft-punk/5468295",
           collectionViewUrl:
             "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
           trackViewUrl:
@@ -385,7 +385,7 @@ export default {
           discCount: 1,
           discNumber: 1,
           trackCount: 12,
-          trackNumber: 1,
+          trackNumber: 7,
           trackTimeMillis: 143862,
           country: "USA",
           currency: "USD",
@@ -405,7 +405,7 @@ export default {
           collectionCensoredName: "Alive 2007",
           trackCensoredName: "Too Long / Steam Machine",
           artistViewUrl:
-            "https://itunes.apple.com/us/artist/blink-182/id116851?uo=4",
+            "https://music.apple.com/us/artist/daft-punk/5468295",
           collectionViewUrl:
             "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
           trackViewUrl:
@@ -426,7 +426,7 @@ export default {
           discCount: 1,
           discNumber: 1,
           trackCount: 12,
-          trackNumber: 1,
+          trackNumber: 8,
           trackTimeMillis: 143862,
           country: "USA",
           currency: "USD",

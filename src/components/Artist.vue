@@ -147,7 +147,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .artistNameContainer {
   margin: 10px;
   text-align: center;

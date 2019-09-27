@@ -155,8 +155,8 @@ export default {
 };
 </script>
 
-<style>
-.componentPage {
+<style scoped>
+componentPage {
   width: 100%;
   height: 100%;
 }

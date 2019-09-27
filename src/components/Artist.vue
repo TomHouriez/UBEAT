@@ -167,6 +167,18 @@
             </a>
           </li>
           <li>
+            <a href="/album/#/album">
+              <figure>
+                <img
+                  src="https://coverartarchive.org/release-group/4bac3d70-deea-3d80-85c4-8be9f90558e6/front.jpg"
+                  alt
+                />
+                <figcaption>Alive 2007 (2007)</figcaption>
+              </figure>
+            </a>
+          </li>
+
+          <li>
             <a href="https://music.apple.com/ca/album/tron-legacy/1442926773">
               <figure>
                 <img

@@ -64,13 +64,13 @@
         </div>
       </div>
       <div class="artistBiographyContainer">
-        <b-collapse :open="true" aria-id="contentIdForA11y1">
+        <b-collapse :open="false" aria-id="contentIdForA11y1">
           <button
-            class="button is-primary"
+            class="button"
             slot="trigger"
             aria-controls="contentIdForA11y1"
           >
-            Biography
+            Biography >
           </button>
           <div class="notification">
             <div class="content">

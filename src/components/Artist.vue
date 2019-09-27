@@ -53,10 +53,18 @@
               <td>members</td>
               <td>
                 <tr>
-                  Guy-Manuel de Homem-Christo
+                  <a
+                    class="artistMbLink"
+                    href="https://musicbrainz.org/artist/83886397-adf2-431a-b841-dc4af744a6cc"
+                    >Guy-Manuel de Homem-Christo</a
+                  >
                 </tr>
                 <tr>
-                  Thomas Bangalter
+                  <a
+                    class="artistMbLink"
+                    href="https://musicbrainz.org/artist/122a2714-24f8-4046-a532-64064b5076d2"
+                    >Thomas Bangalter</a
+                  >
                 </tr>
               </td>
             </tr>
@@ -64,15 +72,23 @@
         </div>
       </div>
       <div class="artistBiographyContainer">
-        <b-collapse :open="false" aria-id="contentIdForA11y1">
-          <button
-            class="button"
+        <b-collapse :open="false" class="card" aria-id="contentIdForA11y3">
+          <div
             slot="trigger"
-            aria-controls="contentIdForA11y1"
+            slot-scope="props"
+            class="card-header"
+            role="button"
+            aria-controls="contentIdForA11y3"
           >
-            Biography >
-          </button>
-          <div class="notification">
+            <p class="card-header-title">
+              Artist's biography
+            </p>
+            <a class="card-header-icon">
+              <b-icon pack="fas" :icon="props.open ? 'angle-up' : 'angle-down'">
+              </b-icon>
+            </a>
+          </div>
+          <div class="card-content">
             <div class="content">
               <p>
                 Daft Punk is a French electronic music duo formed in Paris in
@@ -116,40 +132,64 @@
       <div class="artistAlbumsContainer">
         <ul>
           <li>
-            <figure>
-              <img
-                src="https://ia800706.us.archive.org/22/items/mbid-497f9acf-a695-332e-bc20-1c8745248550/mbid-497f9acf-a695-332e-bc20-1c8745248550-2688002571.jpg"
-                alt
-              />
-              <figcaption>Homework (1997)</figcaption>
-            </figure>
+            <a href="https://music.apple.com/ca/album/homework/696884422">
+              <figure>
+                <img
+                  src="https://ia800706.us.archive.org/22/items/mbid-497f9acf-a695-332e-bc20-1c8745248550/mbid-497f9acf-a695-332e-bc20-1c8745248550-2688002571.jpg"
+                  alt
+                />
+                <figcaption>Homework (1997)</figcaption>
+              </figure>
+            </a>
           </li>
           <li>
-            <figure>
-              <img
-                src="https://ia800700.us.archive.org/10/items/mbid-d073287b-d1bd-4f11-a933-a4386f8cf701/mbid-d073287b-d1bd-4f11-a933-a4386f8cf701-13479423359.png"
-                alt
-              />
-              <figcaption>Discovery (2001)</figcaption>
-            </figure>
+            <a href="https://music.apple.com/ca/album/discovery/697194953">
+              <figure>
+                <img
+                  src="https://ia800700.us.archive.org/10/items/mbid-d073287b-d1bd-4f11-a933-a4386f8cf701/mbid-d073287b-d1bd-4f11-a933-a4386f8cf701-13479423359.png"
+                  alt
+                />
+                <figcaption>Discovery (2001)</figcaption>
+              </figure>
+            </a>
           </li>
           <li>
-            <figure>
-              <img
-                src="https://ia800905.us.archive.org/29/items/mbid-86d4299f-810e-3c4c-a324-2cc03672ed00/mbid-86d4299f-810e-3c4c-a324-2cc03672ed00-5606649161.jpg"
-                alt
-              />
-              <figcaption>Human After All (2005)</figcaption>
-            </figure>
+            <a
+              href="https://music.apple.com/ca/album/human-after-all/693748807"
+            >
+              <figure>
+                <img
+                  src="https://ia800905.us.archive.org/29/items/mbid-86d4299f-810e-3c4c-a324-2cc03672ed00/mbid-86d4299f-810e-3c4c-a324-2cc03672ed00-5606649161.jpg"
+                  alt
+                />
+                <figcaption>Human After All (2005)</figcaption>
+              </figure>
+            </a>
           </li>
           <li>
-            <figure>
-              <img
-                src="https://ia601808.us.archive.org/9/items/mbid-36e2aede-346d-4931-8565-78d810d167c7/mbid-36e2aede-346d-4931-8565-78d810d167c7-4436344925.jpg"
-                alt
-              />
-              <figcaption>Ramdom Accees Memory (2013)</figcaption>
-            </figure>
+            <a href="https://music.apple.com/ca/album/tron-legacy/1442926773">
+              <figure>
+                <img
+                  src="https://ia800409.us.archive.org/20/items/mbid-b9b7641f-9389-342e-8be9-e463bd52fdb9/mbid-b9b7641f-9389-342e-8be9-e463bd52fdb9-2587494081.jpg"
+                  alt
+                />
+                <figcaption>Tron: Legacy (2010)</figcaption>
+              </figure>
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="https://music.apple.com/ca/album/random-access-memories/617154241"
+            >
+              <figure>
+                <img
+                  src="https://ia601808.us.archive.org/9/items/mbid-36e2aede-346d-4931-8565-78d810d167c7/mbid-36e2aede-346d-4931-8565-78d810d167c7-4436344925.jpg"
+                  alt
+                />
+                <figcaption>Ramdom Accees Memory (2013)</figcaption>
+              </figure>
+            </a>
           </li>
         </ul>
       </div>
@@ -218,6 +258,15 @@
   padding-left: 15px;
 }
 
+.artistMbLink {
+  color: black;
+  text-shadow: 1px 1px 3px gray;
+}
+
+.artistMbLink:hover {
+  color: crimson;
+}
+
 .artistAlbumsTitle {
   font-size: 2em;
   padding-top: 20px;
@@ -239,14 +288,22 @@
   margin-bottom: 20px;
 }
 
-.artistAlbumsContainer > ul > li > figure {
+.artistAlbumsContainer > ul > li > a {
+  color: black;
+}
+
+.artistAlbumsContainer > ul > li > a:hover {
+  color: crimson;
+}
+
+.artistAlbumsContainer > ul > li > a > figure {
   margin: 10px;
   max-width: 350px;
   overflow: hidden;
   text-align: center;
 }
 
-.artistAlbumsContainer > ul > li > figure > img {
+.artistAlbumsContainer > ul > li > a > figure > img {
   border: 1px solid black;
   border-radius: 3%;
   box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.3);
@@ -255,24 +312,7 @@
   padding: 0;
 }
 
-.artistAlbumsContainer > ul > li > figure > figcaption {
+.artistAlbumsContainer > ul > li > a > figure > figcaption {
   text-shadow: 1px 1px 3px gray;
-}
-
-.artistAlbumsContainer > ul > li > p {
-  text-align: center;
-}
-
-.artistAlbumsContainer > ul > li > a {
-  border: 1px black;
-  border-radius: 0.3rem;
-  margin: 1rem;
-  opacity: 0.5;
-  padding: 0.5rem;
-}
-
-.artistAlbumsContainer > ul > li > a:hover {
-  background: red;
-  opacity: 1;
 }
 </style>

@@ -76,7 +76,7 @@
     <div id="navMenu" class="navbar-menu">
       <div class="navbar-start">
         <a class="navbar-item desktop">
-          <a class="is-black">Playlist</a>
+          <a class="is-black mobile-title-color">Playlist</a>
         </a>
         <a class="navbar-item desktop tablet" id="input-item">
           <div class="control has-icons-left">
@@ -138,7 +138,7 @@ export default {
       .addEventListener(
         "click",
         () =>
-          (document.querySelector("#input-item").style.background = "#0A0A0A")
+          (document.querySelector(".mobile-color").style.background = "black")
       );
   }
 };
@@ -152,6 +152,13 @@ export default {
     display: none;
   }
   .mobile-color {
+    color: white;
+  }
+  .mobile-color:focus {
+    background-color: black;
+  }
+  .navbar-item:focus-within {
+    background-color: black;
     color: white;
   }
   .mobile-title-color {

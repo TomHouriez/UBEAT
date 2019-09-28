@@ -2,53 +2,63 @@
   <div class="componentPage">
     <section>
       <div class="titleContainer">
-        <h1 class="sectionTitle">Top Album</h1>
+        <h1 class="sectionTitle">Top Albums</h1>
       </div>
       <div class="firstBlock">
         <div class="albumContainer">
           <div class="albumRow">
             <div class="albumCard">
               <router-link to="/album" class="imageContainer">
-                <img :src="albumData[0].artworkUrl100" />
+                <img
+                  src="https://coverartarchive.org/release-group/4bac3d70-deea-3d80-85c4-8be9f90558e6/front.jpg"
+                />
               </router-link>
 
               <div class="albumDescription">
-                <p class="collectionName">{{ albumData[0].collectionName }}</p>
-                <p class="artistName">{{ albumData[0].artistName }}</p>
-                <p class="genreName">{{ albumData[0].primaryGenreName }}</p>
+                <p class="collectionName">Alive 2007</p>
+                <p class="artistName">Daft Punk</p>
+                <p class="genreName">Electronic</p>
               </div>
             </div>
             <div class="albumCard">
               <router-link to="/album" class="imageContainer">
-                <img :src="albumData[0].artworkUrl100" />
+                <img
+                  src="https://coverartarchive.org/release-group/4bac3d70-deea-3d80-85c4-8be9f90558e6/front.jpg"
+                />
               </router-link>
+
               <div class="albumDescription">
-                <p class="collectionName">{{ albumData[0].collectionName }}</p>
-                <p class="artistName">{{ albumData[0].artistName }}</p>
-                <p class="genreName">{{ albumData[0].primaryGenreName }}</p>
+                <p class="collectionName">Alive 2007</p>
+                <p class="artistName">Daft Punk</p>
+                <p class="genreName">Electronic</p>
               </div>
             </div>
           </div>
-
           <div class="albumRow">
             <div class="albumCard">
               <router-link to="/album" class="imageContainer">
-                <img :src="albumData[0].artworkUrl100" />
+                <img
+                  src="https://coverartarchive.org/release-group/4bac3d70-deea-3d80-85c4-8be9f90558e6/front.jpg"
+                />
               </router-link>
+
               <div class="albumDescription">
-                <p class="collectionName">{{ albumData[0].collectionName }}</p>
-                <p class="artistName">{{ albumData[0].artistName }}</p>
-                <p class="genreName">{{ albumData[0].primaryGenreName }}</p>
+                <p class="collectionName">Alive 2007</p>
+                <p class="artistName">Daft Punk</p>
+                <p class="genreName">Electronic</p>
               </div>
             </div>
             <div class="albumCard">
               <router-link to="/album" class="imageContainer">
-                <img :src="albumData[0].artworkUrl100" />
+                <img
+                  src="https://coverartarchive.org/release-group/4bac3d70-deea-3d80-85c4-8be9f90558e6/front.jpg"
+                />
               </router-link>
+
               <div class="albumDescription">
-                <p class="collectionName">{{ albumData[0].collectionName }}</p>
-                <p class="artistName">{{ albumData[0].artistName }}</p>
-                <p class="genreName">{{ albumData[0].primaryGenreName }}</p>
+                <p class="collectionName">Alive 2007</p>
+                <p class="artistName">Daft Punk</p>
+                <p class="genreName">Electronic</p>
               </div>
             </div>
           </div>
@@ -57,37 +67,45 @@
     </section>
     <section>
       <div class="titleContainer">
-        <h1 class="sectionTitle">Top Artist</h1>
+        <h1 class="sectionTitle">Top Artists</h1>
       </div>
       <div class="secondContainer">
         <div class="artistContainer">
           <div class="artistCard">
             <router-link to="/artist" class="imageArtistContainer">
-              <img :src="artistsList[0].image" />
+              <img
+                src="https://geo-media.beatport.com/image/db2552bf-aae0-4ad4-8f44-8999db32b4b8.jpg"
+              />
             </router-link>
-            <p class="artistName">{{ albumData[0].artistName }}</p>
-            <p class="genreName">{{ albumData[0].primaryGenreName }}</p>
+            <p class="artistName">Daft Punk</p>
+            <p class="genreName">Electronic</p>
           </div>
           <div class="artistCard">
             <router-link to="/artist" class="imageArtistContainer">
-              <img :src="artistsList[0].image" />
+              <img
+                src="https://geo-media.beatport.com/image/db2552bf-aae0-4ad4-8f44-8999db32b4b8.jpg"
+              />
             </router-link>
-            <p class="artistName">{{ albumData[0].artistName }}</p>
-            <p class="genreName">{{ albumData[0].primaryGenreName }}</p>
+            <p class="artistName">Daft Punk</p>
+            <p class="genreName">Electronic</p>
           </div>
           <div class="artistCard">
             <router-link to="/artist" class="imageArtistContainer">
-              <img :src="artistsList[0].image" />
+              <img
+                src="https://geo-media.beatport.com/image/db2552bf-aae0-4ad4-8f44-8999db32b4b8.jpg"
+              />
             </router-link>
-            <p class="artistName">{{ albumData[0].artistName }}</p>
-            <p class="genreName">{{ albumData[0].primaryGenreName }}</p>
+            <p class="artistName">Daft Punk</p>
+            <p class="genreName">Electronic</p>
           </div>
           <div class="artistCard">
             <router-link to="/artist" class="imageArtistContainer">
-              <img :src="artistsList[0].image" />
+              <img
+                src="https://geo-media.beatport.com/image/db2552bf-aae0-4ad4-8f44-8999db32b4b8.jpg"
+              />
             </router-link>
-            <p class="artistName">{{ albumData[0].artistName }}</p>
-            <p class="genreName">{{ albumData[0].primaryGenreName }}</p>
+            <p class="artistName">Daft Punk</p>
+            <p class="genreName">Electronic</p>
           </div>
         </div>
       </div>
@@ -95,65 +113,7 @@
   </div>
 </template>
 
-<script>
-import Vue from "vue";
-import Buefy from "buefy";
-import "buefy/dist/buefy.css";
-
-// test icons
-Vue.use(Buefy, { defaultIconPack: "fal" });
-
-export default {
-  data() {
-    return {
-      albumData: [
-        {
-          wrapperType: "collection",
-          collectionType: "Album",
-          artistId: 116851,
-          collectionId: 1125488753,
-          amgArtistId: 211247,
-          artistName: "Blink-182",
-          collectionName: "Enema of the State",
-          collectionCensoredName: "Enema of the State",
-          artistViewUrl:
-            "https://itunes.apple.com/us/artist/blink-182/id116851?uo=4",
-          collectionViewUrl:
-            "https://itunes.apple.com/us/album/enema-of-the-state/id325483?uo=4",
-          artworkUrl60:
-            "https://m.media-amazon.com/images/I/71s99Vs2E-L._SS500_.jpg",
-          artworkUrl100:
-            "https://m.media-amazon.com/images/I/71s99Vs2E-L._SS500_.jpg",
-          collectionPrice: 9.99,
-          collectionExplicitness: "explicit",
-          contentAdvisoryRating: "Explicit",
-          trackCount: 12,
-          copyright: "℗ 1999 Geffen Records",
-          country: "USA",
-          currency: "USD",
-          releaseDate: "1999-05-25T07:00:00Z",
-          primaryGenreName: "Alternative"
-        }
-      ],
-      artistsList: [
-        {
-          wrapperType: "artist",
-          artistType: "Artist",
-          artistName: "Daft Punk",
-          artistLinkUrl:
-            "https://itunes.apple.com/us/artist/blink/3941697?uo=4",
-          artistId: 3941697,
-          amgArtistId: 144345,
-          primaryGenreName: "Alternative",
-          primaryGenreId: 18,
-          image:
-            "https://geo-media.beatport.com/image/db2552bf-aae0-4ad4-8f44-8999db32b4b8.jpg"
-        }
-      ]
-    };
-  }
-};
-</script>
+<script></script>
 
 <style scoped>
 componentPage {
@@ -168,7 +128,6 @@ componentPage {
   text-align: center;
   font-size: xx-large;
   padding-top: 20px;
-  border-bottom: 2px solid;
 }
 
 /* first section */
@@ -256,6 +215,7 @@ componentPage {
   text-align: center;
 }
 .artistCard > .imageArtistContainer > img {
+  border-radius: 50%;
   width: 200px;
   height: 200px;
   cursor: pointer;

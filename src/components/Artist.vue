@@ -7,10 +7,11 @@
           <img
             src="
               https://geo-media.beatport.com/image/db2552bf-aae0-4ad4-8f44-8999db32b4b8.jpg"
+            alt="Artist picture"
           />
           <a
-            href="https://geo.music.apple.com/us/artist/daft-punk/5468295?mt=1&app=music&ls=1"
-            style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/en-us/lockup.svg?kind=artist&bubble=apple_music&style=standard-black) no-repeat;width:140px;height:30px;"
+            href="https://geo.music.apple.com/us/artist/daft-punk/5468295?mt=1&app=music"
+            style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/en-us/badge-lrg.svg?kind=artist&bubble=apple_music) no-repeat;width:158px;height:45px;"
           ></a>
         </div>
         <div class="artistTableInfo">
@@ -136,7 +137,7 @@
               <figure>
                 <img
                   src="https://ia800706.us.archive.org/22/items/mbid-497f9acf-a695-332e-bc20-1c8745248550/mbid-497f9acf-a695-332e-bc20-1c8745248550-2688002571.jpg"
-                  alt
+                  alt="Homework album cover"
                 />
                 <figcaption>Homework (1997)</figcaption>
               </figure>
@@ -147,7 +148,7 @@
               <figure>
                 <img
                   src="https://ia800700.us.archive.org/10/items/mbid-d073287b-d1bd-4f11-a933-a4386f8cf701/mbid-d073287b-d1bd-4f11-a933-a4386f8cf701-13479423359.png"
-                  alt
+                  alt="Discovery album cover"
                 />
                 <figcaption>Discovery (2001)</figcaption>
               </figure>
@@ -160,7 +161,7 @@
               <figure>
                 <img
                   src="https://ia800905.us.archive.org/29/items/mbid-86d4299f-810e-3c4c-a324-2cc03672ed00/mbid-86d4299f-810e-3c4c-a324-2cc03672ed00-5606649161.jpg"
-                  alt
+                  alt="Human After All album cover"
                 />
                 <figcaption>Human After All (2005)</figcaption>
               </figure>
@@ -171,7 +172,7 @@
               <figure>
                 <img
                   src="https://coverartarchive.org/release-group/4bac3d70-deea-3d80-85c4-8be9f90558e6/front.jpg"
-                  alt
+                  alt="Alive 2007 album cover"
                 />
                 <figcaption>Alive 2007 (2007)</figcaption>
               </figure>
@@ -183,7 +184,7 @@
               <figure>
                 <img
                   src="https://ia800409.us.archive.org/20/items/mbid-b9b7641f-9389-342e-8be9-e463bd52fdb9/mbid-b9b7641f-9389-342e-8be9-e463bd52fdb9-2587494081.jpg"
-                  alt
+                  alt="Tron: Legacy album cover"
                 />
                 <figcaption>Tron: Legacy (2010)</figcaption>
               </figure>
@@ -197,7 +198,7 @@
               <figure>
                 <img
                   src="https://ia601808.us.archive.org/9/items/mbid-36e2aede-346d-4931-8565-78d810d167c7/mbid-36e2aede-346d-4931-8565-78d810d167c7-4436344925.jpg"
-                  alt
+                  alt="Ramdom Accees Memory album cover"
                 />
                 <figcaption>Ramdom Accees Memory (2013)</figcaption>
               </figure>

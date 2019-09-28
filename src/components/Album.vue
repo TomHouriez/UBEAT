@@ -446,7 +446,6 @@ export default {
 <style scoped>
 .componentPage {
   width: 100%;
-  height: 100%;
 }
 
 .container {

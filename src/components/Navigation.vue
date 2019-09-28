@@ -10,7 +10,7 @@
         </router-link>
       </a>
       <a class="navbar-item desktop tablet">
-        <a class="button is-black mobile-title-color">Playlist</a>
+        <a class="button is-black mobile-title-color">Playlists</a>
       </a>
       <a class="navbar-item desktop tablet">
         <div class="control has-icons-left">
@@ -76,7 +76,7 @@
     <div id="navMenu" class="navbar-menu">
       <div class="navbar-start">
         <a class="navbar-item desktop">
-          <a class="is-black mobile-title-color">Playlist</a>
+          <a class="is-black mobile-title-color">Playlists</a>
         </a>
         <a class="navbar-item desktop tablet" id="input-item">
           <div class="control has-icons-left">

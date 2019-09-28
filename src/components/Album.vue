@@ -19,7 +19,7 @@
             </tr>
             <tr>
               <td>Artist:</td>
-              <td>Daft Punk</td>
+              <td><router-link to="/artist">Daft Punk</router-link></td>
             </tr>
             <tr>
               <td>Release Date:</td>
@@ -55,8 +55,10 @@
               label="Artists"
             >
               <span>
-                <a :href="props.row.artistViewUrl">
-                  {{ props.row.artistName }}
+                <a>
+                  <router-link to="/artist">
+                    {{ props.row.artistName }}
+                  </router-link>
                 </a>
               </span>
             </b-table-column>

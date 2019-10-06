@@ -3,9 +3,7 @@
     <div class="container">
       <div class="albumDataContainer">
         <div class="albumImageContainer">
-          <img
-            src="https://m.media-amazon.com/images/I/71s99Vs2E-L._SS500_.jpg"
-          />
+          <img :src="albumData.artworkUrl100" />
           <a
             href="https://geo.music.apple.com/ca/album/alive-2007/742555152?mt=1&app=music"
             style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/en-us/badge-lrg.svg?releaseDate=2007-11-14&kind=album&bubble=apple_music) no-repeat;width:158px;height:45px;"
@@ -38,7 +36,7 @@
       <div class="albumTracksContainer">
         <b-table
           class="trackTable"
-          :data="trackList"
+          :data="tracks"
           :hoverable="true"
           :mobile-cards="false"
         >
@@ -88,349 +86,33 @@ import "buefy/dist/buefy.css";
 //test icons
 Vue.use(Buefy, { defaultIconPack: "fal" });
 
+import { fetchAlbumData, fetchTracks } from "../scripts/AlbumApi.js";
+
 export default {
   data() {
     return {
-      albumData: {
-        wrapperType: "collection",
-        collectionType: "Album",
-        artistId: 116851,
-        collectionId: 1125488753,
-        amgArtistId: 211247,
-        artistName: "Blink-182",
-        collectionName: "Enema of the State",
-        collectionCensoredName: "Enema of the State",
-        artistViewUrl:
-          "https://itunes.apple.com/us/artist/blink-182/id116851?uo=4",
-        collectionViewUrl:
-          "https://itunes.apple.com/us/album/enema-of-the-state/id325483?uo=4",
-        artworkUrl60:
-          "https://m.media-amazon.com/images/I/71s99Vs2E-L._SS500_.jpg",
-        artworkUrl100:
-          "https://m.media-amazon.com/images/I/71s99Vs2E-L._SS500_.jpg",
-        collectionPrice: 9.99,
-        collectionExplicitness: "explicit",
-        contentAdvisoryRating: "Explicit",
-        trackCount: 12,
-        copyright: "℗ 1999 Geffen Records",
-        country: "USA",
-        currency: "USD",
-        releaseDate: "1999-05-25T07:00:00Z",
-        primaryGenreName: "Alternative"
-      },
-      trackList: [
-        {
-          artistName: "Daft Punk",
-          collectionName: "Alive 2007",
-          trackName: "Robot Rock / Oh Yeah",
-          collectionCensoredName: "Alive 2007",
-          trackCensoredName: "Robot Rock / Oh Yeah",
-          artistViewUrl: "https://music.apple.com/us/artist/daft-punk/5468295",
-          collectionViewUrl:
-            "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
-          trackViewUrl:
-            "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
-          previewUrl:
-            "http://a816.phobos.apple.com/us/r1000/118/Music/e6/86/40/mzm.xhlwhbtm.aac.p.m4a",
-          artworkUrl30:
-            "http://a1.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.30x30-50.jpg",
-          artworkUrl60:
-            "http://a3.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.60x60-50.jpg",
-          artworkUrl100:
-            "http://a2.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.100x100-75.jpg",
-          collectionPrice: 9.99,
-          trackPrice: 1.29,
-          releaseDate: "1999-05-25T07:00:00Z",
-          collectionExplicitness: "explicit",
-          trackExplicitness: "explicit",
-          discCount: 1,
-          discNumber: 1,
-          trackCount: 12,
-          trackNumber: 1,
-          trackTimeMillis: 627000,
-          country: "USA",
-          currency: "USD",
-          primaryGenreName: "Alternative",
-          contentAdvisoryRating: "Explicit",
-          radioStationUrl: "https://itunes.apple.com/station/idra.325479"
-        },
-        {
-          wrapperType: "track",
-          kind: "song",
-          artistId: 116851,
-          collectionId: 325483,
-          trackId: 325479,
-          artistName: "Daft Punk",
-          collectionName: "Alive 2007",
-          trackName: "Touch It / Technologic",
-          collectionCensoredName: "Alive 2007",
-          trackCensoredName: "Touch It / Technologic",
-          artistViewUrl: "https://music.apple.com/us/artist/daft-punk/5468295",
-          collectionViewUrl:
-            "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
-          trackViewUrl:
-            "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
-          previewUrl:
-            "http://a816.phobos.apple.com/us/r1000/118/Music/e6/86/40/mzm.xhlwhbtm.aac.p.m4a",
-          artworkUrl30:
-            "http://a1.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.30x30-50.jpg",
-          artworkUrl60:
-            "http://a3.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.60x60-50.jpg",
-          artworkUrl100:
-            "http://a2.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.100x100-75.jpg",
-          collectionPrice: 9.99,
-          trackPrice: 1.29,
-          releaseDate: "1999-05-25T07:00:00Z",
-          collectionExplicitness: "explicit",
-          trackExplicitness: "explicit",
-          discCount: 1,
-          discNumber: 1,
-          trackCount: 12,
-          trackNumber: 2,
-          trackTimeMillis: 143862,
-          country: "USA",
-          currency: "USD",
-          primaryGenreName: "Alternative",
-          contentAdvisoryRating: "Explicit",
-          radioStationUrl: "https://itunes.apple.com/station/idra.325479"
-        },
-        {
-          wrapperType: "track",
-          kind: "song",
-          artistId: 116851,
-          collectionId: 325483,
-          trackId: 325479,
-          artistName: "Daft Punk",
-          collectionName: "Alive 2007",
-          trackName: "Television Rules the Nation / Crescendolls",
-          collectionCensoredName: "Alive 2007",
-          trackCensoredName: "Television Rules the Nation / Crescendolls",
-          artistViewUrl: "https://music.apple.com/us/artist/daft-punk/5468295",
-          collectionViewUrl:
-            "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
-          trackViewUrl:
-            "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
-          previewUrl:
-            "http://a816.phobos.apple.com/us/r1000/118/Music/e6/86/40/mzm.xhlwhbtm.aac.p.m4a",
-          artworkUrl30:
-            "http://a1.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.30x30-50.jpg",
-          artworkUrl60:
-            "http://a3.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.60x60-50.jpg",
-          artworkUrl100:
-            "http://a2.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.100x100-75.jpg",
-          collectionPrice: 9.99,
-          trackPrice: 1.29,
-          releaseDate: "1999-05-25T07:00:00Z",
-          collectionExplicitness: "explicit",
-          trackExplicitness: "explicit",
-          discCount: 1,
-          discNumber: 1,
-          trackCount: 12,
-          trackNumber: 3,
-          trackTimeMillis: 143862,
-          country: "USA",
-          currency: "USD",
-          primaryGenreName: "Alternative",
-          contentAdvisoryRating: "Explicit",
-          radioStationUrl: "https://itunes.apple.com/station/idra.325479"
-        },
-        {
-          wrapperType: "track",
-          kind: "song",
-          artistId: 116851,
-          collectionId: 325483,
-          trackId: 325479,
-          artistName: "Daft Punk",
-          collectionName: "Alive 2007",
-          trackName: "Too Long / Steam Machine",
-          collectionCensoredName: "Alive 2007",
-          trackCensoredName: "Too Long / Steam Machine",
-          artistViewUrl: "https://music.apple.com/us/artist/daft-punk/5468295",
-          collectionViewUrl:
-            "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
-          trackViewUrl:
-            "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
-          previewUrl:
-            "http://a816.phobos.apple.com/us/r1000/118/Music/e6/86/40/mzm.xhlwhbtm.aac.p.m4a",
-          artworkUrl30:
-            "http://a1.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.30x30-50.jpg",
-          artworkUrl60:
-            "http://a3.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.60x60-50.jpg",
-          artworkUrl100:
-            "http://a2.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.100x100-75.jpg",
-          collectionPrice: 9.99,
-          trackPrice: 1.29,
-          releaseDate: "1999-05-25T07:00:00Z",
-          collectionExplicitness: "explicit",
-          trackExplicitness: "explicit",
-          discCount: 1,
-          discNumber: 1,
-          trackCount: 12,
-          trackNumber: 4,
-          trackTimeMillis: 143862,
-          country: "USA",
-          currency: "USD",
-          primaryGenreName: "Alternative",
-          contentAdvisoryRating: "Explicit",
-          radioStationUrl: "https://itunes.apple.com/station/idra.325479"
-        },
-        {
-          artistName: "Daft Punk",
-          collectionName: "Alive 2007",
-          trackName: "Robot Rock / Oh Yeah",
-          collectionCensoredName: "Alive 2007",
-          trackCensoredName: "Robot Rock / Oh Yeah",
-          artistViewUrl: "https://music.apple.com/us/artist/daft-punk/5468295",
-          collectionViewUrl:
-            "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
-          trackViewUrl:
-            "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
-          previewUrl:
-            "http://a816.phobos.apple.com/us/r1000/118/Music/e6/86/40/mzm.xhlwhbtm.aac.p.m4a",
-          artworkUrl30:
-            "http://a1.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.30x30-50.jpg",
-          artworkUrl60:
-            "http://a3.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.60x60-50.jpg",
-          artworkUrl100:
-            "http://a2.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.100x100-75.jpg",
-          collectionPrice: 9.99,
-          trackPrice: 1.29,
-          releaseDate: "1999-05-25T07:00:00Z",
-          collectionExplicitness: "explicit",
-          trackExplicitness: "explicit",
-          discCount: 1,
-          discNumber: 1,
-          trackCount: 12,
-          trackNumber: 5,
-          trackTimeMillis: 627000,
-          country: "USA",
-          currency: "USD",
-          primaryGenreName: "Alternative",
-          contentAdvisoryRating: "Explicit",
-          radioStationUrl: "https://itunes.apple.com/station/idra.325479"
-        },
-        {
-          wrapperType: "track",
-          kind: "song",
-          artistId: 116851,
-          collectionId: 325483,
-          trackId: 325479,
-          artistName: "Daft Punk",
-          collectionName: "Alive 2007",
-          trackName: "Touch It / Technologic",
-          collectionCensoredName: "Alive 2007",
-          trackCensoredName: "Touch It / Technologic",
-          artistViewUrl: "https://music.apple.com/us/artist/daft-punk/5468295",
-          collectionViewUrl:
-            "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
-          trackViewUrl:
-            "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
-          previewUrl:
-            "http://a816.phobos.apple.com/us/r1000/118/Music/e6/86/40/mzm.xhlwhbtm.aac.p.m4a",
-          artworkUrl30:
-            "http://a1.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.30x30-50.jpg",
-          artworkUrl60:
-            "http://a3.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.60x60-50.jpg",
-          artworkUrl100:
-            "http://a2.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.100x100-75.jpg",
-          collectionPrice: 9.99,
-          trackPrice: 1.29,
-          releaseDate: "1999-05-25T07:00:00Z",
-          collectionExplicitness: "explicit",
-          trackExplicitness: "explicit",
-          discCount: 1,
-          discNumber: 1,
-          trackCount: 12,
-          trackNumber: 6,
-          trackTimeMillis: 143862,
-          country: "USA",
-          currency: "USD",
-          primaryGenreName: "Alternative",
-          contentAdvisoryRating: "Explicit",
-          radioStationUrl: "https://itunes.apple.com/station/idra.325479"
-        },
-        {
-          wrapperType: "track",
-          kind: "song",
-          artistId: 116851,
-          collectionId: 325483,
-          trackId: 325479,
-          artistName: "Daft Punk",
-          collectionName: "Alive 2007",
-          trackName: "Television Rules the Nation / Crescendolls",
-          collectionCensoredName: "Alive 2007",
-          trackCensoredName: "Television Rules the Nation / Crescendolls",
-          artistViewUrl: "https://music.apple.com/us/artist/daft-punk/5468295",
-          collectionViewUrl:
-            "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
-          trackViewUrl:
-            "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
-          previewUrl:
-            "http://a816.phobos.apple.com/us/r1000/118/Music/e6/86/40/mzm.xhlwhbtm.aac.p.m4a",
-          artworkUrl30:
-            "http://a1.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.30x30-50.jpg",
-          artworkUrl60:
-            "http://a3.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.60x60-50.jpg",
-          artworkUrl100:
-            "http://a2.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.100x100-75.jpg",
-          collectionPrice: 9.99,
-          trackPrice: 1.29,
-          releaseDate: "1999-05-25T07:00:00Z",
-          collectionExplicitness: "explicit",
-          trackExplicitness: "explicit",
-          discCount: 1,
-          discNumber: 1,
-          trackCount: 12,
-          trackNumber: 7,
-          trackTimeMillis: 143862,
-          country: "USA",
-          currency: "USD",
-          primaryGenreName: "Alternative",
-          contentAdvisoryRating: "Explicit",
-          radioStationUrl: "https://itunes.apple.com/station/idra.325479"
-        },
-        {
-          wrapperType: "track",
-          kind: "song",
-          artistId: 116851,
-          collectionId: 325483,
-          trackId: 325479,
-          artistName: "Daft Punk",
-          collectionName: "Alive 2007",
-          trackName: "Too Long / Steam Machine",
-          collectionCensoredName: "Alive 2007",
-          trackCensoredName: "Too Long / Steam Machine",
-          artistViewUrl: "https://music.apple.com/us/artist/daft-punk/5468295",
-          collectionViewUrl:
-            "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
-          trackViewUrl:
-            "https://itunes.apple.com/us/album/dumpweed/id325483?i=325479&uo=4",
-          previewUrl:
-            "http://a816.phobos.apple.com/us/r1000/118/Music/e6/86/40/mzm.xhlwhbtm.aac.p.m4a",
-          artworkUrl30:
-            "http://a1.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.30x30-50.jpg",
-          artworkUrl60:
-            "http://a3.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.60x60-50.jpg",
-          artworkUrl100:
-            "http://a2.mzstatic.com/us/r30/Features/cb/72/0e/dj.aoonomrr.100x100-75.jpg",
-          collectionPrice: 9.99,
-          trackPrice: 1.29,
-          releaseDate: "1999-05-25T07:00:00Z",
-          collectionExplicitness: "explicit",
-          trackExplicitness: "explicit",
-          discCount: 1,
-          discNumber: 1,
-          trackCount: 12,
-          trackNumber: 8,
-          trackTimeMillis: 143862,
-          country: "USA",
-          currency: "USD",
-          primaryGenreName: "Alternative",
-          contentAdvisoryRating: "Explicit",
-          radioStationUrl: "https://itunes.apple.com/station/idra.325479"
-        }
-      ]
+      id: null,
+      albumData: {},
+      tracks: []
     };
+  },
+  async created() {
+    this.id = this.$route.params.id;
+    this.albumData = await fetchAlbumData(this.id);
+    if (this.albumData.resultCount == 0) {
+      alert("artist not found");
+    } else {
+      this.albumData = this.albumData.results[0];
+      console.log(" albumm data ");
+      console.log(this.albumData);
+      this.tracks = await fetchTracks(this.id);
+      if (this.tracks.resultCount == 0) {
+        alert("no track in album");
+      } else {
+        this.tracks = this.tracks.results;
+      }
+      console.log(this.tracks);
+    }
   },
   methods: {
     millisToMinutes: function(timeMillis) {

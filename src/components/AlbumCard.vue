@@ -1,7 +1,9 @@
 <template>
   <div class="albumCard">
-    <!-- :to="{ name: 'album', params: { id: id } }" -->
-    <router-link :to="{ name: 'Album' }" class="imageContainer">
+    <router-link
+      :to="{ name: 'Album', params: { id: id } }"
+      class="imageContainer"
+    >
       <img :src="image" />
     </router-link>
 

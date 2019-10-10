@@ -78,6 +78,4 @@ export default {
 .genreName {
   font-size: small;
 }
-.title {
-}
 </style>

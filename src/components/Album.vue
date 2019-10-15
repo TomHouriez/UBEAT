@@ -13,15 +13,17 @@
           <table>
             <tr>
               <td>Album:</td>
-              <td>Alive 2007</td>
+              <td>{{albumData.collectionName}}</td>
             </tr>
             <tr>
               <td>Artist:</td>
-              <td><router-link to="/artist">Daft Punk</router-link></td>
+              <td><router-link to="/artist">{{albumData.artistName}}</router-link></td>
             </tr>
             <tr>
               <td>Release Date:</td>
-              <td>2007/11/19</td>
+              <!-- <td>{{albumData.releaseDate}}</td> -->
+              <td>{{formatDate(albumData.releaseDate)}}</td>
+              <!-- <td>{{formatDate("2018-11-30T08:00:00Z")}}</td> -->
             </tr>
             <tr>
               <td>Genre:</td>
@@ -122,6 +124,22 @@ export default {
       seconds = (seconds + "").slice(0, 2);
       result = minutes + "." + seconds;
       return result;
+    },
+    formatDate: function(releaseDate) {
+      // console.log("la date d'entrée");
+      // console.log(releaseDate);
+      // console.log(typeof(releaseDate));
+      //console.log(releaseDate.substring(0,4));
+      if(releaseDate) {
+        let year = releaseDate.substring(0,4);
+      let month = releaseDate.substring(5,7);
+      let day = releaseDate.substring(8,10);
+      let result = year+"/"+month+"/"+day;
+
+      return result;
+      }
+      return "0000/00/00";
+      
     }
   }
 };

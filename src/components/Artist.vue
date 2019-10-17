@@ -208,7 +208,6 @@ export default {
     this.tadbData = await fetchArtistMBID(
       encodeURIComponent(this.artistData.artistName)
     );
-    console.log(this.tadbData);
     this.tadbData = this.tadbData.artists[0];
     this.mbData = await fetchMbzArtist(this.tadbData.strMusicBrainzID);
   }

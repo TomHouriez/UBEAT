@@ -25,7 +25,9 @@ export const fetchArtistMBID = async name => {
 
 // fetch artist complete infos from Musicbrainz
 export const fetchMbzArtist = async mbid => {
-  const response = await fetch(`${MB_BASE_URL}/artist/${mbid}?&fmt=json`);
+  const response = await fetch(
+    `${MB_BASE_URL}/artist/${mbid}?inc=artist-rels+genres&fmt=json`
+  );
   const jsonResponse = await response.json();
   return jsonResponse;
 };

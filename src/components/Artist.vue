@@ -1,14 +1,10 @@
 <template>
   <div class="componentPage">
     <div class="container">
-      <h1 class="artistName">Daft Punk</h1>
+      <h1 class="artistName">{{ artistData.artistName }}</h1>
       <div class="artistDataContainer">
         <div class="artistImageContainer">
-          <img
-            src="
-              https://geo-media.beatport.com/image/db2552bf-aae0-4ad4-8f44-8999db32b4b8.jpg"
-            alt="Artist picture"
-          />
+          <img :src="tadbData.strArtistThumb" />
           <a
             href="https://geo.music.apple.com/us/artist/daft-punk/5468295?mt=1&app=music"
             style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/en-us/badge-lrg.svg?kind=artist&bubble=apple_music) no-repeat;width:158px;height:45px;"
@@ -92,38 +88,7 @@
           <div class="card-content">
             <div class="content">
               <p>
-                Daft Punk is a French electronic music duo formed in Paris in
-                1993 by Guy-Manuel de Homem-Christo and Thomas Bangalter (born
-                January 3, 1975) They achieved popularity in the late 1990s as
-                part of the French house movement; they also had success in the
-                years following, combining elements of house music with funk,
-                techno, disco, rock and synthpop. They have worn ornate helmets
-                and gloves to assume robot personas in most public appearances
-                since 1999 and rarely grant interviews or appear on television.
-                The duo were managed from 1996 to 2008 by Pedro Winter (also
-                known as Busy P), the head of Ed Banger Records. After Bangalter
-                and Homem-Christo's indie rock band Darlin' disbanded, they
-                began experimenting with drum machines and synthesisers. Their
-                debut studio album Homework was released by Virgin Records in
-                1997 to positive reviews, backed by singles "Around the World"
-                and "Da Funk". Their second album, Discovery, had further
-                success, supported by hit singles "One More Time", "Digital
-                Love" and "Harder, Better, Faster, Stronger". In March 2005,
-                Daft Punk released their third album, Human After All, to mixed
-                reviews, though the singles "Robot Rock" and "Technologic"
-                achieved success in the United Kingdom. Daft Punk toured
-                throughout 2006 and 2007 and released the live album Alive 2007,
-                which won a Grammy Award for Best Electronic/Dance Album. They
-                composed the score for the film Tron: Legacy, which was released
-                in 2010 alongside its soundtrack album. In 2013, Daft Punk left
-                Virgin for Columbia Records, and released their fourth album,
-                Random Access Memories, to acclaim; lead single "Get Lucky"
-                reached the top 10 in the charts of 32 countries. Random Access
-                Memories won five Grammy Awards in 2014, including Album of the
-                Year and Record of the Year for "Get Lucky". In 2016, Daft Punk
-                gained their first number one on the Billboard Hot 100 with the
-                song "Starboy", a collaboration with The Weeknd. As of 2015,
-                Daft Punk had sold over 12 million albums worldwide.
+                {{ tadbData.strBiographyEN }}
               </p>
             </div>
           </div>
@@ -178,7 +143,6 @@
               </figure>
             </a>
           </li>
-
           <li>
             <a href="https://music.apple.com/ca/album/tron-legacy/1442926773">
               <figure>
@@ -190,7 +154,6 @@
               </figure>
             </a>
           </li>
-
           <li>
             <a
               href="https://music.apple.com/ca/album/random-access-memories/617154241"
@@ -210,7 +173,47 @@
   </div>
 </template>
 
-<script></script>
+<script>
+import {
+  fetchArtistData,
+  fetchArtistAlbums,
+  fetchArtistMBID,
+  fetchMbzArtist
+} from "../scripts/ArtistsApi.js";
+
+export default {
+  data() {
+    return {
+      id: null,
+      artistData: {},
+      tadbData: {},
+      mbData: {},
+      albums: []
+    };
+  },
+  async created() {
+    this.id = this.$route.params.id;
+    this.artistData = await fetchArtistData(this.id);
+    if (this.artistData.resultCount == 0) {
+      alert("artist not found");
+    } else {
+      this.artistData = this.artistData.results[0];
+      this.albums = await fetchArtistAlbums(this.id);
+      if (this.albums.resultCount == 0) {
+        alert("no albums for this artist");
+      } else {
+        this.album = this.albums.results;
+      }
+    }
+    this.tadbData = await fetchArtistMBID(
+      encodeURIComponent(this.artistData.artistName)
+    );
+    console.log(this.tadbData);
+    this.tadbData = this.tadbData.artists[0];
+    this.mbData = await fetchMbzArtist(this.tadbData.strMusicBrainzID);
+  }
+};
+</script>
 
 <style scoped>
 .componentPage {

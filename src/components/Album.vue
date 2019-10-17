@@ -13,16 +13,20 @@
           <table>
             <tr>
               <td>Album:</td>
-              <td>{{albumData.collectionName}}</td>
+              <td>{{ albumData.collectionName }}</td>
             </tr>
             <tr>
               <td>Artist:</td>
-              <td><router-link to="/artist">{{albumData.artistName}}</router-link></td>
+              <td>
+                <router-link to="/artist">{{
+                  albumData.artistName
+                }}</router-link>
+              </td>
             </tr>
             <tr>
               <td>Release Date:</td>
               <!-- <td>{{albumData.releaseDate}}</td> -->
-              <td>{{formatDate(albumData.releaseDate)}}</td>
+              <td>{{ formatDate(albumData.releaseDate) }}</td>
               <!-- <td>{{formatDate("2018-11-30T08:00:00Z")}}</td> -->
             </tr>
             <tr>
@@ -56,7 +60,9 @@
             >
               <span>
                 <a>
-                  <router-link to="/artist">
+                  <router-link
+                    :to="{ name: 'Artist', params: { id: albumData.artistId } }"
+                  >
                     {{ props.row.artistName }}
                   </router-link>
                 </a>
@@ -130,16 +136,15 @@ export default {
       // console.log(releaseDate);
       // console.log(typeof(releaseDate));
       //console.log(releaseDate.substring(0,4));
-      if(releaseDate) {
-        let year = releaseDate.substring(0,4);
-      let month = releaseDate.substring(5,7);
-      let day = releaseDate.substring(8,10);
-      let result = year+"/"+month+"/"+day;
+      if (releaseDate) {
+        let year = releaseDate.substring(0, 4);
+        let month = releaseDate.substring(5, 7);
+        let day = releaseDate.substring(8, 10);
+        let result = year + "/" + month + "/" + day;
 
-      return result;
+        return result;
       }
       return "0000/00/00";
-      
     }
   }
 };

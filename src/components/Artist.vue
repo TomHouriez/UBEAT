@@ -14,8 +14,8 @@
         <div class="artistTableInfo">
           <table>
             <tr>
-              <td>Formed/Born</td>
-              <td>{{ begin }}</td>
+              <td>{{ artistLife.typeText }}</td>
+              <td>{{ artistLife.begin }}</td>
             </tr>
             <tr>
               <td>in</td>
@@ -23,11 +23,8 @@
             </tr>
             <tr>
               <td>Status</td>
-              <td v-if="ended">
-                <p>Inactive</p>
-              </td>
-              <td v-else>
-                <p>Active</p>
+              <td>
+                <p>{{ artistLife.status }}</p>
               </td>
             </tr>
             <tr>
@@ -182,12 +179,10 @@ export default {
       artistData: {},
       tadbData: {},
       mbData: {},
-      albums: [],
-      ended: null,
-      begin: null,
-      genres: []
+      artistLife: {}
     };
   },
+
   async created() {
     this.id = this.$route.params.id;
     this.artistData = await fetchArtistData(this.id);
@@ -207,10 +202,25 @@ export default {
     );
     this.tadbData = this.tadbData.artists[0];
     this.mbData = await fetchMbzArtist(this.tadbData.strMusicBrainzID);
-    this.ended = this.mbData["life-span"].ended;
-    this.begin = this.mbData["life-span"].begin;
+
+    this.artistLife = new Object();
+    this.artistLife.begin = this.mbData["life-span"].begin;
+    this.artistLife.ended = this.mbData["life-span"].ended;
+    if (this.mbData.type == "Group") {
+      this.artistLife.typeText = "Formed";
+      this.artistLife.status = "Disbanded (";
+    } else {
+      this.artistLife.typeText = "Born";
+      this.artistLife.status = "Dead (";
+    }
+    if (this.mbData["life-span"].ended) {
+      this.artistLife.status =
+        this.artistLife.status + this.mbData["life-span"].end + ")";
+    } else {
+      this.artistLife.status = "Active";
+    }
+
     this.genres = this.mbData.genres;
-    console.log(this.mbData.genres);
   }
 };
 </script>

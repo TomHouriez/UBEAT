@@ -6,43 +6,37 @@
         <div class="artistImageContainer">
           <img :src="tadbData.strArtistThumb" />
           <a
-            href="https://geo.music.apple.com/us/artist/daft-punk/5468295?mt=1&app=music"
-            style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/en-us/badge-lrg.svg?kind=artist&bubble=apple_music) no-repeat;width:158px;height:45px;"
+            :href="artistData.artistLinkUrl"
+            style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/en-us/badge-lrg.svg?kind=artist&bubble=apple_music)
+            no-repeat;width:158px;height:45px;"
           ></a>
         </div>
         <div class="artistTableInfo">
           <table>
             <tr>
-              <td>Active</td>
-              <td>1990s - 2010s</td>
+              <td>Formed/Born</td>
+              <td>{{ begin }}</td>
             </tr>
             <tr>
-              <td>Formed</td>
-              <td>1993</td>
+              <td>in</td>
+              <td>{{ tadbData.strCountry }}</td>
             </tr>
             <tr>
-              <td>Country</td>
-              <td>France</td>
+              <td>Status</td>
+              <td v-if="ended">
+                <p>Inactive</p>
+              </td>
+              <td v-else>
+                <p>Active</p>
+              </td>
             </tr>
             <tr>
-              <td>Town</td>
-              <td>Paris, Ile de France</td>
-            </tr>
-            <tr>
-              <td>Genre</td>
-              <td>Electronic</td>
-            </tr>
-            <tr>
-              <td>Style</td>
+              <td>Genre(s)</td>
               <td>
-                <tr>
-                  Eletronica
-                </tr>
-                <tr>
-                  House
-                </tr>
-                <tr>
-                  Progressive House
+                <tr v-for="genre in genres" :key="genre.name">
+                  {{
+                    genre.name
+                  }}
                 </tr>
               </td>
             </tr>
@@ -188,7 +182,10 @@ export default {
       artistData: {},
       tadbData: {},
       mbData: {},
-      albums: []
+      albums: [],
+      ended: null,
+      begin: null,
+      genres: []
     };
   },
   async created() {
@@ -210,6 +207,10 @@ export default {
     );
     this.tadbData = this.tadbData.artists[0];
     this.mbData = await fetchMbzArtist(this.tadbData.strMusicBrainzID);
+    this.ended = this.mbData["life-span"].ended;
+    this.begin = this.mbData["life-span"].begin;
+    this.genres = this.mbData.genres;
+    console.log(this.mbData.genres);
   }
 };
 </script>

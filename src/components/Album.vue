@@ -18,9 +18,10 @@
             <tr>
               <td>Artist:</td>
               <td>
-                <router-link to="/artist">{{
-                  albumData.artistName
-                }}</router-link>
+                <router-link
+                  :to="{ name: 'Artist', params: { id: albumData.artistId } }"
+                  >{{ albumData.artistName }}</router-link
+                >
               </td>
             </tr>
             <tr>

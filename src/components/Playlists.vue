@@ -25,19 +25,25 @@
           <section class="modal-card-body">
             <b-field label="Name">
               <b-input
-                type="texte"
+                type="text"
                 :value="playlistName"
+                v-model="playlistName"
                 placeholder="Enter a playlist name"
                 required
-                oninvalid="this.setCustomValidity('A name is required')"
+                oninvalid="this.setCustomValidity('Please fillout this field')"
+                oninput="this.setCustomValidity('')"
                 validation-message="A name is required"
               >
               </b-input>
             </b-field>
           </section>
           <footer class="modal-card-foot">
-            <button class="button" type="button" @click="$parent.close()">
-              Close
+            <button
+              class="button"
+              type="button"
+              v-on:click="cancelAddPlaylist()"
+            >
+              Cancel
             </button>
             <button class="button is-primary">Validate</button>
           </footer>
@@ -51,6 +57,7 @@
 import PlaylistCard from "./PlaylistCard.vue";
 
 import { fetchUserPlaylists } from "../scripts/PlaylistsApi";
+import { validate } from "@babel/types";
 
 export default {
   components: {
@@ -60,12 +67,18 @@ export default {
     return {
       playlists: [],
       isAddPlaylistModalActive: false,
-      addPlaylistForm: {
-        name: ""
-      }
+      playlistName: ""
     };
   },
-  methods: {},
+  methods: {
+    cancelAddPlaylist() {
+      this.isAddPlaylistModalActive = false;
+      this.playlistName = "";
+    },
+    validateAddPlaylist() {
+      this.isAddPlaylistModalActive = false;
+    }
+  },
   async created() {
     this.playlists = await fetchUserPlaylists();
   }

@@ -57,7 +57,6 @@
 import PlaylistCard from "./PlaylistCard.vue";
 
 import { fetchUserPlaylists } from "../scripts/PlaylistsApi";
-import { validate } from "@babel/types";
 
 export default {
   components: {

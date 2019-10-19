@@ -31,10 +31,10 @@
             </tr>
             <tr>
               <td>Genre:</td>
-              <td>House</td>
+              <td>{{ albumData.primaryGenreName }}</td>
             </tr>
             <tr>
-              <td>13 songs</td>
+              <td>{{ albumData.trackCount }} songs</td>
             </tr>
           </table>
         </div>

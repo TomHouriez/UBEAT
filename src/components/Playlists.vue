@@ -45,7 +45,12 @@
             >
               Cancel
             </button>
-            <button class="button is-primary">Validate</button>
+            <button
+              class="button is-primary"
+              v-on:click="validateAddPlaylist()"
+            >
+              Validate
+            </button>
           </footer>
         </div>
       </form>
@@ -56,7 +61,7 @@
 <script>
 import PlaylistCard from "./PlaylistCard.vue";
 
-import { fetchUserPlaylists } from "../scripts/PlaylistsApi";
+import { fetchUserPlaylists, addPlaylist } from "../scripts/PlaylistsApi";
 
 export default {
   components: {
@@ -74,7 +79,9 @@ export default {
       this.isAddPlaylistModalActive = false;
       this.playlistName = "";
     },
-    validateAddPlaylist() {
+    async validateAddPlaylist() {
+      let response = await addPlaylist(this.playlistName);
+      alert(JSON.stringify(response));
       this.isAddPlaylistModalActive = false;
     }
   },

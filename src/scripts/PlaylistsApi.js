@@ -14,34 +14,35 @@ export const fetchPlaylistByID = async playlistID => {
   return jsonResponse;
 };
 
-// export const addPlaylist = async playlistName => {
-//   const response = await fetch("http://ubeat.herokuapp.com/playlists", {
-//     method: "POST",
-//     headers: {
-//       Authorization:
-//         "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1ZGFiNzY5ZGI1ZWVkOTAwMDRkMTFhZmYiLCJleHAiOjE1NzE2MDQ2NDQxNTd9.oWU0nKj94aeWb7x-3widUIHJJrqn-czLiizLtdl04NE",
-//     },
-//     body: {
-//       owner: {
-//         name: playlistName,
-//         owner: "michel@gmail.com"
-//       }
-//     }
-//   });
-//   const jsonResponse = await response.json();
-//   return jsonResponse;
-// };
-
 export const addPlaylist = async playlistName => {
-  const response = await fetch("http://ubeat.herokuapp.com/unsecure/playlists", {
+  const response = await fetch("http://ubeat.herokuapp.com/playlists", {
     method: "POST",
+    headers: {
+      Authorization:
+        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1ZGFiNzY5ZGI1ZWVkOTAwMDRkMTFhZmYiLCJleHAiOjE1NzE2MDQ2NDQxNTd9.oWU0nKj94aeWb7x-3widUIHJJrqn-czLiizLtdl04NE"
+    },
     body: {
-      
+      owner: {
         name: playlistName,
         owner: "michel@gmail.com"
-      
+      }
     }
   });
+  const jsonResponse = await response.json();
+  return jsonResponse;
+};
+
+export const addPlaylist2 = async playlistName => {
+  const response = await fetch(
+    "http://ubeat.herokuapp.com/unsecure/playlists",
+    {
+      method: "POST",
+      body: {
+        name: playlistName,
+        owner: "michel@gmail.com"
+      }
+    }
+  );
   const jsonResponse = await response.json();
   return jsonResponse;
 };

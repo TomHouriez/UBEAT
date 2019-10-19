@@ -4,6 +4,7 @@ import Home from "@/components/Home";
 import Album from "@/components/Album";
 import Artist from "@/components/Artist";
 import Playlists from "@/components/Playlists";
+import PlaylistDetail from "@/components/PlaylistDetail";
 
 Vue.use(Router);
 
@@ -28,6 +29,11 @@ export default new Router({
       path: "/playlists",
       name: "Playlists",
       component: Playlists
+    },
+    {
+      path: "/playlist/:id",
+      name: "PlaylistDetail",
+      component: PlaylistDetail
     }
   ]
 });

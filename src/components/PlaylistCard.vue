@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="gridContainer">
+    <div class="gridContainer" v-if="tracks">
       <div class="gridItem">
         <img v-if="tracks[0]" :src="tracks[0].artworkUrl100" />
       </div>

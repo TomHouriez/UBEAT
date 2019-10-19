@@ -124,5 +124,4 @@ componentPage {
   max-width: 1100px;
   flex: 1;
 }
-
 </style>

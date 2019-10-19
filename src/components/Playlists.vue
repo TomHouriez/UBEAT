@@ -1,8 +1,12 @@
 <template>
   <div class="container">
     <div v-for="aPlaylist in playlists" v-bind:key="aPlaylist.id">
-      <PlaylistCard :name="aPlaylist.name" :tracks="aPlaylist.tracks">
-      </PlaylistCard>
+      <router-link
+        :to="{ name: 'PlaylistDetail', params: { id: aPlaylist.id } }"
+      >
+        <PlaylistCard :name="aPlaylist.name" :tracks="aPlaylist.tracks">
+        </PlaylistCard
+      ></router-link>
     </div>
   </div>
 </template>

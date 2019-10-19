@@ -7,3 +7,9 @@ export const fetchUserPlaylists = async () => {
   const jsonResponse = await response.json();
   return jsonResponse;
 };
+
+export const fetchPlaylistByID = async playlistID => {
+  const response = await fetch(`${BASE_UBEAT_URL}/playlists/${playlistID}`);
+  const jsonResponse = await response.json();
+  return jsonResponse;
+};

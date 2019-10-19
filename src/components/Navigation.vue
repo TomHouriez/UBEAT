@@ -10,7 +10,9 @@
         </router-link>
       </a>
       <a class="navbar-item desktop tablet">
-        <a class="button is-black mobile-title-color">Playlists</a>
+        <router-link to="/playlists">
+          <span class="is-black mobile-color">Playlists</span>
+        </router-link>
       </a>
       <a class="navbar-item desktop tablet">
         <div class="control has-icons-left">
@@ -76,7 +78,9 @@
     <div id="navMenu" class="navbar-menu">
       <div class="navbar-start">
         <a class="navbar-item desktop">
-          <a class="is-black mobile-title-color">Playlists</a>
+          <router-link to="/playlists">
+            <span class="is-black mobile-color">Playlists</span>
+          </router-link>
         </a>
         <a class="navbar-item desktop tablet" id="input-item">
           <div class="control has-icons-left">

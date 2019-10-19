@@ -29,6 +29,7 @@
                 :value="playlistName"
                 placeholder="Enter a playlist name"
                 required
+                oninvalid="this.setCustomValidity('A name is required')"
                 validation-message="A name is required"
               >
               </b-input>

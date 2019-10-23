@@ -81,7 +81,7 @@
             </b-table-column>
 
             <b-table-column field="action" label="Action">
-              <b-button v-on:click="isAddToPlaylistModalActive = true"
+              <b-button v-on:click="addToPlaylistButton(props.row)"
                 >Add to playlist</b-button
               >
 
@@ -111,7 +111,7 @@
                       </button>
                       <button
                         class="button is-primary"
-                        v-on:click="validateAddToPlaylist(props.row)"
+                        v-on:click="validateAddToPlaylist()"
                       >
                         Validate
                       </button>
@@ -144,6 +144,7 @@ export default {
       // add to playlist
       playlists: [],
       checkboxAddToPlaylist: [],
+      trackToAdd: {},
       isAddToPlaylistModalActive: false
     };
   },
@@ -168,13 +169,17 @@ export default {
     loadPlaylist: async function() {
       this.playlists = await fetchUserPlaylists();
     },
+    addToPlaylistButton: function(jsonTrack) {
+      this.trackToAdd = jsonTrack;
+      this.isAddToPlaylistModalActive = true;
+    },
     cancelAddToPlaylist: function() {
       this.isAddToPlaylistModalActive = false;
       this.checkboxAddToPlaylist = [];
     },
-    validateAddToPlaylist: async function(jsonTrack) {
+    validateAddToPlaylist: async function() {
       this.checkboxAddToPlaylist.forEach(async aPlaylistID => {
-        await addTrackToPlaylist(aPlaylistID, jsonTrack);
+        await addTrackToPlaylist(aPlaylistID, this.trackToAdd);
         this.checkboxAddToPlaylist = [];
         this.isAddToPlaylistModalActive = false;
       });

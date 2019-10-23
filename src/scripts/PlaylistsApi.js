@@ -79,3 +79,17 @@ export const addTrackToPlaylist = async (playlistID, jsonTrack) => {
   const jsonResponse = await response.json();
   return jsonResponse;
 };
+
+export const deleteTrackInPlaylist = async (playlistID, trackID) => {
+  const response = await fetch(
+    `http://ubeat.herokuapp.com/playlists/${playlistID}/tracks/${trackID}`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: USER_TOKEN
+      }
+    }
+  );
+  const jsonResponse = await response.json();
+  return jsonResponse;
+};

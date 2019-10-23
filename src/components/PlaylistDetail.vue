@@ -36,11 +36,9 @@
           </b-table-column>
 
           <b-table-column field="delete" label="">
-            <span>
-              <a href="#">
-                <b-icon pack="fas" icon="trash-alt" type="info" />
-              </a>
-            </span>
+            <a href="#" v-on:click="deleteTrack(props.row.trackId)">
+              <b-icon pack="fas" icon="trash-alt" type="info" />
+            </a>
           </b-table-column>
         </template>
       </b-table>
@@ -50,7 +48,10 @@
 
 <script>
 import PlaylistCard from "./PlaylistCard.vue";
-import { fetchPlaylistByID } from "../scripts/PlaylistsApi";
+import {
+  fetchPlaylistByID,
+  deleteTrackInPlaylist
+} from "../scripts/PlaylistsApi";
 
 export default {
   components: {
@@ -65,6 +66,13 @@ export default {
   async created() {
     this.id = this.$route.params.id;
     this.playlist = await fetchPlaylistByID(this.id);
+  },
+  methods: {
+    deleteTrack: async function(trackID) {
+      let response = await deleteTrackInPlaylist(this.id, trackID);
+      console.log(response);
+      this.playlist = await fetchPlaylistByID(this.id);
+    }
   }
 };
 </script>

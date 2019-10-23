@@ -36,6 +36,49 @@
             <tr>
               <td>{{ albumData.trackCount }} songs</td>
             </tr>
+
+            <tr>
+              <td>
+                <b-button v-on:click="isAddAlbumToPlaylistModalActive = true">
+                  Add Album to Playlist
+                </b-button>
+
+                <b-modal :active.sync="isAddAlbumToPlaylistModalActive">
+                  <form action="">
+                    <div class="modal-card" style="width: auto">
+                      <header class="modal-card-head">
+                        <p class="modal-card-title">Add to playlist</p>
+                      </header>
+                      <section class="modal-card-body">
+                        <b-checkbox
+                          v-for="aPlaylist in playlists"
+                          v-bind:key="aPlaylist.id"
+                          v-model="checkboxAddAlumToPlaylist"
+                          :native-value="aPlaylist.id"
+                        >
+                          {{ aPlaylist.name }}
+                        </b-checkbox>
+                      </section>
+                      <footer class="modal-card-foot">
+                        <button
+                          class="button"
+                          type="button"
+                          v-on:click="cancelAddAlbumToPlaylist()"
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          class="button is-primary"
+                          v-on:click="validateAddAlbumToPlaylist()"
+                        >
+                          Validate
+                        </button>
+                      </footer>
+                    </div>
+                  </form>
+                </b-modal>
+              </td>
+            </tr>
           </table>
         </div>
       </div>
@@ -145,7 +188,11 @@ export default {
       playlists: [],
       checkboxAddToPlaylist: [],
       trackToAdd: {},
-      isAddToPlaylistModalActive: false
+      isAddToPlaylistModalActive: false,
+
+      //add album to playlist
+      checkboxAddAlumToPlaylist: [],
+      isAddAlbumToPlaylistModalActive: false
     };
   },
   async created() {
@@ -180,9 +227,24 @@ export default {
     validateAddToPlaylist: async function() {
       this.checkboxAddToPlaylist.forEach(async aPlaylistID => {
         await addTrackToPlaylist(aPlaylistID, this.trackToAdd);
-        this.checkboxAddToPlaylist = [];
-        this.isAddToPlaylistModalActive = false;
       });
+      this.checkboxAddToPlaylist = [];
+      this.isAddToPlaylistModalActive = false;
+    },
+
+    // add album to playlist
+    cancelAddAlbumToPlaylist: function() {
+      this.isAddAlbumToPlaylistModalActive = false;
+      this.checkboxAddAlumToPlaylist = [];
+    },
+    validateAddAlbumToPlaylist: async function() {
+      this.checkboxAddAlumToPlaylist.forEach(async aPlaylistID => {
+        this.tracks.forEach(async aTrack => {
+          await addTrackToPlaylist(aPlaylistID, aTrack);
+        });
+      });
+      this.checkboxAddAlumToPlaylist = [];
+      this.isAddAlbumToPlaylistModalActive = false;
     },
 
     //other

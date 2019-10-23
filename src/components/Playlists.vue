@@ -14,6 +14,12 @@
         <PlaylistCard :name="aPlaylist.name" :tracks="aPlaylist.tracks">
         </PlaylistCard
       ></router-link>
+      <b-button
+        v-on:click="deleteThisPlaylist(aPlaylist.id)"
+        :id="'deletePlaylist-' + aPlaylist.id"
+      >
+        <b-icon pack="fas" icon="trash-alt" type="info" />
+      </b-button>
     </div>
 
     <b-modal :active.sync="isAddPlaylistModalActive">
@@ -26,7 +32,6 @@
             <b-field label="Name">
               <b-input
                 type="text"
-                :value="playlistName"
                 v-model="playlistName"
                 placeholder="Enter a playlist name"
                 required
@@ -61,7 +66,12 @@
 <script>
 import PlaylistCard from "./PlaylistCard.vue";
 
-import { fetchUserPlaylists, addPlaylist } from "../scripts/PlaylistsApi";
+import {
+  fetchUserPlaylists,
+  addPlaylist,
+  deletePlaylist
+} from "../scripts/PlaylistsApi";
+import { log } from "util";
 
 export default {
   components: {
@@ -81,8 +91,17 @@ export default {
     },
     async validateAddPlaylist() {
       let response = await addPlaylist(this.playlistName);
-      alert(JSON.stringify(response));
+      this.playlists = await fetchUserPlaylists();
       this.isAddPlaylistModalActive = false;
+      this.playlistName = "";
+    },
+    async deleteThisPlaylist(playlistID) {
+      let response = await deletePlaylist(playlistID);
+      let deleteButton = document.getElementById(
+        "deletePlaylist-" + playlistID
+      );
+      deleteButton.disabled = true;
+      this.playlists = await fetchUserPlaylists();
     }
   },
   async created() {
@@ -116,7 +135,7 @@ export default {
   background-color: lightgray;
 }
 
-span {
+.gridContainer span {
   width: 100%;
   height: 100%;
 }

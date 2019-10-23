@@ -36,50 +36,46 @@
             <tr>
               <td>{{ albumData.trackCount }} songs</td>
             </tr>
-
-            <tr>
-              <td>
-                <b-button v-on:click="isAddAlbumToPlaylistModalActive = true">
-                  Add Album to Playlist
-                </b-button>
-
-                <b-modal :active.sync="isAddAlbumToPlaylistModalActive">
-                  <form action="">
-                    <div class="modal-card" style="width: auto">
-                      <header class="modal-card-head">
-                        <p class="modal-card-title">Add to playlist</p>
-                      </header>
-                      <section class="modal-card-body">
-                        <b-checkbox
-                          v-for="aPlaylist in playlists"
-                          v-bind:key="aPlaylist.id"
-                          v-model="checkboxAddAlumToPlaylist"
-                          :native-value="aPlaylist.id"
-                        >
-                          {{ aPlaylist.name }}
-                        </b-checkbox>
-                      </section>
-                      <footer class="modal-card-foot">
-                        <button
-                          class="button"
-                          type="button"
-                          v-on:click="cancelAddAlbumToPlaylist()"
-                        >
-                          Cancel
-                        </button>
-                        <button
-                          class="button is-primary"
-                          v-on:click="validateAddAlbumToPlaylist()"
-                        >
-                          Validate
-                        </button>
-                      </footer>
-                    </div>
-                  </form>
-                </b-modal>
-              </td>
-            </tr>
           </table>
+
+          <b-button v-on:click="isAddAlbumToPlaylistModalActive = true">
+            Add Album to Playlist
+          </b-button>
+
+          <b-modal :active.sync="isAddAlbumToPlaylistModalActive">
+            <form action="">
+              <div class="modal-card" style="width: auto">
+                <header class="modal-card-head">
+                  <p class="modal-card-title">Add to playlist</p>
+                </header>
+                <section class="modal-card-body">
+                  <b-checkbox
+                    v-for="aPlaylist in playlists"
+                    v-bind:key="aPlaylist.id"
+                    v-model="checkboxAddAlumToPlaylist"
+                    :native-value="aPlaylist.id"
+                  >
+                    {{ aPlaylist.name }}
+                  </b-checkbox>
+                </section>
+                <footer class="modal-card-foot">
+                  <button
+                    class="button"
+                    type="button"
+                    v-on:click="cancelAddAlbumToPlaylist()"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    class="button is-primary"
+                    v-on:click="validateAddAlbumToPlaylist()"
+                  >
+                    Validate
+                  </button>
+                </footer>
+              </div>
+            </form>
+          </b-modal>
         </div>
       </div>
       <div class="albumTracksContainer">
@@ -117,7 +113,7 @@
 
             <b-table-column field="play" label="Play">
               <span>
-                <a href="#">
+                <a href="#" v-on:click="playTrack(props.row.previewUrl)">
                   <b-icon pack="fas" icon="play-circle" type="info" />
                 </a>
               </span>
@@ -245,6 +241,12 @@ export default {
       });
       this.checkboxAddAlumToPlaylist = [];
       this.isAddAlbumToPlaylistModalActive = false;
+    },
+
+    //play sond
+    playTrack: function(trackUrl) {
+      let audio = new Audio(trackUrl);
+      audio.play();
     },
 
     //other

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="cardContainer" @click="isAddPlaylistModalActive = true">
+    <div class="cardContainer" v-on:click="isAddPlaylistModalActive = true">
       <div class="gridContainer">
         <b-icon pack="fas" class="fa-7x" icon="plus-circle" type="info" />
         <p>Add new playlist</p>
@@ -15,10 +15,19 @@
         </PlaylistCard
       ></router-link>
       <b-button
+        v-if="!isDeletingPlaylist"
         v-on:click="deleteThisPlaylist(aPlaylist.id)"
         :id="'deletePlaylist-' + aPlaylist.id"
       >
         <b-icon pack="fas" icon="trash-alt" type="info" />
+      </b-button>
+
+      <b-button
+        v-if="!isDeletingPlaylist"
+        v-on:click="updatePlaylistButton(aPlaylist.id, aPlaylist.name)"
+        :id="'updatePlaylist-' + aPlaylist.id"
+      >
+        Update
       </b-button>
     </div>
 
@@ -59,7 +68,45 @@
           </footer>
         </div>
       </form>
-      <!-- </p> -->
+    </b-modal>
+
+    <b-modal :active.sync="isUpatePlaylistModalActive">
+      <form action="">
+        <div class="modal-card" style="width: auto">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Update playlist</p>
+          </header>
+          <section class="modal-card-body">
+            <b-field label="Name">
+              <b-input
+                type="text"
+                v-model="updatedPlaylistName"
+                placeholder="Enter a playlist name"
+                required
+                oninvalid="this.setCustomValidity('Please fillout this field')"
+                oninput="this.setCustomValidity('')"
+                validation-message="A name is required"
+              >
+              </b-input>
+            </b-field>
+          </section>
+          <footer class="modal-card-foot">
+            <button
+              class="button"
+              type="button"
+              v-on:click="cancelUpdatePlaylist()"
+            >
+              Cancel
+            </button>
+            <button
+              class="button is-primary"
+              v-on:click="validateUpdatePlaylist()"
+            >
+              Validate
+            </button>
+          </footer>
+        </div>
+      </form>
     </b-modal>
   </div>
 </template>
@@ -69,7 +116,8 @@ import PlaylistCard from "./PlaylistCard.vue";
 import {
   fetchUserPlaylists,
   addPlaylist,
-  deletePlaylist
+  deletePlaylist,
+  updatePlaylistName
 } from "../scripts/PlaylistsApi";
 
 export default {
@@ -79,28 +127,65 @@ export default {
   data() {
     return {
       playlists: [],
+
+      // add playlist
       isAddPlaylistModalActive: false,
-      playlistName: ""
+      playlistName: "",
+
+      // update playlist
+      isUpatePlaylistModalActive: false,
+      updatedPlaylistID: null,
+      updatedPlaylistName: "",
+
+      // delete playlist
+      isDeletingPlaylist: false
     };
   },
   methods: {
+    // add playlist
     cancelAddPlaylist() {
       this.isAddPlaylistModalActive = false;
       this.playlistName = "";
     },
     async validateAddPlaylist() {
-      await addPlaylist(this.playlistName);
-      this.playlists = await fetchUserPlaylists();
-      this.isAddPlaylistModalActive = false;
-      this.playlistName = "";
+      if (this.playlistName != "") {
+        await addPlaylist(this.playlistName);
+        this.playlists = await fetchUserPlaylists();
+        this.isAddPlaylistModalActive = false;
+        this.playlistName = "";
+      }
     },
+
+    // delete playlist
     async deleteThisPlaylist(playlistID) {
-      await deletePlaylist(playlistID);
-      let deleteButton = document.getElementById(
-        "deletePlaylist-" + playlistID
-      );
-      deleteButton.disabled = true;
-      this.playlists = await fetchUserPlaylists();
+      if (!this.isDeletingPlaylist) {
+        this.isDeletingPlaylist = true;
+        await deletePlaylist(playlistID);
+        this.playlists = await fetchUserPlaylists();
+        this.isDeletingPlaylist = false;
+      }
+    },
+
+    //update playlist
+    updatePlaylistButton: function(playlistID, name) {
+      this.updatedPlaylistName = name;
+      this.updatedPlaylistID = playlistID;
+      this.isUpatePlaylistModalActive = true;
+    },
+    cancelUpdatePlaylist() {
+      this.updatedPlaylistName = "";
+      this.isUpatePlaylistModalActive = false;
+    },
+    async validateUpdatePlaylist() {
+      if (this.updatedPlaylistName != "") {
+        await updatePlaylistName(
+          this.updatedPlaylistID,
+          this.updatedPlaylistName
+        );
+        this.playlists = await fetchUserPlaylists();
+        this.isUpatePlaylistModalActive = false;
+        this.updatedPlaylistName = "";
+      }
     }
   },
   async created() {

@@ -1,7 +1,7 @@
 const BASE_UBEAT_URL = "http://ubeat.herokuapp.com/unsecure";
 
 // const USER_ID = "5c8f031f7e3b3e000487d68d";
-
+const USER_EMAIL = "f.r@gmail.com";
 const USER_ID = "5daf81e46134f50004862ef9";
 const USER_TOKEN =
   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1ZGFmODFlNDYxMzRmNTAwMDQ4NjJlZjkiLCJleHAiOjE1NzE4NzI0OTI5NTJ9.QxwZeDhayvQfBmmpBw5QaWaZ1SVxSLbEP8Pb8ZqirQU";
@@ -33,19 +33,22 @@ export const addPlaylist = async playlistName => {
   return jsonResponse;
 };
 
-export const updatePlaylist = async newplaylist => {
+export const updatePlaylistName = async (playlistID, newPlaylistName) => {
   const response = await fetch(
-    `http://ubeat.herokuapp.com/playlists/${newplaylist.id}`,
+    `http://ubeat.herokuapp.com/playlists/${playlistID}`,
     {
       method: "PUT",
       headers: {
-        Authorization: USER_TOKEN
+        Authorization: USER_TOKEN,
+        "Content-Type": "application/json"
       },
-      body: newplaylist
+      body: JSON.stringify({
+        owner: USER_EMAIL,
+        name: newPlaylistName
+      })
     }
   );
   const jsonResponse = await response.json();
-  alert(JSON.stringify(jsonResponse));
   return jsonResponse;
 };
 

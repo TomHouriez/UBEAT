@@ -71,7 +71,6 @@ import {
   addPlaylist,
   deletePlaylist
 } from "../scripts/PlaylistsApi";
-import { log } from "util";
 
 export default {
   components: {
@@ -90,13 +89,13 @@ export default {
       this.playlistName = "";
     },
     async validateAddPlaylist() {
-      let response = await addPlaylist(this.playlistName);
+      await addPlaylist(this.playlistName);
       this.playlists = await fetchUserPlaylists();
       this.isAddPlaylistModalActive = false;
       this.playlistName = "";
     },
     async deleteThisPlaylist(playlistID) {
-      let response = await deletePlaylist(playlistID);
+      await deletePlaylist(playlistID);
       let deleteButton = document.getElementById(
         "deletePlaylist-" + playlistID
       );

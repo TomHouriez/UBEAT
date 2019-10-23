@@ -1,5 +1,3 @@
-import { getUserAndToken } from "./UserApi.js";
-
 const BASE_UBEAT_URL = "http://ubeat.herokuapp.com/unsecure";
 
 // const USER_ID = "5c8f031f7e3b3e000487d68d";
@@ -66,15 +64,16 @@ export const deletePlaylist = async playlistID => {
   return jsonResponse;
 };
 
-export const addPlaylist2 = async playlistName => {
+export const addTrackToPlaylist = async (playlistID, jsonTrack) => {
   const response = await fetch(
-    "http://ubeat.herokuapp.com/unsecure/playlists",
+    `http://ubeat.herokuapp.com/playlists/${playlistID}/tracks`,
     {
       method: "POST",
-      body: {
-        name: playlistName,
-        owner: "michel@gmail.com"
-      }
+      headers: {
+        Authorization: USER_TOKEN,
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify(jsonTrack)
     }
   );
   const jsonResponse = await response.json();

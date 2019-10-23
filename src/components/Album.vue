@@ -19,16 +19,15 @@
               <td>Artist:</td>
               <td>
                 <router-link
+                  v-if="albumData.artistId"
                   :to="{ name: 'Artist', params: { id: albumData.artistId } }"
-                  >{{ albumData.artistName }}</router-link
-                >
+                  >{{ albumData.artistName }}
+                </router-link>
               </td>
             </tr>
             <tr>
               <td>Release Date:</td>
-              <!-- <td>{{albumData.releaseDate}}</td> -->
               <td>{{ formatDate(albumData.releaseDate) }}</td>
-              <!-- <td>{{formatDate("2018-11-30T08:00:00Z")}}</td> -->
             </tr>
             <tr>
               <td>Genre:</td>
@@ -80,6 +79,47 @@
                 </a>
               </span>
             </b-table-column>
+
+            <b-table-column field="action" label="Action">
+              <b-button v-on:click="isAddToPlaylistModalActive = true"
+                >Add to playlist</b-button
+              >
+
+              <b-modal :active.sync="isAddToPlaylistModalActive">
+                <form action="">
+                  <div class="modal-card" style="width: auto">
+                    <header class="modal-card-head">
+                      <p class="modal-card-title">Add to playlist</p>
+                    </header>
+                    <section class="modal-card-body">
+                      <b-checkbox
+                        v-for="aPlaylist in playlists"
+                        v-bind:key="aPlaylist.id"
+                        v-model="checkboxAddToPlaylist"
+                        :native-value="aPlaylist.id"
+                      >
+                        {{ aPlaylist.name }}
+                      </b-checkbox>
+                    </section>
+                    <footer class="modal-card-foot">
+                      <button
+                        class="button"
+                        type="button"
+                        v-on:click="cancelAddToPlaylist()"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        class="button is-primary"
+                        v-on:click="validateAddToPlaylist(props.row)"
+                      >
+                        Validate
+                      </button>
+                    </footer>
+                  </div>
+                </form>
+              </b-modal>
+            </b-table-column>
           </template>
         </b-table>
       </div>
@@ -88,42 +128,59 @@
 </template>
 
 <script>
-import Vue from "vue";
-import Buefy from "buefy";
-import "buefy/dist/buefy.css";
-
-//test icons
-Vue.use(Buefy, { defaultIconPack: "fal" });
-
 import { fetchAlbumData, fetchTracks } from "../scripts/AlbumApi.js";
+import {
+  fetchUserPlaylists,
+  addTrackToPlaylist
+} from "../scripts/PlaylistsApi.js";
 
 export default {
   data() {
     return {
       id: null,
       albumData: {},
-      tracks: []
+      tracks: [],
+
+      // add to playlist
+      playlists: [],
+      checkboxAddToPlaylist: [],
+      isAddToPlaylistModalActive: false
     };
   },
   async created() {
     this.id = this.$route.params.id;
     this.albumData = await fetchAlbumData(this.id);
     if (this.albumData.resultCount == 0) {
-      alert("artist not found");
+      alert("album not found");
     } else {
       this.albumData = this.albumData.results[0];
-      console.log(" albumm data ");
-      console.log(this.albumData);
       this.tracks = await fetchTracks(this.id);
       if (this.tracks.resultCount == 0) {
         alert("no track in album");
       } else {
         this.tracks = this.tracks.results;
       }
-      console.log(this.tracks);
     }
+    this.loadPlaylist();
   },
   methods: {
+    // add to playlist
+    loadPlaylist: async function() {
+      this.playlists = await fetchUserPlaylists();
+    },
+    cancelAddToPlaylist: function() {
+      this.isAddToPlaylistModalActive = false;
+      this.checkboxAddToPlaylist = [];
+    },
+    validateAddToPlaylist: async function(jsonTrack) {
+      this.checkboxAddToPlaylist.forEach(async aPlaylistID => {
+        await addTrackToPlaylist(aPlaylistID, jsonTrack);
+        this.checkboxAddToPlaylist = [];
+        this.isAddToPlaylistModalActive = false;
+      });
+    },
+
+    //other
     millisToMinutes: function(timeMillis) {
       let result = "";
       let minutes = parseInt(timeMillis / 60000);
@@ -133,10 +190,6 @@ export default {
       return result;
     },
     formatDate: function(releaseDate) {
-      // console.log("la date d'entrée");
-      // console.log(releaseDate);
-      // console.log(typeof(releaseDate));
-      //console.log(releaseDate.substring(0,4));
       if (releaseDate) {
         let year = releaseDate.substring(0, 4);
         let month = releaseDate.substring(5, 7);

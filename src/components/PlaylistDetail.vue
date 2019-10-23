@@ -69,8 +69,7 @@ export default {
   },
   methods: {
     deleteTrack: async function(trackID) {
-      let response = await deleteTrackInPlaylist(this.id, trackID);
-      console.log(response);
+      await deleteTrackInPlaylist(this.id, trackID);
       this.playlist = await fetchPlaylistByID(this.id);
     }
   }

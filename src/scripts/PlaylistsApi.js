@@ -1,10 +1,7 @@
 const BASE_UBEAT_URL = "http://ubeat.herokuapp.com/unsecure";
 
-// const USER_ID = "5c8f031f7e3b3e000487d68d";
 const USER_EMAIL = "f.r@gmail.com";
 const USER_ID = "5daf81e46134f50004862ef9";
-const USER_TOKEN =
-  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1ZGFmODFlNDYxMzRmNTAwMDQ4NjJlZjkiLCJleHAiOjE1NzE4NzI0OTI5NTJ9.QxwZeDhayvQfBmmpBw5QaWaZ1SVxSLbEP8Pb8ZqirQU";
 
 export const fetchUserPlaylists = async () => {
   const response = await fetch(`${BASE_UBEAT_URL}/users/${USER_ID}/playlists`);
@@ -19,27 +16,29 @@ export const fetchPlaylistByID = async playlistID => {
 };
 
 export const addPlaylist = async playlistName => {
-  const response = await fetch("http://ubeat.herokuapp.com/playlists", {
-    method: "POST",
-    headers: {
-      Authorization: USER_TOKEN,
-      "Content-type": "application/json"
-    },
-    body: JSON.stringify({
-      name: playlistName
-    })
-  });
+  const response = await fetch(
+    "http://ubeat.herokuapp.com/unsecure/playlists",
+    {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify({
+        owner: USER_EMAIL,
+        name: playlistName
+      })
+    }
+  );
   const jsonResponse = await response.json();
   return jsonResponse;
 };
 
 export const updatePlaylistName = async (playlistID, newPlaylistName) => {
   const response = await fetch(
-    `http://ubeat.herokuapp.com/playlists/${playlistID}`,
+    `http://ubeat.herokuapp.com/unsecure/playlists/${playlistID}`,
     {
       method: "PUT",
       headers: {
-        Authorization: USER_TOKEN,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
@@ -54,13 +53,15 @@ export const updatePlaylistName = async (playlistID, newPlaylistName) => {
 
 export const deletePlaylist = async playlistID => {
   const response = await fetch(
-    `http://ubeat.herokuapp.com/playlists/${playlistID}`,
+    `http://ubeat.herokuapp.com/unsecure/playlists/${playlistID}`,
     {
       method: "DELETE",
       headers: {
-        Authorization: USER_TOKEN,
         "Content-type": "application/json"
-      }
+      },
+      body: JSON.stringify({
+        owner: USER_EMAIL
+      })
     }
   );
   const jsonResponse = await response.json();
@@ -69,11 +70,10 @@ export const deletePlaylist = async playlistID => {
 
 export const addTrackToPlaylist = async (playlistID, jsonTrack) => {
   const response = await fetch(
-    `http://ubeat.herokuapp.com/playlists/${playlistID}/tracks`,
+    `http://ubeat.herokuapp.com/unsecure/playlists/${playlistID}/tracks`,
     {
       method: "POST",
       headers: {
-        Authorization: USER_TOKEN,
         "Content-type": "application/json"
       },
       body: JSON.stringify(jsonTrack)
@@ -85,12 +85,15 @@ export const addTrackToPlaylist = async (playlistID, jsonTrack) => {
 
 export const deleteTrackInPlaylist = async (playlistID, trackID) => {
   const response = await fetch(
-    `http://ubeat.herokuapp.com/playlists/${playlistID}/tracks/${trackID}`,
+    `http://ubeat.herokuapp.com/unsecure/playlists/${playlistID}/tracks/${trackID}`,
     {
       method: "DELETE",
       headers: {
-        Authorization: USER_TOKEN
-      }
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify({
+        owner: USER_EMAIL
+      })
     }
   );
   const jsonResponse = await response.json();

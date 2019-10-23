@@ -64,7 +64,6 @@ export default {
   async created() {
     this.topAlbums = await fetchTopAlbums();
     this.topSongs = await fetchTopTracks();
-    console.log(this.topSongs);
   }
 };
 </script>

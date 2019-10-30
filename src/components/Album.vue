@@ -119,7 +119,7 @@
 
             <b-table-column field="play" label="Play">
               <span>
-                <a href="#" v-on:click="playTrack(props.row.previewUrl)">
+                <a v-on:click="playTrack(props.row.previewUrl)">
                   <b-icon pack="fas" icon="play-circle" type="info" />
                 </a>
               </span>
@@ -241,13 +241,16 @@ export default {
       trackToAdd: null,
       isAddToPlaylistModalActive: false,
 
-      //add album to playlist
+      // add album to playlist
       checkboxAddAlumToPlaylist: [],
       isAddAlbumToPlaylistModalActive: false,
 
-      //new playlist
+      // new playlist
       isNewPlaylistModalActive: false,
-      playlistName: ""
+      playlistName: "",
+
+      // audio
+      audio: null
     };
   },
   async created() {
@@ -326,8 +329,11 @@ export default {
 
     //play sond
     playTrack: function(trackUrl) {
-      let audio = new Audio(trackUrl);
-      audio.play();
+      if (this.audio != null) {
+        this.audio.pause();
+      }
+      this.audio = new Audio(trackUrl);
+      this.audio.play();
     },
 
     //other

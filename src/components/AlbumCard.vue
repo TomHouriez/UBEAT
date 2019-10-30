@@ -13,7 +13,7 @@
       </router-link>
 
       <router-link :to="{ name: 'Artist', params: { id: artistId } }" class="">
-        <p class="collectionName">{{ artists }}</p>
+        <p class="artistName">{{ artists }}</p>
       </router-link>
       <p class="genreName">{{ genre }}</p>
     </div>
@@ -68,7 +68,6 @@ export default {
 .collectionName {
   font-size: medium;
   font-weight: bold;
-
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -79,6 +78,13 @@ export default {
 }
 .artistName {
   font-size: medium;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 25px;
+  max-height: 55px;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 .genreName {
   font-size: small;

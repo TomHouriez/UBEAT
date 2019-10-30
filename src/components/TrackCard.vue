@@ -6,12 +6,18 @@
       <a class="artistName">{{ artistName }}</a>
     </router-link>
   </figure>
-  
 </template>
 
 <script>
 export default {
-  props: ["trackName", "artistName", "image", "trackId", "primaryGenreName", "artistId"]
+  props: [
+    "trackName",
+    "artistName",
+    "image",
+    "trackId",
+    "primaryGenreName",
+    "artistId"
+  ]
 };
 </script>
 

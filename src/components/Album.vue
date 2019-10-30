@@ -57,6 +57,12 @@
                   >
                     {{ aPlaylist.name }}
                   </b-checkbox>
+
+                  <b-button
+                    v-if="checkboxAddAlumToPlaylist.length == 0"
+                    v-on:click="isNewPlaylistModalActive = true"
+                    >New playlist</b-button
+                  >
                 </section>
                 <footer class="modal-card-foot">
                   <button
@@ -131,14 +137,23 @@
                       <p class="modal-card-title">Add to playlist</p>
                     </header>
                     <section class="modal-card-body">
-                      <b-checkbox
-                        v-for="aPlaylist in playlists"
-                        v-bind:key="aPlaylist.id"
-                        v-model="checkboxAddToPlaylist"
-                        :native-value="aPlaylist.id"
-                      >
-                        {{ aPlaylist.name }}
-                      </b-checkbox>
+                      <div class="checkboxList">
+                        <b-checkbox
+                          class="oneCheckbox"
+                          v-for="aPlaylist in playlists"
+                          v-bind:key="aPlaylist.id"
+                          v-model="checkboxAddToPlaylist"
+                          :native-value="aPlaylist.id"
+                        >
+                          {{ aPlaylist.name }}
+                        </b-checkbox>
+
+                        <b-button
+                          v-if="checkboxAddToPlaylist.length == 0"
+                          v-on:click="isNewPlaylistModalActive = true"
+                          >New playlist</b-button
+                        >
+                      </div>
                     </section>
                     <footer class="modal-card-foot">
                       <button
@@ -163,6 +178,45 @@
         </b-table>
       </div>
     </div>
+
+    <b-modal :active.sync="isNewPlaylistModalActive">
+      <form action="">
+        <div class="modal-card" style="width: auto">
+          <header class="modal-card-head">
+            <p class="modal-card-title">New playlist</p>
+          </header>
+          <section class="modal-card-body">
+            <b-field label="Name">
+              <b-input
+                type="text"
+                v-model="playlistName"
+                placeholder="Enter a playlist name"
+                required
+                oninvalid="this.setCustomValidity('Please fillout this field')"
+                oninput="this.setCustomValidity('')"
+                validation-message="A name is required"
+              >
+              </b-input>
+            </b-field>
+          </section>
+          <footer class="modal-card-foot">
+            <button
+              class="button"
+              type="button"
+              v-on:click="cancelAddPlaylist()"
+            >
+              Cancel
+            </button>
+            <button
+              class="button is-primary"
+              v-on:click="validateAddToNewPlaylist()"
+            >
+              Validate
+            </button>
+          </footer>
+        </div>
+      </form>
+    </b-modal>
   </div>
 </template>
 
@@ -170,7 +224,8 @@
 import { fetchAlbumData, fetchTracks } from "../scripts/AlbumApi.js";
 import {
   fetchUserPlaylists,
-  addTrackToPlaylist
+  addTrackToPlaylist,
+  addPlaylist
 } from "../scripts/PlaylistsApi.js";
 
 export default {
@@ -183,12 +238,16 @@ export default {
       // add to playlist
       playlists: [],
       checkboxAddToPlaylist: [],
-      trackToAdd: {},
+      trackToAdd: null,
       isAddToPlaylistModalActive: false,
 
       //add album to playlist
       checkboxAddAlumToPlaylist: [],
-      isAddAlbumToPlaylistModalActive: false
+      isAddAlbumToPlaylistModalActive: false,
+
+      //new playlist
+      isNewPlaylistModalActive: false,
+      playlistName: ""
     };
   },
   async created() {
@@ -217,6 +276,7 @@ export default {
       this.isAddToPlaylistModalActive = true;
     },
     cancelAddToPlaylist: function() {
+      this.trackToAdd = null;
       this.isAddToPlaylistModalActive = false;
       this.checkboxAddToPlaylist = [];
     },
@@ -226,6 +286,7 @@ export default {
       });
       this.checkboxAddToPlaylist = [];
       this.isAddToPlaylistModalActive = false;
+      this.trackToAdd = null;
     },
 
     // add album to playlist
@@ -241,6 +302,26 @@ export default {
       });
       this.checkboxAddAlumToPlaylist = [];
       this.isAddAlbumToPlaylistModalActive = false;
+    },
+
+    // add to new playlist
+    validateAddToNewPlaylist: async function() {
+      if (this.playlistName != "") {
+        const response = await addPlaylist(this.playlistName);
+        const playlistID = response.id;
+        this.playlistName = "";
+        if (this.trackToAdd != null) {
+          await addTrackToPlaylist(playlistID, this.trackToAdd);
+        } else {
+          this.tracks.forEach(async aTrack => {
+            await addTrackToPlaylist(playlistID, aTrack);
+          });
+        }
+
+        this.isNewPlaylistModalActive = false;
+        this.isAddToPlaylistModalActive = false;
+        this.isAddAlbumToPlaylistModalActive = false;
+      }
     },
 
     //play sond
@@ -336,9 +417,15 @@ export default {
   margin-top: 10px;
 }
 
-/* .albumTracksContainer .artistName:hover  {
-  font: red;
-} */
+.checkboxList {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: flex-start;
+}
+.oneCheckbox {
+  margin: 5px;
+}
 
 a {
   color: rgb(54, 54, 54);

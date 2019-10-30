@@ -2,7 +2,7 @@
   <figure>
     <img :src="image" alt="Ramdom Accees Memory album cover" />
     <figcaption>{{ trackName }}</figcaption>
-    <router-link :to="{ name: 'Artist', params: { id: artistId } }" class="songCard">
+    <router-link :to="{ name: 'Artist', params: { id: artistId } }">
       <a class="artistName">{{ artistName }}</a>
     </router-link>
   </figure>
@@ -22,33 +22,32 @@ export default {
 
 figure {
   margin: 10px;
-  max-width: 350px;
+  width: 200px;
   overflow: hidden;
   text-align: center;
 }
 
 figure > img {
-  /* border: 1px solid black; */
   border-radius: 3%;
-  /* box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.3); */
   max-width: 200px;
   margin: 0;
   padding: 0;
 }
 
-figure img:hover {
+/* figure img:hover {
   opacity: 0.7;
   cursor: pointer;
-}
+} */
 
 figure > figcaption {
-  /* text-shadow: 1px 1px 3px gray; */
   color: black;
-  max-width: 200px;
   display: -webkit-box;
+  font-weight: bold;
   line-height: 25px;
-  max-height: 55px;
+  max-height: 25px;
   -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
   -webkit-box-orient: vertical;
 }
 
@@ -57,8 +56,16 @@ figure > figcaption {
   text-overflow: ellipsis;
   display: -webkit-box;
   line-height: 25px;
-  max-height: 55px;
+  max-height: 25px;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+}
+
+a {
+  color: rgb(54, 54, 54);
+}
+
+a:hover {
+  color: rgba(214, 38, 61, 0.882);
 }
 </style>

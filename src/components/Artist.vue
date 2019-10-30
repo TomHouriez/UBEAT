@@ -11,7 +11,7 @@
             no-repeat;width:158px;height:45px;"
           ></a>
         </div>
-        <div class="artistTableInfo">
+        <div v-if="infoExist" class="artistTableInfo">
           <table>
             <tr>
               <td>{{ artistLife.typeText }}</td>
@@ -73,10 +73,9 @@
             v-for="album in albums"
             v-bind:key="album.collectionId"
             :id="album.collectionId"
-            :artists="album.artistName"
             :title="album.collectionName"
-            :image="album.artworkUrl100"
-            :artistId="album.artistId"
+            :year="album.releaseDate.substring(0, 4)"
+            :image="album.artworkUrl100.replace('100x100', '500x500')"
           >
           </artistAlbumCard>
         </ul>
@@ -106,7 +105,8 @@ export default {
       mbData: {},
       artistLife: {},
       genres: {},
-      albums: []
+      albums: [],
+      infoExist: false
     };
   },
 
@@ -127,27 +127,33 @@ export default {
     this.tadbData = await fetchArtistMBID(
       encodeURIComponent(this.artistData.artistName)
     );
-    this.tadbData = this.tadbData.artists[0];
-    this.mbData = await fetchMbzArtist(this.tadbData.strMusicBrainzID);
 
-    this.artistLife = new Object();
-    this.artistLife.begin = this.mbData["life-span"].begin;
-    this.artistLife.ended = this.mbData["life-span"].ended;
-    if (this.mbData.type == "Group") {
-      this.artistLife.typeText = "Formed";
-      this.artistLife.status = "Disbanded (";
-    } else {
-      this.artistLife.typeText = "Born";
-      this.artistLife.status = "Dead (";
+    if (this.tadbData.artists != null) {
+      this.infoExist = true;
+      this.tadbData = this.tadbData.artists[0];
+
+      this.mbData = await fetchMbzArtist(this.tadbData.strMusicBrainzID);
+
+      this.artistLife = new Object();
+      this.artistLife.begin = this.mbData["life-span"].begin;
+      this.artistLife.ended = this.mbData["life-span"].ended;
+
+      if (this.mbData.type == "Group") {
+        this.artistLife.typeText = "Formed";
+        this.artistLife.status = "Disbanded (";
+      } else {
+        this.artistLife.typeText = "Born";
+        this.artistLife.status = "Dead (";
+      }
+
+      if (this.mbData["life-span"].ended) {
+        this.artistLife.status =
+          this.artistLife.status + this.mbData["life-span"].end + ")";
+      } else {
+        this.artistLife.status = "Active";
+      }
+      this.genres = this.mbData.genres;
     }
-    if (this.mbData["life-span"].ended) {
-      this.artistLife.status =
-        this.artistLife.status + this.mbData["life-span"].end + ")";
-    } else {
-      this.artistLife.status = "Active";
-    }
-    this.genres = this.mbData.genres;
-    console.log(this.genres);
   }
 };
 </script>
@@ -240,31 +246,17 @@ export default {
   margin-bottom: 20px;
 }
 
+.artistAlbumsContainer > ul > li > figure {
+  max-width: 200px;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
 .artistAlbumsContainer > ul > li > a {
   color: black;
 }
 
 .artistAlbumsContainer > ul > li > a:hover {
   color: crimson;
-}
-
-.artistAlbumsContainer > ul > li > a > figure {
-  margin: 10px;
-  max-width: 350px;
-  overflow: hidden;
-  text-align: center;
-}
-
-.artistAlbumsContainer > ul > li > a > figure > img {
-  border: 1px solid black;
-  border-radius: 3%;
-  box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.3);
-  max-width: 200px;
-  margin: 0;
-  padding: 0;
-}
-
-.artistAlbumsContainer > ul > li > a > figure > figcaption {
-  text-shadow: 1px 1px 3px gray;
 }
 </style>

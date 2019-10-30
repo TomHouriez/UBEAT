@@ -4,31 +4,18 @@
       :to="{ name: 'Album', params: { id: id } }"
       class="albumContainer"
     >
-      <img :src="image" />
+      <figure>
+        <img :src="image" />
+        <figcaption>{{ title }} ({{ year }})</figcaption>
+      </figure>
     </router-link>
   </li>
 </template>
 
 <script>
 export default {
-  props: ["title", "artists", "genre", "image", "id", "artistId"]
+  props: ["title", "year", "image", "id"]
 };
 </script>
 
-<style scoped>
-.artistAlbumCard {
-  min-width: 200px;
-  max-width: 500px;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-}
-
-a {
-  color: rgb(54, 54, 54);
-}
-
-a:hover {
-  color: rgba(214, 38, 61, 0.882);
-}
-</style>
+<style scoped></style>

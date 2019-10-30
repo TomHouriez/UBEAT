@@ -8,8 +8,13 @@
     </router-link>
 
     <div class="albumDescription">
-      <p class="collectionName">{{ title }}</p>
-      <p class="artistName">{{ artists }}</p>
+      <router-link :to="{ name: 'Album', params: { id: id } }" class="">
+        <p class="collectionName">{{ title }}</p>
+      </router-link>
+
+      <router-link :to="{ name: 'Artist', params: { id: artistId } }" class="">
+        <p class="collectionName">{{ artists }}</p>
+      </router-link>
       <p class="genreName">{{ genre }}</p>
     </div>
   </div>
@@ -17,7 +22,7 @@
 
 <script>
 export default {
-  props: ["title", "artists", "genre", "image", "id"]
+  props: ["title", "artists", "genre", "image", "id", "artistId"]
 };
 </script>
 
@@ -77,5 +82,13 @@ export default {
 }
 .genreName {
   font-size: small;
+}
+
+a {
+  color: rgb(54, 54, 54);
+}
+
+a:hover {
+  color: rgba(214, 38, 61, 0.882);
 }
 </style>

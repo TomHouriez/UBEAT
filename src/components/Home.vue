@@ -14,6 +14,7 @@
             :title="anAlbum.collectionName"
             :genre="anAlbum.primaryGenreName"
             :image="anAlbum.artworkUrl100"
+            :artistId="anAlbum.artistId"
           >
           </AlbumCard>
 

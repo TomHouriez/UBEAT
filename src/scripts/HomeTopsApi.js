@@ -12,6 +12,7 @@ export const fetchTopAlbums = async () => {
   const jsonResponse = await response.json();
   const arrayAlbumID = getArrayAlbumID(jsonResponse.feed.entry);
   const formatAlbumsArray = await getFormatTopAlbums(arrayAlbumID);
+  console.log(formatAlbumsArray);
   return formatAlbumsArray;
 };
 

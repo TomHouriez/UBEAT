@@ -1,15 +1,17 @@
 <template>
-  <router-link to="/artist" class="songCard">
-    <figure>
-      <img :src="image" alt="Ramdom Accees Memory album cover" />
-      <figcaption>{{ trackName }}</figcaption>
-    </figure>
-  </router-link>
+  <figure>
+    <img :src="image" alt="Ramdom Accees Memory album cover" />
+    <figcaption>{{ trackName }}</figcaption>
+    <router-link :to="{ name: 'Artist', params: { id: artistId } }" class="songCard">
+      <a class="artistName">{{ artistName }}</a>
+    </router-link>
+  </figure>
+  
 </template>
 
 <script>
 export default {
-  props: ["trackName", "artistName", "image", "trackId", "primaryGenreName"]
+  props: ["trackName", "artistName", "image", "trackId", "primaryGenreName", "artistId"]
 };
 </script>
 
@@ -43,6 +45,16 @@ figure > figcaption {
   /* text-shadow: 1px 1px 3px gray; */
   color: black;
   max-width: 200px;
+  display: -webkit-box;
+  line-height: 25px;
+  max-height: 55px;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.artistName {
+  overflow: hidden;
+  text-overflow: ellipsis;
   display: -webkit-box;
   line-height: 25px;
   max-height: 55px;

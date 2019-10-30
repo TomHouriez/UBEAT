@@ -27,7 +27,7 @@
                 <p>{{ artistLife.status }}</p>
               </td>
             </tr>
-            <tr>
+            <tr v-if="genres">
               <td>Genre(s)</td>
               <td>
                 <tr v-for="genre in genres" :key="genre.name">
@@ -37,29 +37,10 @@
                 </tr>
               </td>
             </tr>
-            <tr>
-              <td>members</td>
-              <td>
-                <tr>
-                  <a
-                    class="artistMbLink"
-                    href="https://musicbrainz.org/artist/83886397-adf2-431a-b841-dc4af744a6cc"
-                    >Guy-Manuel de Homem-Christo</a
-                  >
-                </tr>
-                <tr>
-                  <a
-                    class="artistMbLink"
-                    href="https://musicbrainz.org/artist/122a2714-24f8-4046-a532-64064b5076d2"
-                    >Thomas Bangalter</a
-                  >
-                </tr>
-              </td>
-            </tr>
           </table>
         </div>
       </div>
-      <div class="artistBiographyContainer">
+      <div v-if="tadbData.strBiographyEN" class="artistBiographyContainer">
         <b-collapse :open="false" class="card" aria-id="contentIdForA11y3">
           <div
             slot="trigger"
@@ -88,76 +69,16 @@
       <h1 class="artistAlbumsTitle">Albums</h1>
       <div class="artistAlbumsContainer">
         <ul>
-          <li>
-            <a href="https://music.apple.com/ca/album/homework/696884422">
-              <figure>
-                <img
-                  src="https://ia800706.us.archive.org/22/items/mbid-497f9acf-a695-332e-bc20-1c8745248550/mbid-497f9acf-a695-332e-bc20-1c8745248550-2688002571.jpg"
-                  alt="Homework album cover"
-                />
-                <figcaption>Homework (1997)</figcaption>
-              </figure>
-            </a>
-          </li>
-          <li>
-            <a href="https://music.apple.com/ca/album/discovery/697194953">
-              <figure>
-                <img
-                  src="https://ia800700.us.archive.org/10/items/mbid-d073287b-d1bd-4f11-a933-a4386f8cf701/mbid-d073287b-d1bd-4f11-a933-a4386f8cf701-13479423359.png"
-                  alt="Discovery album cover"
-                />
-                <figcaption>Discovery (2001)</figcaption>
-              </figure>
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://music.apple.com/ca/album/human-after-all/693748807"
-            >
-              <figure>
-                <img
-                  src="https://ia800905.us.archive.org/29/items/mbid-86d4299f-810e-3c4c-a324-2cc03672ed00/mbid-86d4299f-810e-3c4c-a324-2cc03672ed00-5606649161.jpg"
-                  alt="Human After All album cover"
-                />
-                <figcaption>Human After All (2005)</figcaption>
-              </figure>
-            </a>
-          </li>
-          <li>
-            <a href="/album/#/album">
-              <figure>
-                <img
-                  src="https://coverartarchive.org/release-group/4bac3d70-deea-3d80-85c4-8be9f90558e6/front.jpg"
-                  alt="Alive 2007 album cover"
-                />
-                <figcaption>Alive 2007 (2007)</figcaption>
-              </figure>
-            </a>
-          </li>
-          <li>
-            <a href="https://music.apple.com/ca/album/tron-legacy/1442926773">
-              <figure>
-                <img
-                  src="https://ia800409.us.archive.org/20/items/mbid-b9b7641f-9389-342e-8be9-e463bd52fdb9/mbid-b9b7641f-9389-342e-8be9-e463bd52fdb9-2587494081.jpg"
-                  alt="Tron: Legacy album cover"
-                />
-                <figcaption>Tron: Legacy (2010)</figcaption>
-              </figure>
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://music.apple.com/ca/album/random-access-memories/617154241"
-            >
-              <figure>
-                <img
-                  src="https://ia601808.us.archive.org/9/items/mbid-36e2aede-346d-4931-8565-78d810d167c7/mbid-36e2aede-346d-4931-8565-78d810d167c7-4436344925.jpg"
-                  alt="Ramdom Accees Memory album cover"
-                />
-                <figcaption>Ramdom Accees Memory (2013)</figcaption>
-              </figure>
-            </a>
-          </li>
+          <artistAlbumCard
+            v-for="album in albums"
+            v-bind:key="album.collectionId"
+            :id="album.collectionId"
+            :artists="album.artistName"
+            :title="album.collectionName"
+            :image="album.artworkUrl100"
+            :artistId="album.artistId"
+          >
+          </artistAlbumCard>
         </ul>
       </div>
     </div>
@@ -165,6 +86,7 @@
 </template>
 
 <script>
+import artistAlbumCard from "@/components/ArtistAlbumCard";
 import {
   fetchArtistData,
   fetchArtistAlbums,
@@ -173,13 +95,18 @@ import {
 } from "../scripts/ArtistsApi.js";
 
 export default {
+  components: {
+    artistAlbumCard: artistAlbumCard
+  },
   data() {
     return {
       id: null,
       artistData: {},
       tadbData: {},
       mbData: {},
-      artistLife: {}
+      artistLife: {},
+      genres: {},
+      albums: []
     };
   },
 
@@ -194,7 +121,7 @@ export default {
       if (this.albums.resultCount == 0) {
         alert("no albums for this artist");
       } else {
-        this.album = this.albums.results;
+        this.albums = this.albums.results;
       }
     }
     this.tadbData = await fetchArtistMBID(
@@ -219,8 +146,8 @@ export default {
     } else {
       this.artistLife.status = "Active";
     }
-
     this.genres = this.mbData.genres;
+    console.log(this.genres);
   }
 };
 </script>

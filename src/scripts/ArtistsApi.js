@@ -23,7 +23,7 @@ export const fetchArtistMBID = async name => {
   return jsonResponse;
 };
 
-// fetch artist complete infos from Musicbrainz
+// fetch artist infos from Musicbrainz
 export const fetchMbzArtist = async mbid => {
   const response = await fetch(
     `${MB_BASE_URL}/artist/${mbid}?inc=artist-rels+genres&fmt=json`
@@ -31,3 +31,17 @@ export const fetchMbzArtist = async mbid => {
   const jsonResponse = await response.json();
   return jsonResponse;
 };
+
+// fetch artist albums from Musicbrainz
+
+// Infer Musicbrainz artist from Name and Albums
+// export const inferMbzArtist = async artistName => {
+//   const response = await fetch(
+//     `${MB_BASE_URL}/artist/?query=${artistName}&fmt=json`
+//   );
+//   const jsonResponse = await response.json();
+
+//   for (let artist of jsonResponse.artists) {
+//     let albums =
+//   }
+// };

@@ -14,7 +14,8 @@
         <PlaylistCard :name="aPlaylist.name" :tracks="aPlaylist.tracks">
         </PlaylistCard
       ></router-link>
-      <b-button
+      <div class="buttonContainer">
+        <b-button
         v-if="!isDeletingPlaylist"
         v-on:click="deleteThisPlaylist(aPlaylist.id)"
         :id="'deletePlaylist-' + aPlaylist.id"
@@ -29,6 +30,9 @@
       >
         Update
       </b-button>
+
+      </div>
+      
     </div>
 
     <b-modal :active.sync="isAddPlaylistModalActive">
@@ -223,4 +227,9 @@ export default {
   width: 100%;
   height: 100%;
 }
+
+.buttonContainer {
+  margin-left: 50px;
+}
+
 </style>

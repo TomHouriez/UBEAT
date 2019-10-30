@@ -5,7 +5,7 @@
         <div class="albumImageContainer">
           <img :src="albumData.artworkUrl100" />
           <a
-            href="https://geo.music.apple.com/ca/album/alive-2007/742555152?mt=1&app=music"
+            :href="albumData.collectionViewUrl"
             style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/en-us/badge-lrg.svg?releaseDate=2007-11-14&kind=album&bubble=apple_music) no-repeat;width:158px;height:45px;"
           ></a>
         </div>

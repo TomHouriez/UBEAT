@@ -16,23 +16,21 @@
       ></router-link>
       <div class="buttonContainer">
         <b-button
-        v-if="!isDeletingPlaylist"
-        v-on:click="deleteThisPlaylist(aPlaylist.id)"
-        :id="'deletePlaylist-' + aPlaylist.id"
-      >
-        <b-icon pack="fas" icon="trash-alt" type="info" />
-      </b-button>
+          v-if="!isDeletingPlaylist"
+          v-on:click="deleteThisPlaylist(aPlaylist.id)"
+          :id="'deletePlaylist-' + aPlaylist.id"
+        >
+          <b-icon pack="fas" icon="trash-alt" type="info" />
+        </b-button>
 
-      <b-button
-        v-if="!isDeletingPlaylist"
-        v-on:click="updatePlaylistButton(aPlaylist.id, aPlaylist.name)"
-        :id="'updatePlaylist-' + aPlaylist.id"
-      >
-        Update
-      </b-button>
-
+        <b-button
+          v-if="!isDeletingPlaylist"
+          v-on:click="updatePlaylistButton(aPlaylist.id, aPlaylist.name)"
+          :id="'updatePlaylist-' + aPlaylist.id"
+        >
+          Update
+        </b-button>
       </div>
-      
     </div>
 
     <b-modal :active.sync="isAddPlaylistModalActive">
@@ -231,5 +229,4 @@ export default {
 .buttonContainer {
   margin-left: 50px;
 }
-
 </style>

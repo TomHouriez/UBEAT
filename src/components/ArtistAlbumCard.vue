@@ -1,5 +1,5 @@
 <template>
-  <li class="artistAlbumCard">
+  <div class="artistAlbumCard">
     <router-link
       :to="{ name: 'Album', params: { id: id } }"
       class="albumContainer"
@@ -9,7 +9,7 @@
         <figcaption>{{ title }} ({{ year }})</figcaption>
       </figure>
     </router-link>
-  </li>
+  </div>
 </template>
 
 <script>
@@ -18,4 +18,12 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+a {
+  color: rgb(54, 54, 54);
+}
+
+a:hover {
+  color: rgba(214, 38, 61, 0.882);
+}
+</style>

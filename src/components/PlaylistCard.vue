@@ -18,7 +18,6 @@
     </div>
     <a>{{ name }}</a>
   </div>
-  
 </template>
 
 <script>

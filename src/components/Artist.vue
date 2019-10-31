@@ -13,11 +13,11 @@
         </div>
         <div v-if="infoExist" class="artistTableInfo">
           <table>
-            <tr>
+            <tr v-if="artistLife.begin">
               <td>{{ artistLife.typeText }}</td>
               <td>{{ artistLife.begin }}</td>
             </tr>
-            <tr>
+            <tr v-if="tadbData.strCountry">
               <td>in</td>
               <td>{{ tadbData.strCountry }}</td>
             </tr>
@@ -27,12 +27,22 @@
                 <p>{{ artistLife.status }}</p>
               </td>
             </tr>
-            <tr v-if="genres">
+            <tr v-if="genres.length">
               <td>Genre(s)</td>
               <td>
                 <tr v-for="genre in genres" :key="genre.name">
                   {{
                     genre.name
+                  }}
+                </tr>
+              </td>
+            </tr>
+            <tr v-if="members.length != 0">
+              <td>Member(s)</td>
+              <td>
+                <tr v-for="member in members" :key="member">
+                  {{
+                    member
                   }}
                 </tr>
               </td>
@@ -68,17 +78,15 @@
       </div>
       <h1 class="artistAlbumsTitle">Albums</h1>
       <div class="artistAlbumsContainer">
-        <ul>
-          <artistAlbumCard
-            v-for="album in albums"
-            v-bind:key="album.collectionId"
-            :id="album.collectionId"
-            :title="album.collectionName"
-            :year="album.releaseDate.substring(0, 4)"
-            :image="album.artworkUrl100.replace('100x100', '500x500')"
-          >
-          </artistAlbumCard>
-        </ul>
+        <artistAlbumCard
+          v-for="album in albums"
+          v-bind:key="album.collectionId"
+          :id="album.collectionId"
+          :title="album.collectionName"
+          :year="album.releaseDate.substring(0, 4)"
+          :image="album.artworkUrl100.replace('100x100', '500x500')"
+        >
+        </artistAlbumCard>
       </div>
     </div>
   </div>
@@ -106,7 +114,8 @@ export default {
       artistLife: {},
       genres: {},
       albums: [],
-      infoExist: false
+      infoExist: false,
+      members: []
     };
   },
 
@@ -122,25 +131,51 @@ export default {
         alert("no albums for this artist");
       } else {
         this.albums = this.albums.results;
+        // Sort albums in the inverse of released year order (most recent years first)
+        this.albums.sort(
+          (a, b) =>
+            b.releaseDate.substring(0, 4) - a.releaseDate.substring(0, 4)
+        );
       }
     }
+    // Try to fetch Musicbrainz ID from TADB
     this.tadbData = await fetchArtistMBID(
       encodeURIComponent(this.artistData.artistName)
     );
 
+    // If artist not in TADB we won't display artist's details (infoExist == false)
     if (this.tadbData.artists != null) {
       this.infoExist = true;
+      // we assume the first artist is the right one
       this.tadbData = this.tadbData.artists[0];
 
       this.mbData = await fetchMbzArtist(this.tadbData.strMusicBrainzID);
 
+      // this.artistLife: Object with all artist's detail (easier to process in the template)
       this.artistLife = new Object();
       this.artistLife.begin = this.mbData["life-span"].begin;
       this.artistLife.ended = this.mbData["life-span"].ended;
 
+      // Displayed text is different for a personn or a group
       if (this.mbData.type == "Group") {
         this.artistLife.typeText = "Formed";
         this.artistLife.status = "Disbanded (";
+        // We also want to display the group members
+        for (let i = 0; i < this.mbData.relations.length; i++) {
+          if (this.mbData.relations[i].type == "member of band") {
+            var member = this.mbData.relations[i].artist.name;
+            // Members may have had several tenure/positions, we only want to list each member once
+            if (
+              this.members.indexOf(member) == -1 &&
+              this.members.indexOf(member + " (Inactive)") == -1
+            ) {
+              if (this.mbData.relations[i].ended) {
+                member += " (Inactive)";
+              }
+              this.members.push(member);
+            }
+          }
+        }
       } else {
         this.artistLife.typeText = "Born";
         this.artistLife.status = "Dead (";
@@ -152,7 +187,11 @@ export default {
       } else {
         this.artistLife.status = "Active";
       }
+      // We only keep the first 8 genres
       this.genres = this.mbData.genres;
+      if (this.genres.length > 8) {
+        this.genres.splice(8);
+      }
     }
   }
 };
@@ -230,33 +269,18 @@ export default {
   padding-top: 20px;
 }
 
-.artistAlbumsContainer > ul {
+.artistAlbumsContainer {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: space-evenly;
   list-style: none;
-  margin: 0;
-  padding: 20px;
+  margin: auto;
+}
+
+.artistAlbumCard {
+  max-width: 300px;
+  padding: 1rem;
   text-align: center;
-}
-
-.artistAlbumsContainer > ul > li {
-  max-width: 350px;
-  margin: auto;
-  margin-bottom: 20px;
-}
-
-.artistAlbumsContainer > ul > li > figure {
-  max-width: 200px;
-  margin: auto;
-  margin-bottom: 20px;
-}
-
-.artistAlbumsContainer > ul > li > a {
-  color: black;
-}
-
-.artistAlbumsContainer > ul > li > a:hover {
-  color: crimson;
 }
 </style>

@@ -314,6 +314,10 @@ export default {
     },
 
     // add to new playlist
+    cancelAddPlaylist: function() {
+      this.isNewPlaylistModalActive = false;
+      this.playlistName = "";
+    },
     validateAddToNewPlaylist: async function() {
       if (this.playlistName != "") {
         const response = await addPlaylist(this.playlistName);

@@ -39,7 +39,7 @@
             :artistId="aSong.artistId"
             :artistName="aSong.artistName"
             :image="aSong.artworkUrl100"
-            :data="aSong"
+            :trackData="aSong"
           >
           </TrackCard>
         </div>

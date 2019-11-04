@@ -269,6 +269,12 @@ export default {
     }
     this.loadPlaylist();
   },
+  destroyed() {
+    if (this.audio != null) {
+      this.audio.pause();
+      this.audio = null;
+    }
+  },
   methods: {
     // add to playlist
     loadPlaylist: async function() {

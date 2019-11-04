@@ -5,7 +5,7 @@
       class="albumContainer"
     >
       <figure>
-        <img :src="image" />
+        <img class="albumImage" :src="image" />
         <figcaption>{{ title }} ({{ year }})</figcaption>
       </figure>
     </router-link>
@@ -25,5 +25,9 @@ a {
 
 a:hover {
   color: rgba(214, 38, 61, 0.882);
+}
+
+.artistAlbumCard figure > img:hover {
+  opacity: 0.7;
 }
 </style>

@@ -6,6 +6,9 @@
       <router-link :to="{ name: 'Artist', params: { id: artistId } }">
         <a class="artistName">{{ artistName }}</a>
       </router-link>
+      <a v-on:click="playTrack()">
+        <b-icon pack="fas" class="fa" icon="play-circle" type="info" />
+      </a>
       <a v-on:click="addToPlaylistButton()">
         <b-icon pack="fas" class="fa" icon="plus-circle" type="info" />
       </a>
@@ -51,6 +54,10 @@ export default {
     addToPlaylistButton: function() {
       this.tracksToAdd = [this.trackData];
       this.isAddToPlaylistModalActive = true;
+    },
+
+    playTrack() {
+      this.$emit("play-track", this.trackData.previewUrl);
     }
   }
 };

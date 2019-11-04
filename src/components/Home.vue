@@ -31,6 +31,7 @@
       <div class="secondContainer">
         <div class="artistContainer">
           <TrackCard
+            @play-track="playTrack"
             v-for="aSong in topSongs"
             v-bind:key="aSong.trackName"
             :trackName="aSong.trackName"
@@ -62,12 +63,30 @@ export default {
   data() {
     return {
       topAlbums: [],
-      topSongs: []
+      topSongs: [],
+
+      // audio
+      audio: null,
     };
   },
   async created() {
     this.topAlbums = await fetchTopAlbums();
     this.topSongs = await fetchTopTracks();
+  },
+  destroyed() {
+    if (this.audio != null) {
+      this.audio.pause();
+      this.audio = null;
+    }
+  },
+  methods: {
+    playTrack(trackUrl) {
+      if (this.audio != null) {
+        this.audio.pause();
+      }
+      this.audio = new Audio(trackUrl);
+      this.audio.play();
+    }
   }
 };
 </script>

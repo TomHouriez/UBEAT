@@ -66,7 +66,7 @@ export default {
       topSongs: [],
 
       // audio
-      audio: null,
+      audio: null
     };
   },
   async created() {

@@ -29,7 +29,7 @@
           </b-table-column>
           <b-table-column field="play" label="Play">
             <span>
-              <a href="#">
+              <a v-on:click="playTrack(props.row.previewUrl)">
                 <b-icon pack="fas" icon="play-circle" type="info" />
               </a>
             </span>
@@ -60,8 +60,17 @@ export default {
   data() {
     return {
       id: null,
-      playlist: {}
+      playlist: {},
+
+      // audio
+      audio: null
     };
+  },
+  destroyed() {
+    if (this.audio != null) {
+      this.audio.pause();
+      this.audio = null;
+    }
   },
   async created() {
     this.id = this.$route.params.id;
@@ -71,6 +80,15 @@ export default {
     deleteTrack: async function(trackID) {
       await deleteTrackInPlaylist(this.id, trackID);
       this.playlist = await fetchPlaylistByID(this.id);
+    },
+
+    //play sond
+    playTrack: function(trackUrl) {
+      if (this.audio != null) {
+        this.audio.pause();
+      }
+      this.audio = new Audio(trackUrl);
+      this.audio.play();
     }
   }
 };

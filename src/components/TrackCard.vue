@@ -182,11 +182,6 @@ figure > img {
   padding: 0;
 }
 
-/* figure img:hover {
-  opacity: 0.7;
-  cursor: pointer;
-} */
-
 figure > figcaption {
   color: black;
   display: -webkit-box;

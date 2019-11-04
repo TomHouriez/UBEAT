@@ -36,11 +36,29 @@
             <tr>
               <td>{{ albumData.trackCount }} songs</td>
             </tr>
+
+            <tr>
+              <td>Add entire album :</td>
+              <td>
+                <a v-on:click="isAddAlbumToPlaylistModalActive = true">
+                  <b-icon
+                    pack="fas"
+                    class="fa"
+                    icon="plus-circle"
+                    type="info"
+                  />
+                </a>
+              </td>
+            </tr>
           </table>
 
-          <b-button v-on:click="isAddAlbumToPlaylistModalActive = true">
+          <!-- <b-button v-on:click="isAddAlbumToPlaylistModalActive = true">
             Add Album to Playlist
           </b-button>
+
+          <a v-on:click="isAddAlbumToPlaylistModalActive = true">
+            <b-icon pack="fas" class="fa" icon="plus-circle" type="info" />
+          </a> -->
 
           <b-modal :active.sync="isAddAlbumToPlaylistModalActive">
             <form action="">
@@ -49,14 +67,17 @@
                   <p class="modal-card-title">Add to playlist</p>
                 </header>
                 <section class="modal-card-body">
-                  <b-checkbox
-                    v-for="aPlaylist in playlists"
-                    v-bind:key="aPlaylist.id"
-                    v-model="checkboxAddAlumToPlaylist"
-                    :native-value="aPlaylist.id"
-                  >
-                    {{ aPlaylist.name }}
-                  </b-checkbox>
+                  <div class="checkboxList">
+                    <b-checkbox
+                      class="oneCheckbox"
+                      v-for="aPlaylist in playlists"
+                      v-bind:key="aPlaylist.id"
+                      v-model="checkboxAddAlumToPlaylist"
+                      :native-value="aPlaylist.id"
+                    >
+                      {{ aPlaylist.name }}
+                    </b-checkbox>
+                  </div>
 
                   <b-button
                     v-if="checkboxAddAlumToPlaylist.length == 0"
@@ -126,9 +147,9 @@
             </b-table-column>
 
             <b-table-column field="action" label="Action">
-              <b-button v-on:click="addToPlaylistButton(props.row)"
-                >Add to playlist</b-button
-              >
+              <a v-on:click="addToPlaylistButton(props.row)">
+                <b-icon pack="fas" class="fa" icon="plus-circle" type="info" />
+              </a>
 
               <b-modal :active.sync="isAddToPlaylistModalActive">
                 <form action="">

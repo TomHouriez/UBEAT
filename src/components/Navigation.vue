@@ -1,227 +1,45 @@
 <template>
-  <nav class="navbar is-black" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <a class="navbar-item">
-        <span class="icon">
-          <i class="fas fa-home is-medium"></i>
-        </span>
-        <router-link to="/">
-          <span class="is-black mobile-color">Home</span>
-        </router-link>
-      </a>
-      <a class="navbar-item desktop tablet">
-        <router-link to="/playlists">
-          <span class="is-black mobile-color">Playlists</span>
-        </router-link>
-      </a>
-      <a class="navbar-item desktop tablet">
-        <div class="control has-icons-left">
-          <input
-            class="input"
+  <b-navbar type="is-dark">
+    <template slot="start">
+      <b-navbar-item tag="router-link" :to="{ path: '/' }">
+        <b-icon pack="fas" icon="home" type="info" />
+      </b-navbar-item>
+      <b-navbar-item tag="router-link" :to="{ path: '/playlists' }">
+        Playlists
+      </b-navbar-item>
+      <b-navbar-item>
+        <b-field>
+          <b-input
+            placeholder="Search..."
             type="search"
-            placeholder="Search or Select your music"
-          />
-          <span class="icon is-left">
-            <i class="fa fa-search" aria-hidden="true"></i>
-          </span>
-        </div>
-      </a>
-      <div class="dropdown is-hoverable desktop tablet">
-        <div class="dropdown-trigger">
-          <a
-            class="navbar-link"
-            aria-haspopup="true"
-            aria-controls="dropdown-menu3"
+            icon-pack="fas"
+            icon="search"
           >
-            <span class="icon is-medium">
-              <i class="fa fa-user"></i>
-            </span>
-            <span>User</span>
-          </a>
-        </div>
-        <div class="dropdown-menu" id="dropdown-menu3" role="menu">
-          <div class="dropdown-content">
-            <a class="dropdown-item">
-              <span class="icon">
-                <i class="fa fa-cog"></i>
-              </span>
-              <span>Settings</span>
-            </a>
-            <a class="dropdown-item">
-              <span class="icon">
-                <i class="fa fa-user"></i>
-              </span>
-              <span>Profile</span>
-            </a>
-            <a class="dropdown-item">
-              <span class="icon">
-                <i class="fa fa-times" aria-hidden="true"></i>
-              </span>
-              <span>Sign Out</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      <a
-        role="button"
-        class="navbar-burger burger"
-        aria-label="menu"
-        aria-expanded="false"
-        data-target="navMenu"
-      >
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
-    </div>
+          </b-input>
+        </b-field>
+      </b-navbar-item>
+    </template>
 
-    <div id="navMenu" class="navbar-menu">
-      <div class="navbar-start">
-        <a class="navbar-item desktop">
-          <router-link to="/playlists">
-            <span class="is-black mobile-color">Playlists</span>
-          </router-link>
-        </a>
-        <a class="navbar-item desktop tablet" id="input-item">
-          <div class="control has-icons-left">
-            <input
-              class="input"
-              type="search"
-              placeholder="Search or Select your music"
-              id="navbar-input"
-            />
-          </div>
-        </a>
-      </div>
-      <div class="navbar-end">
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">
-            <span class="icon is-medium">
-              <i class="fa fa-user"></i>
-            </span>
-            <span>User</span>
-          </a>
-          <div class="navbar-dropdown">
-            <a class="navbar-item">
-              <span class="icon">
-                <i class="fa fa-cog"></i>
-              </span>
-              <span>Settings</span>
-            </a>
-            <a class="navbar-item">
-              <span class="icon">
-                <i class="fa fa-user"></i>
-              </span>
-              <span>Profile</span>
-            </a>
-            <a class="navbar-item">
-              <span class="icon">
-                <i class="fa fa-times" aria-hidden="true"></i>
-              </span>
-              <span>Sign Out</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
+    <template slot="end">
+      <b-navbar-dropdown label="Joe Blo">
+        <b-navbar-item href="#">
+          Settings
+        </b-navbar-item>
+        <b-navbar-item href="#">
+          Profile
+        </b-navbar-item>
+        <b-navbar-item href="#">
+          Sign out
+        </b-navbar-item>
+      </b-navbar-dropdown>
+    </template>
+  </b-navbar>
 </template>
 
-<script>
-export default {
-  name: "Navigation",
-  mounted() {
-    const burger = document.querySelector(".burger");
-    const nav = document.querySelector("#" + burger.dataset.target);
-    burger.addEventListener("click", function() {
-      burger.classList.toggle("is-active");
-      nav.classList.toggle("is-active");
-    });
-    document
-      .querySelector("#navbar-input")
-      .addEventListener(
-        "click",
-        () =>
-          (document.querySelector(".mobile-color").style.background = "black")
-      );
-  }
-};
-</script>
+<script></script>
 
 <style scoped>
-/* Mobile devices up to 768px */
-@media only screen and (max-width: 767px) {
-  .navbar-brand > .navbar-item.desktop,
-  .navbar-brand > .dropdown.desktop {
-    display: none;
-  }
-  .mobile-color {
-    color: white;
-  }
-  .mobile-color:focus {
-    background-color: black;
-  }
-  .navbar-item:focus-within {
-    background-color: black;
-    color: white;
-  }
-  .mobile-title-color {
-    color: black;
-  }
-}
-
-/* Tablets devices from 769px */
-@media only screen and (min-width: 768px) {
-  a.navbar-burger.burger {
-    display: none;
-  }
-  .navbar-brand > .dropdown.desktop {
-    margin-left: 80px;
-  }
-  .navbar-item.desktop {
-    color: white;
-  }
-  a.is-black {
-    color: white;
-  }
-  span.is-black {
-    color: white;
-  }
-  .navbar-item:focus-within {
-    background-color: black;
-    color: white;
-  }
-  .navbar-item:focus {
-    color: white;
-  }
-}
-
-/* Desktop devices from 1024px */
-@media only screen and (min-width: 1024px) {
-  a.navbar-burger.burger {
-    display: none;
-  }
-  .navbar-brand > .navbar-item.desktop,
-  .navbar-brand > .dropdown.desktop {
-    display: none;
-  }
-  .navbar {
-    height: 70px;
-  }
-}
-
-/* Wide screens devices from 1216px */
-@media only screen and (min-width: 1216px) {
-  .navbar-start > .desktop {
-    margin-left: 15px;
-  }
-  input.input {
-    width: 500px;
-    margin-left: 100px;
-  }
-}
-
-/* Full HD devices from 1408px */
-@media only screen and (min-width: 1408px) {
-}
+/* .navbar {
+  background-color: gray;
+} */
 </style>

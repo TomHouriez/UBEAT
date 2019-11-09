@@ -29,7 +29,13 @@
           </b-table-column>
           <b-table-column field="play" label="Play">
             <span>
-              <a v-on:click="playTrack(props.row.previewUrl)">
+              <a
+                v-if="isPlaying && trackUrlPlaying == props.row.previewUrl"
+                v-on:click="pauseTrack(props.row.previewUrl)"
+              >
+                <b-icon pack="fas" icon="pause-circle" type="info" />
+              </a>
+              <a v-else v-on:click="playTrack(props.row.previewUrl)">
                 <b-icon pack="fas" icon="play-circle" type="info" />
               </a>
             </span>
@@ -63,7 +69,9 @@ export default {
       playlist: {},
 
       // audio
-      audio: null
+      audio: null,
+      isPlaying: false,
+      trackUrlPlaying: null
     };
   },
   destroyed() {
@@ -86,9 +94,27 @@ export default {
     playTrack: function(trackUrl) {
       if (this.audio != null) {
         this.audio.pause();
+        this.isPlaying = true;
       }
-      this.audio = new Audio(trackUrl);
-      this.audio.play();
+      if (this.trackUrlPlaying != trackUrl) {
+        this.trackUrlPlaying = trackUrl;
+        this.audio = new Audio(trackUrl);
+        this.audio.addEventListener("ended", () => {
+          this.trackUrlPlaying = null;
+          this.isPlaying = false;
+        });
+        this.audio.play();
+        this.isPlaying = true;
+      } else {
+        this.audio.play();
+        this.isPlaying = true;
+      }
+    },
+    pauseTrack() {
+      if (this.audio != null) {
+        this.isPlaying = false;
+        this.audio.pause();
+      }
     }
   }
 };

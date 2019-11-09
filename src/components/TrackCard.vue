@@ -6,7 +6,10 @@
       <router-link :to="{ name: 'Artist', params: { id: artistId } }">
         <a class="artistName">{{ artistName }}</a>
       </router-link>
-      <a v-on:click="playTrack()">
+      <a v-if="isPlaying && playing" v-on:click="pauseTrack()">
+        <b-icon pack="fas" class="fa" icon="pause-circle" type="info" />
+      </a>
+      <a v-else v-on:click="playTrack()">
         <b-icon pack="fas" class="fa" icon="play-circle" type="info" />
       </a>
       <a v-on:click="addToPlaylistButton()">
@@ -37,13 +40,16 @@ export default {
     "trackId",
     "primaryGenreName",
     "artistId",
-    "trackData"
+    "trackData",
+    "playing"
   ],
   components: {
     AddToPlaylist: AddToPlaylist
   },
   data() {
     return {
+      isPlaying: false,
+
       isAddToPlaylistModalActive: false
     };
   },
@@ -57,7 +63,12 @@ export default {
     },
 
     playTrack() {
+      this.isPlaying = true;
       this.$emit("play-track", this.trackData.previewUrl);
+    },
+    pauseTrack() {
+      this.isPlaying = false;
+      this.$emit("pause-track", this.trackData.previewUrl);
     }
   }
 };

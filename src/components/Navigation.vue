@@ -15,15 +15,12 @@
           icon="search"
           class="autocomplete"
           placeholder="Search"
-          :data="searchData"
-          @typing="getSearchData"
-          @select="select"
         >
         </b-autocomplete>
-        <b-button class="searchButton" v-on:click="search()">Search</b-button>
+        <b-button class="searchButton">Search</b-button>
       </div>
 
-      <b-navbar-dropdown hoverable label="Filters" style="width:120px">
+      <b-navbar-dropdown hoverable label="Filters" class="navbarDropdown">
         <b-navbar-item>
           <b-checkbox v-model="filters" native-value="artists"
             >Artists</b-checkbox
@@ -93,5 +90,9 @@ export default {
   width: 70px;
   float: left;
   margin-top: 10px;
+}
+
+.navbarDropdown {
+  width: 120px;
 }
 </style>

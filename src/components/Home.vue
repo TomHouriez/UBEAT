@@ -32,6 +32,7 @@
         <div class="artistContainer">
           <TrackCard
             @play-track="playTrack"
+            @pause-track="pauseTrack"
             v-for="aSong in topSongs"
             v-bind:key="aSong.trackName"
             :trackName="aSong.trackName"
@@ -41,6 +42,7 @@
             :artistName="aSong.artistName"
             :image="aSong.artworkUrl100"
             :trackData="aSong"
+            :playing="aSong.previewUrl == trackUrlPlaying && audio != null"
           >
           </TrackCard>
         </div>
@@ -66,7 +68,8 @@ export default {
       topSongs: [],
 
       // audio
-      audio: null
+      audio: null,
+      trackUrlPlaying: null
     };
   },
   async created() {
@@ -84,8 +87,19 @@ export default {
       if (this.audio != null) {
         this.audio.pause();
       }
-      this.audio = new Audio(trackUrl);
-      this.audio.play();
+      if (this.trackUrlPlaying != trackUrl) {
+        this.trackUrlPlaying = trackUrl;
+        this.audio = new Audio(trackUrl);
+        this.audio.addEventListener("ended", () => {
+          this.trackUrlPlaying = null;
+        });
+        this.audio.play();
+      }
+    },
+    pauseTrack() {
+      if (this.audio != null) {
+        this.audio.pause();
+      }
     }
   }
 };

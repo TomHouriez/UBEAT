@@ -3,7 +3,7 @@
     <div class="container">
       <div class="albumDataContainer">
         <div class="albumImageContainer">
-          <img :src="albumData.artworkUrl100" />
+          <img :src="albumData.artworkUrl100.replace('100x100', '500x500')" />
           <a
             :href="albumData.collectionViewUrl"
             style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/en-us/badge-lrg.svg?releaseDate=2007-11-14&kind=album&bubble=apple_music) no-repeat;width:158px;height:45px;"

@@ -27,6 +27,9 @@
               </a>
             </span>
           </b-table-column>
+          <b-table-column field="trackLength" label="Length">
+            {{ millisToMinutes(props.row.trackTimeMillis) }}
+          </b-table-column>
           <b-table-column field="play" label="Play">
             <span>
               <a
@@ -115,6 +118,16 @@ export default {
         this.isPlaying = false;
         this.audio.pause();
       }
+    },
+
+    //other
+    millisToMinutes: function(timeMillis) {
+      let result = "";
+      let minutes = parseInt(timeMillis / 60000);
+      let seconds = timeMillis % 60000;
+      seconds = (seconds + "").slice(0, 2);
+      result = minutes + ":" + seconds;
+      return result;
     }
   }
 };

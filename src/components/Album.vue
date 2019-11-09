@@ -219,7 +219,7 @@ export default {
       let minutes = parseInt(timeMillis / 60000);
       let seconds = timeMillis % 60000;
       seconds = (seconds + "").slice(0, 2);
-      result = minutes + "." + seconds;
+      result = minutes + ":" + seconds;
       return result;
     },
     formatDate: function(releaseDate) {

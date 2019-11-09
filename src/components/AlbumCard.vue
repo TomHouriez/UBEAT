@@ -4,7 +4,7 @@
       :to="{ name: 'Album', params: { id: id } }"
       class="imageContainer"
     >
-      <img :src="image.replace('100x100', '200x200')" />
+      <img v-if="image" :src="image.replace('100x100', '200x200')" />
     </router-link>
 
     <div class="albumDescription">

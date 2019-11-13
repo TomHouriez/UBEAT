@@ -79,20 +79,50 @@ export default {
   height: 50px;
 }
 
-.autocomplete {
-  margin-top: 10px;
-  margin-left: 30px;
-  float: left;
-  width: 60%;
-  min-width: 400px;
-}
-.searchButton {
-  width: 70px;
-  float: left;
-  margin-top: 10px;
-}
-
 .navbarDropdown {
   width: 120px;
+}
+
+@media only screen and (max-width: 1023px) {
+  .searchLine {
+    width: 100%;
+    min-width: 350px;
+    height: 50px;
+  }
+
+  .autocomplete {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    float: left;
+    width: 60%;
+    min-width: 150px;
+  }
+  .searchButton {
+    width: 60px;
+    float: left;
+    margin-top: 10px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .searchLine {
+    width: 100%;
+    min-width: 400px;
+    height: 50px;
+  }
+
+  .autocomplete {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    float: left;
+    width: 60%;
+    min-width: 400px;
+  }
+  .searchButton {
+    width: 60px;
+    float: left;
+    margin-top: 10px;
+  }
 }
 </style>

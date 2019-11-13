@@ -94,6 +94,8 @@ export default {
           this.trackUrlPlaying = null;
         });
         this.audio.play();
+      } else {
+        this.audio.play();
       }
     },
     pauseTrack() {

@@ -28,7 +28,7 @@
           v-on:click="updatePlaylistButton(aPlaylist.id, aPlaylist.name)"
           :id="'updatePlaylist-' + aPlaylist.id"
         >
-          Update
+          Rename
         </b-button>
       </div>
     </div>

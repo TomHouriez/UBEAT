@@ -1,6 +1,6 @@
 <template>
   <div class="componentPage">
-    <div class="container">
+    <div v-if="error == ''" class="container">
       <div class="albumDataContainer">
         <div class="albumImageContainer">
           <img
@@ -112,7 +112,9 @@
         </b-table>
       </div>
     </div>
-
+    <div v-else class="errorContainer">
+      {{ error }}
+    </div>
     <!-- Modal add to playlist -->
     <AddToPlaylist
       v-if="isAddToPlaylistModalActive"
@@ -146,20 +148,33 @@ export default {
       // audio
       audio: null,
       isPlaying: false,
-      trackUrlPlaying: null
+      trackUrlPlaying: null,
+
+      //error
+      error: ""
     };
   },
   async created() {
     this.isPlaying = false;
     this.id = this.$route.params.id;
-    this.albumData = await fetchAlbumData(this.id);
+    try {
+      this.albumData = await fetchAlbumData(this.id);
+    } catch {
+      this.error = "Unable to load album";
+    }
+
     if (this.albumData.resultCount == 0) {
-      alert("album not found");
+      this.error = "Unable to load album";
     } else {
       this.albumData = this.albumData.results[0];
-      this.tracks = await fetchTracks(this.id);
+      try {
+        this.tracks = await fetchTracks(this.id);
+      } catch {
+        this.error = "Unable to load album";
+      }
+
       if (this.tracks.resultCount == 0) {
-        alert("no track in album");
+        this.error = "Unable to load album";
       } else {
         this.tracks = this.tracks.results;
       }
@@ -175,7 +190,11 @@ export default {
   methods: {
     // add to playlist
     loadPlaylist: async function() {
-      this.playlists = await fetchUserPlaylists();
+      try {
+        this.playlists = await fetchUserPlaylists();
+      } catch {
+        this.error = "Unable to load playlists";
+      }
     },
     addToPlaylistButton: function(jsonTrack) {
       this.tracksToAdd = [jsonTrack];
@@ -291,6 +310,10 @@ export default {
 }
 .albumTableDescription > td {
   padding-left: 30px 0;
+}
+
+.errorContainer {
+  margin: 10px;
 }
 
 /* Tracks */

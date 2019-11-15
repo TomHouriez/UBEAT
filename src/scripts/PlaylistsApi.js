@@ -33,7 +33,11 @@ export const addPlaylist = async playlistName => {
   return jsonResponse;
 };
 
-export const updatePlaylistName = async (playlistID, newPlaylistName) => {
+export const updatePlaylistName = async (
+  playlistID,
+  newPlaylistName,
+  tracks
+) => {
   const response = await fetch(
     `http://ubeat.herokuapp.com/unsecure/playlists/${playlistID}`,
     {
@@ -43,7 +47,8 @@ export const updatePlaylistName = async (playlistID, newPlaylistName) => {
       },
       body: JSON.stringify({
         owner: USER_EMAIL,
-        name: newPlaylistName
+        name: newPlaylistName,
+        tracks: tracks
       })
     }
   );

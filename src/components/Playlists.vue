@@ -25,7 +25,9 @@
 
         <b-button
           v-if="!isDeletingPlaylist"
-          v-on:click="updatePlaylistButton(aPlaylist.id, aPlaylist.name)"
+          v-on:click="
+            updatePlaylistButton(aPlaylist.id, aPlaylist.name, aPlaylist.tracks)
+          "
           :id="'updatePlaylist-' + aPlaylist.id"
         >
           Rename
@@ -137,6 +139,7 @@ export default {
       // update playlist
       isUpatePlaylistModalActive: false,
       updatedPlaylistID: null,
+      updatedPlaylistTracks: [],
       updatedPlaylistName: "",
 
       // delete playlist
@@ -169,9 +172,10 @@ export default {
     },
 
     //update playlist
-    updatePlaylistButton: function(playlistID, name) {
+    updatePlaylistButton: function(playlistID, name, tracks) {
       this.updatedPlaylistName = name;
       this.updatedPlaylistID = playlistID;
+      this.updatedPlaylistTracks = tracks;
       this.isUpatePlaylistModalActive = true;
     },
     cancelUpdatePlaylist() {
@@ -182,7 +186,8 @@ export default {
       if (this.updatedPlaylistName != "") {
         await updatePlaylistName(
           this.updatedPlaylistID,
-          this.updatedPlaylistName
+          this.updatedPlaylistName,
+          this.updatedPlaylistTracks
         );
         this.playlists = await fetchUserPlaylists();
         this.isUpatePlaylistModalActive = false;

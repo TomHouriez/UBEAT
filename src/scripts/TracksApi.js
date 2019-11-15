@@ -1,4 +1,6 @@
-const UBEAT_BASE_URL = "http://ubeat.herokuapp.com/unsecure";
+//const UBEAT_BASE_URL = "http://ubeat.herokuapp.com/unsecure";
+
+import { UBEAT_BASE_URL } from "./Config";
 
 export const fetchOneTrackFromAlbumIDAndTrackID = async (albumID, trackID) => {
   let response = await fetch(`${UBEAT_BASE_URL}/albums/${albumID}/tracks`);

@@ -78,7 +78,7 @@
               <span>
                 <a>
                   <router-link
-                    :to="{ name: 'Artist', params: { id: albumData.artistId } }"
+                    :to="{ name: 'Artist', params: { id: props.row.artistId } }"
                   >
                     {{ props.row.artistName }}
                   </router-link>

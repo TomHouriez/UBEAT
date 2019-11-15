@@ -1,7 +1,5 @@
 import { fetchOneTrackFromAlbumIDAndTrackID } from "./TracksApi.js";
-
-const BASE_TOP_URL = "https://itunes.apple.com/ca/rss";
-const UBEAT_BASE_URL = "http://ubeat.herokuapp.com/unsecure";
+import { BASE_TOP_URL, UBEAT_BASE_URL } from "./Config";
 
 // =========================================
 // fetch top albums

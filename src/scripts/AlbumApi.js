@@ -1,4 +1,4 @@
-const UBEAT_BASE_URL = "http://ubeat.herokuapp.com/unsecure";
+import { UBEAT_BASE_URL } from "./Config";
 
 export const fetchAlbumData = async id => {
   const response = await fetch(`${UBEAT_BASE_URL}/albums/${id}`);

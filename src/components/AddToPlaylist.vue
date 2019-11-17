@@ -36,6 +36,7 @@
             </button>
             <button
               class="button is-primary"
+              type="button"
               v-on:click="validateAddToPlaylist()"
             >
               Validate
@@ -75,6 +76,7 @@
               Cancel
             </button>
             <button
+              type="button"
               class="button is-primary"
               v-on:click="validateAddToNewPlaylist()"
             >

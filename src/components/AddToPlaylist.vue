@@ -125,14 +125,20 @@ export default {
       this.checkboxAddToPlaylist = [];
     },
     validateAddToPlaylist: async function() {
-      this.checkboxAddToPlaylist.forEach(async aPlaylistID => {
-        this.tracksToAdd.forEach(async aTrack => {
-          await addTrackToPlaylist(aPlaylistID, aTrack);
+      try {
+        this.checkboxAddToPlaylist.forEach(async aPlaylistID => {
+          this.tracksToAdd.forEach(async aTrack => {
+            await addTrackToPlaylist(aPlaylistID, aTrack);
+          });
         });
-      });
+        this.$buefy.snackbar.open(`Track(s) added successfully`);
+      } catch {
+        this.error = "Error while adding the track to the playlist";
+      }
       this.checkboxAddToPlaylist = [];
       this.isModalActive = false;
       this.trackToAdd = null;
+      
     },
 
     // add to new playlist
@@ -142,15 +148,21 @@ export default {
     },
     validateAddToNewPlaylist: async function() {
       if (this.playlistName != "") {
-        const response = await addPlaylist(this.playlistName);
-        const playlistID = response.id;
-        this.playlistName = "";
-        this.tracksToAdd.forEach(async aTrack => {
-          await addTrackToPlaylist(playlistID, aTrack);
-        });
+        try {
+          const response = await addPlaylist(this.playlistName);
+          const playlistID = response.id;
+           this.playlistName = "";
+          this.tracksToAdd.forEach(async aTrack => {
+            await addTrackToPlaylist(playlistID, aTrack);
+          });
+          this.$buefy.snackbar.open(`Track(s) added successfully`);
+        } catch {
+          this.error = "Error while adding the track to the playlist";
+        }
         this.isNewPlaylistModalActive = false;
         this.isModalActive = false;
         this.isAddAlbumToPlaylistModalActive = false;
+        this.$buefy.snackbar.open(`Track(s) added successfully`);
       }
     }
   }

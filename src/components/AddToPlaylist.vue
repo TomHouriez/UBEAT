@@ -138,7 +138,6 @@ export default {
       this.checkboxAddToPlaylist = [];
       this.isModalActive = false;
       this.trackToAdd = null;
-      
     },
 
     // add to new playlist
@@ -151,7 +150,7 @@ export default {
         try {
           const response = await addPlaylist(this.playlistName);
           const playlistID = response.id;
-           this.playlistName = "";
+          this.playlistName = "";
           this.tracksToAdd.forEach(async aTrack => {
             await addTrackToPlaylist(playlistID, aTrack);
           });

@@ -1,6 +1,9 @@
 <template>
   <div class="componentPage">
-    <div class="container">
+    <div v-if="artistData.resultCount == 0" class="container">
+      <h1 class="artistName">Unknown artist</h1>
+    </div>
+    <div v-if="artistData.resultCount !== 0" class="container">
       <h1 class="artistName">{{ artistData.artistName }}</h1>
       <div class="artistDataContainer">
         <div class="artistImageContainer">
@@ -76,8 +79,11 @@
           </div>
         </b-collapse>
       </div>
-      <h1 class="artistAlbumsTitle">Albums</h1>
-      <div class="artistAlbumsContainer">
+      <h1 v-if="albums.resultCount == 0" class="artistAlbumsTitle">
+        No album found
+      </h1>
+      <h1 v-if="albums.resultCount !== 0" class="artistAlbumsTitle">Albums</h1>
+      <div v-if="albums.resultCount !== 0" class="artistAlbumsContainer">
         <artistAlbumCard
           v-for="album in albums"
           v-bind:key="album.collectionId"
@@ -122,14 +128,10 @@ export default {
   async created() {
     this.id = this.$route.params.id;
     this.artistData = await fetchArtistData(this.id);
-    if (this.artistData.resultCount == 0) {
-      alert("artist not found");
-    } else {
+    if (this.artistData.resultCount !== 0) {
       this.artistData = this.artistData.results[0];
       this.albums = await fetchArtistAlbums(this.id);
-      if (this.albums.resultCount == 0) {
-        alert("no albums for this artist");
-      } else {
+      if (this.albums.resultCount !== 0) {
         this.albums = this.albums.results;
         // Sort albums in the inverse of released year order (most recent years first)
         this.albums.sort(
@@ -265,6 +267,7 @@ export default {
 }
 
 .artistAlbumsTitle {
+  text-align: center;
   font-size: 2em;
   padding-top: 20px;
 }

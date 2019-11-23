@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <b-button v-on:click="$router.go(-1)">Back</b-button>
     <navbar></navbar>
     <router-view></router-view>
   </div>

@@ -15,9 +15,12 @@
           icon="search"
           class="autocomplete"
           placeholder="Search"
+          :data="searchData"
+          @typing="getSearchData"
+          @select="select"
         >
         </b-autocomplete>
-        <b-button class="searchButton">Search</b-button>
+        <b-button class="searchButton" v-on:click="search()">Search</b-button>
       </div>
 
       <b-navbar-dropdown hoverable label="Filters" class="navbarDropdown">
@@ -62,12 +65,62 @@
 </template>
 
 <script>
+import { searchGlobal } from "../scripts/SearchApi";
+
 export default {
   data() {
     return {
       filters: ["artists", "albums", "tracks", "users"],
-      searchInput: ""
+      oldSearchInput: "",
+      searchInput: "",
+
+      searchJsonData: [],
+      searchData: []
     };
+  },
+  methods: {
+    search() {
+      if (this.filters.length != 0 && this.searchInput != "") {
+        console.log("search");
+        localStorage.setItem("searchInput", this.searchInput);
+        localStorage.setItem("filters", this.filters);
+        this.$emit("search");
+      }
+    },
+    async getSearchData() {
+      const data = await searchGlobal(this.searchInput, 10);
+      this.searchData = [];
+      this.searchJsonData = data.results;
+      data.results.forEach(aData => {
+        if (aData.wrapperType == "artist") {
+          this.searchData.push(aData.artistName);
+        } else if (aData.wrapperType == "collection") {
+          this.searchData.push(aData.collectionName);
+        } else if (aData.wrapperType == "track") {
+          this.searchData.push(aData.trackName);
+        }
+      });
+    },
+    select(selectedValue) {
+      this.searchJsonData.forEach(aData => {
+        if (
+          aData.wrapperType == "artist" &&
+          aData.artistName == selectedValue
+        ) {
+          this.$router.push("/artist/" + aData.artistId);
+        } else if (
+          aData.wrapperType == "collection" &&
+          aData.collectionName == selectedValue
+        ) {
+          this.$router.push("/album/" + aData.collectionId);
+        } else if (
+          aData.wrapperType == "track" &&
+          aData.trackName == selectedValue
+        ) {
+          this.$router.push("/album/" + aData.collectionId);
+        }
+      });
+    }
   }
 };
 </script>

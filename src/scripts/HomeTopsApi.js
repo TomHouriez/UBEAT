@@ -1,5 +1,5 @@
 import { fetchOneTrackFromAlbumIDAndTrackID } from "./TracksApi.js";
-import { BASE_TOP_URL, UBEAT_BASE_URL } from "./Config";
+import { BASE_TOP_URL, UBEAT_BASE_URL, getToken } from "./Config";
 
 // =========================================
 // fetch top albums
@@ -22,7 +22,11 @@ const getArrayAlbumID = jsonResponse => {
 };
 
 export const getOneAlbumDataFromUbeat = async albumID => {
-  const response = await fetch(`${UBEAT_BASE_URL}/albums/${albumID}`);
+  const response = await fetch(`${UBEAT_BASE_URL}/albums/${albumID}`, {
+    headers: {
+      Authorization: getToken()
+    }
+  });
   const jsonResponse = await response.json();
   return jsonResponse;
 };

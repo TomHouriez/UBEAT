@@ -60,8 +60,9 @@ export default {
           const jsonResponse = await login(this.email, this.password);
           if (jsonResponse.token) {
             this.$cookies.set("token", jsonResponse.token);
-            this.$cookies.set("name", jsonResponse.name); //
-            this.$cookies.set("email", jsonResponse.email); //
+            this.$cookies.set("name", jsonResponse.name);
+            this.$cookies.set("email", jsonResponse.email);
+            this.$cookies.set("id", jsonResponse.id);
             this.$router.push("/");
           } else {
             this.message = "Login failed";

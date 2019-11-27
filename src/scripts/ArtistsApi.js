@@ -1,19 +1,23 @@
-// const UBEAT_BASE_URL = "http://ubeat.herokuapp.com/unsecure";
-// const TADB_BASE_URL = "https://www.theaudiodb.com/api/v1/json/1";
-// const MB_BASE_URL = "https://musicbrainz.org/ws/2";
-
-import { UBEAT_BASE_URL, TADB_BASE_URL, MB_BASE_URL } from "./Config";
+import { UBEAT_BASE_URL, TADB_BASE_URL, MB_BASE_URL, getToken } from "./Config";
 
 // fetch artist info from UBeat
 export const fetchArtistData = async id => {
-  const response = await fetch(`${UBEAT_BASE_URL}/artists/${id}`);
+  const response = await fetch(`${UBEAT_BASE_URL}/artists/${id}`, {
+    headers: {
+      Authorization: getToken()
+    }
+  });
   const jsonResponse = await response.json();
   return jsonResponse;
 };
 
 // fetch artist's albums list from UBeat
 export const fetchArtistAlbums = async id => {
-  const response = await fetch(`${UBEAT_BASE_URL}/artists/${id}/albums`);
+  const response = await fetch(`${UBEAT_BASE_URL}/artists/${id}/albums`, {
+    headers: {
+      Authorization: getToken()
+    }
+  });
   const jsonResponse = await response.json();
   return jsonResponse;
 };

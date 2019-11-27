@@ -1,4 +1,4 @@
-const UBEAT_BASE_URL = "http://ubeat.herokuapp.com";
+import { UBEAT_BASE_URL } from "./Config";
 
 export const login = async (email, password) => {
   const response = await fetch(`${UBEAT_BASE_URL}/login`, {

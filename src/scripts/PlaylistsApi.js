@@ -1,27 +1,37 @@
-const BASE_UBEAT_URL = "http://ubeat.herokuapp.com/unsecure";
-
-import { USER_EMAIL, USER_ID } from "./Config";
+import { UBEAT_BASE_URL, getToken, getUserEmail, getUserId } from "./Config";
 
 export const fetchUserPlaylists = async () => {
-  const response = await fetch(`${BASE_UBEAT_URL}/users/${USER_ID}/playlists`);
+  const response = await fetch(
+    `${UBEAT_BASE_URL}/users/${getUserId()}/playlists`,
+    {
+      headers: {
+        Authorization: getToken()
+      }
+    }
+  );
   const jsonResponse = await response.json();
   return jsonResponse;
 };
 
 export const fetchPlaylistByID = async playlistID => {
-  const response = await fetch(`${BASE_UBEAT_URL}/playlists/${playlistID}`);
+  const response = await fetch(`${UBEAT_BASE_URL}/playlists/${playlistID}`, {
+    headers: {
+      Authorization: getToken()
+    }
+  });
   const jsonResponse = await response.json();
   return jsonResponse;
 };
 
 export const addPlaylist = async playlistName => {
-  const response = await fetch(`${BASE_UBEAT_URL}/playlists`, {
+  const response = await fetch(`${UBEAT_BASE_URL}/playlists`, {
     method: "POST",
     headers: {
-      "Content-type": "application/json"
+      "Content-type": "application/json",
+      Authorization: getToken()
     },
     body: JSON.stringify({
-      owner: USER_EMAIL,
+      owner: getUserEmail(),
       name: playlistName
     })
   });
@@ -34,13 +44,14 @@ export const updatePlaylistName = async (
   newPlaylistName,
   tracks
 ) => {
-  const response = await fetch(`${BASE_UBEAT_URL}/playlists/${playlistID}`, {
+  const response = await fetch(`${UBEAT_BASE_URL}/playlists/${playlistID}`, {
     method: "PUT",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      Authorization: getToken()
     },
     body: JSON.stringify({
-      owner: USER_EMAIL,
+      owner: getUserEmail(),
       name: newPlaylistName,
       tracks: tracks
     })
@@ -50,13 +61,14 @@ export const updatePlaylistName = async (
 };
 
 export const deletePlaylist = async playlistID => {
-  const response = await fetch(`${BASE_UBEAT_URL}/playlists/${playlistID}`, {
+  const response = await fetch(`${UBEAT_BASE_URL}/playlists/${playlistID}`, {
     method: "DELETE",
     headers: {
-      "Content-type": "application/json"
+      "Content-type": "application/json",
+      Authorization: getToken()
     },
     body: JSON.stringify({
-      owner: USER_EMAIL
+      owner: getUserEmail()
     })
   });
   const jsonResponse = await response.json();
@@ -65,11 +77,12 @@ export const deletePlaylist = async playlistID => {
 
 export const addTrackToPlaylist = async (playlistID, jsonTrack) => {
   const response = await fetch(
-    `${BASE_UBEAT_URL}/playlists/${playlistID}/tracks`,
+    `${UBEAT_BASE_URL}/playlists/${playlistID}/tracks`,
     {
       method: "POST",
       headers: {
-        "Content-type": "application/json"
+        "Content-type": "application/json",
+        Authorization: getToken()
       },
       body: JSON.stringify(jsonTrack)
     }
@@ -80,14 +93,15 @@ export const addTrackToPlaylist = async (playlistID, jsonTrack) => {
 
 export const deleteTrackInPlaylist = async (playlistID, trackID) => {
   const response = await fetch(
-    `${BASE_UBEAT_URL}/playlists/${playlistID}/tracks/${trackID}`,
+    `${UBEAT_BASE_URL}/playlists/${playlistID}/tracks/${trackID}`,
     {
       method: "DELETE",
       headers: {
-        "Content-type": "application/json"
+        "Content-type": "application/json",
+        Authorization: getToken()
       },
       body: JSON.stringify({
-        owner: USER_EMAIL
+        owner: getUserEmail()
       })
     }
   );

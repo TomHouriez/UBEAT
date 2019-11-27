@@ -1,65 +1,67 @@
 <template>
   <div class="container">
-    <form action="">
-      <b-field label="Name">
-        <b-input
-          type="text"
-          v-model="name"
-          placeholder="Name"
-          required
-          oninvalid="this.setCustomValidity('Please fillout this field')"
-          oninput="this.setCustomValidity('')"
-          validation-message="An email is required"
+    <div class="formContainer">
+      <form action="">
+        <b-field label="Name">
+          <b-input
+            type="text"
+            v-model="name"
+            placeholder="Name"
+            required
+            oninvalid="this.setCustomValidity('Please fillout this field')"
+            oninput="this.setCustomValidity('')"
+            validation-message="An email is required"
+          >
+          </b-input>
+        </b-field>
+        <b-field label="Email">
+          <b-input
+            type="email"
+            v-model="email"
+            placeholder="Email"
+            required
+            oninvalid="this.setCustomValidity('Please fillout this field')"
+            oninput="this.setCustomValidity('')"
+            validation-message="An email is required"
+          >
+          </b-input>
+        </b-field>
+        <b-field label="Password">
+          <b-input
+            type="password"
+            v-model="password1"
+            placeholder="Password"
+            required
+            oninvalid="this.setCustomValidity('Please fillout this field')"
+            oninput="this.setCustomValidity('')"
+            validation-message="A password is required"
+          >
+          </b-input>
+        </b-field>
+        <b-field label="Repeat password">
+          <b-input
+            type="password"
+            v-model="password2"
+            placeholder="Password"
+            required
+            oninvalid="this.setCustomValidity('Please fillout this field')"
+            oninput="this.setCustomValidity('')"
+            validation-message="A password is required"
+          >
+          </b-input>
+        </b-field>
+        <button type="button" class="button is-primary" v-on:click="register">
+          Register
+        </button>
+        <p class="message ">{{ message }}</p>
+        <b-button
+          type="button"
+          class="button is-primary"
+          v-on:click="$router.push('/login')"
+          >Login</b-button
         >
-        </b-input>
-      </b-field>
-      <b-field label="Email">
-        <b-input
-          type="email"
-          v-model="email"
-          placeholder="Email"
-          required
-          oninvalid="this.setCustomValidity('Please fillout this field')"
-          oninput="this.setCustomValidity('')"
-          validation-message="An email is required"
-        >
-        </b-input>
-      </b-field>
-      <b-field label="Password">
-        <b-input
-          type="password"
-          v-model="password1"
-          placeholder="Password"
-          required
-          oninvalid="this.setCustomValidity('Please fillout this field')"
-          oninput="this.setCustomValidity('')"
-          validation-message="A password is required"
-        >
-        </b-input>
-      </b-field>
-      <b-field label="Repeat password">
-        <b-input
-          type="password"
-          v-model="password2"
-          placeholder="Password"
-          required
-          oninvalid="this.setCustomValidity('Please fillout this field')"
-          oninput="this.setCustomValidity('')"
-          validation-message="A password is required"
-        >
-        </b-input>
-      </b-field>
-      <button type="button" class="button is-primary" v-on:click="register">
-        Register
-      </button>
-      <p>{{ message }}</p>
-      <b-button
-        type="button"
-        class="button is-primary"
-        v-on:click="$router.push('/login')"
-        >Login</b-button
-      >
-    </form>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -111,4 +113,32 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.container {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.formContainer {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 400px;
+  flex: 1;
+}
+
+button {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.message {
+  text-align: center;
+  color: red;
+}
+</style>

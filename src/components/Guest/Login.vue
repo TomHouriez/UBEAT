@@ -1,45 +1,48 @@
 <template>
   <div class="container">
-    <p>f.r@gmail.com</p>
-    <p>florian</p>
-    <form action="">
-      <b-field label="Email">
-        <b-input
-          type="text"
-          v-model="email"
-          placeholder="Email"
-          required
-          oninvalid="this.setCustomValidity('Please fillout this field')"
-          oninput="this.setCustomValidity('')"
-          validation-message="An email is required"
-        >
-        </b-input>
-      </b-field>
-      <b-field label="Password">
-        <b-input
-          type="password"
-          v-model="password"
-          placeholder="Password"
-          required
-          oninvalid="this.setCustomValidity('Please fillout this field')"
-          oninput="this.setCustomValidity('')"
-          validation-message="A password is required"
-        >
-        </b-input>
-      </b-field>
-      <button type="button" class="button is-primary" v-on:click="login()">
-        Login
-      </button>
-      <p>{{ message }}</p>
+    <div class="formContainer">
+      <p>f.r@gmail.com</p>
+      <p>florian</p>
+      <form action="">
+        <b-field label="Email">
+          <b-input
+            type="text"
+            v-model="email"
+            placeholder="Email"
+            required
+            oninvalid="this.setCustomValidity('Please fillout this field')"
+            oninput="this.setCustomValidity('')"
+            validation-message="An email is required"
+          >
+          </b-input>
+        </b-field>
+        <b-field label="Password">
+          <b-input
+            type="password"
+            v-model="password"
+            placeholder="Password"
+            required
+            oninvalid="this.setCustomValidity('Please fillout this field')"
+            oninput="this.setCustomValidity('')"
+            validation-message="A password is required"
+          >
+          </b-input>
+        </b-field>
+        <button type="button" class="button is-primary" v-on:click="login()">
+          Login
+        </button>
+        <p class="message">{{ message }}</p>
 
-      <b-button
-        type="button"
-        class="button is-primary"
-        v-on:click="$router.push('/register')"
-      >
-        Register
-      </b-button>
-    </form>
+        <p class="registrationMessage">If you are not registered:</p>
+        <b-button
+          type="button"
+          class="button is-primary"
+          v-on:click="$router.push('/register')"
+        >
+          Register
+        </b-button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -78,4 +81,36 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.container {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.formContainer {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 400px;
+  flex: 1;
+}
+
+button {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.registrationMessage {
+  text-align: center;
+}
+.message {
+  text-align: center;
+  color: red;
+}
+</style>

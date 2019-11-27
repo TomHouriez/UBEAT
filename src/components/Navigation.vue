@@ -55,9 +55,11 @@
           <b-icon pack="fas" class="fa fa-user" type="info" />
           <span>Profile</span>
         </b-navbar-item>
-        <b-navbar-item href="#">
-          <b-icon pack="fas" class="fa fa-times" type="info" />
-          <span>Sign Out</span>
+        <b-navbar-item>
+          <div v-on:click="logout()">
+            <b-icon pack="fas" class="fa fa-times" type="info" />
+            <span>Sign Out</span>
+          </div>
         </b-navbar-item>
       </b-navbar-dropdown>
     </template>
@@ -79,6 +81,17 @@ export default {
     };
   },
   methods: {
+    async logout() {
+      await fetch("http://ubeat.herokuapp.com/logout", {
+        method: "POST",
+        headers: {
+          "content-type": "application/x-www-form-urlencoded"
+        }
+      });
+      this.$cookies.remove("token");
+      this.$router.push("/", () => {});
+      location.reload();
+    },
     search() {
       if (this.filters.length != 0 && this.searchInput != "") {
         console.log("search");

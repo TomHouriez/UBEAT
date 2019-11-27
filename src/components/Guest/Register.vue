@@ -50,7 +50,7 @@
           >
           </b-input>
         </b-field>
-        <button type="button" class="button is-primary" v-on:click="register">
+        <button type="submit" class="button is-primary" v-on:click="register">
           Register
         </button>
         <p class="message ">{{ message }}</p>
@@ -89,6 +89,10 @@ export default {
       );
     },
     async register() {
+      if (this.password1 != this.password2) {
+        this.message = "Passwords are different";
+        return;
+      }
       if (this.valideCredentials()) {
         try {
           const jsonResponse = await register(
@@ -100,10 +104,10 @@ export default {
             this.$buefy.snackbar.open(`Registration successfull`);
             this.$router.push("/login");
           } else {
-            this.message = "Authentification failed";
+            this.message = "Registration failed";
           }
         } catch {
-          this.message = "Authentification failed";
+          this.message = "Registration failed";
         }
       } else {
         this.message = "Invalid credentials";

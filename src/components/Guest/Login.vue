@@ -28,7 +28,7 @@
           >
           </b-input>
         </b-field>
-        <button type="button" class="button is-primary" v-on:click="login()">
+        <button type="submit" class="button is-primary" v-on:click="login()">
           Login
         </button>
         <p class="message">{{ message }}</p>

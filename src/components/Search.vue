@@ -109,4 +109,11 @@ export default {
   padding: 1rem;
   text-align: center;
 }
+
+.userContainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+}
 </style>

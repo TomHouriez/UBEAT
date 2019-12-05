@@ -8,6 +8,17 @@ const BASE_TOP_URL = "https://itunes.apple.com/ca/rss";
 const TADB_BASE_URL = "https://www.theaudiodb.com/api/v1/json/1";
 const MB_BASE_URL = "https://musicbrainz.org/ws/2";
 
+const getTokenInfo = async token => {
+  const response = await fetch(`${UBEAT_BASE_URL}/tokenInfo`, {
+    method: "GET",
+    headers: {
+      Authorization: getToken()
+    }
+  });
+  const jsonResponse = await response.json();
+  return jsonResponse;
+};
+
 const getToken = () => {
   return VueCookies.get("token");
 };
@@ -27,6 +38,7 @@ export {
   TADB_BASE_URL,
   MB_BASE_URL,
   getToken,
+  getTokenInfo,
   getUserEmail,
   getUsername,
   getUserId

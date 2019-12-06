@@ -104,7 +104,8 @@ import {
   fetchArtistData,
   fetchArtistAlbums,
   fetchArtistMBID,
-  fetchMbzArtist
+  fetchMbzArtist,
+  getArtistInfos
 } from "../scripts/ArtistsApi.js";
 
 export default {
@@ -121,12 +122,15 @@ export default {
       genres: {},
       albums: [],
       infoExist: false,
-      members: []
+      members: [],
+      artistInfos: {}
     };
   },
 
   async created() {
     this.id = this.$route.params.id;
+    this.artistInfos = getArtistInfos(this.id);
+    console.log(this.artistInfos);
     this.artistData = await fetchArtistData(this.id);
     if (this.artistData.resultCount !== 0) {
       this.artistData = this.artistData.results[0];

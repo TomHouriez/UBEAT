@@ -25,22 +25,22 @@
 
       <b-navbar-dropdown hoverable label="Filters" class="navbarDropdown">
         <b-navbar-item>
-          <b-checkbox v-model="filters" native-value="artists"
-            >Artists</b-checkbox
-          >
-        </b-navbar-item>
-        <b-navbar-item>
-          <b-checkbox v-model="filters" native-value="albums"
+          <b-checkbox @change.native="search()" v-model="filters" native-value="albums"
             >Albums</b-checkbox
           >
         </b-navbar-item>
         <b-navbar-item>
-          <b-checkbox v-model="filters" native-value="tracks"
+          <b-checkbox @change.native="search()" v-model="filters" native-value="tracks"
             >Tracks</b-checkbox
           >
         </b-navbar-item>
         <b-navbar-item>
-          <b-checkbox v-model="filters" native-value="users">Users</b-checkbox>
+          <b-checkbox @change.native="search()" v-model="filters" native-value="artists"
+            >Artists</b-checkbox
+          >
+        </b-navbar-item>
+        <b-navbar-item>
+          <b-checkbox @change.native="search()" v-model="filters" native-value="users">Users</b-checkbox>
         </b-navbar-item>
       </b-navbar-dropdown>
     </template>
@@ -93,8 +93,7 @@ export default {
       location.reload();
     },
     search() {
-      if (this.filters.length != 0 && this.searchInput != "") {
-        console.log("search");
+      if (this.searchInput != "") {
         localStorage.setItem("searchInput", this.searchInput);
         localStorage.setItem("filters", this.filters);
         this.$emit("search");

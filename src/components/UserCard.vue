@@ -3,19 +3,24 @@
     <div class="iconContainer">      
       <i class="fas fa-3x fa-user"></i>
       <p class="name">{{ userData.name }}</p>
-      <p class="email">{{ userData.email }}</p>
-      <b-button
-      v-on:click="followThisUser(userData.id)"
-      v-if="!isFollowed"
-      >
-      Follow
-      </b-button>
-      <b-button
-      v-on:click="unfollowThisUser(userData.id)"
-      v-if="isFollowed"
-      >
-      Unfollow
-      </b-button>
+      <router-link v-if="userData.id" :to="{ name: 'User', params: {id: userData.id} }">
+        <a class="email">{{ userData.email }}</a>
+      </router-link>
+      <div>
+          <b-button
+        v-on:click="followThisUser(userData.id)"
+        v-if="!isFollowed"
+        >
+        Follow
+        </b-button>
+        <b-button
+        v-on:click="unfollowThisUser(userData.id)"
+        v-if="isFollowed"
+        >
+        Unfollow
+        </b-button>
+      </div>
+      
     </div>
   </div>
 </template>

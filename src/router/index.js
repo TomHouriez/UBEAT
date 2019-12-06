@@ -6,6 +6,7 @@ import Artist from "@/components/Artist";
 import Playlists from "@/components/Playlists";
 import PlaylistDetail from "@/components/PlaylistDetail";
 import Search from "@/components/Search";
+import User from "@/components/User";
 
 //Guest
 import Login from "../components/Guest/Login.vue";
@@ -62,6 +63,15 @@ let router = new Router({
       path: "/search",
       name: "Search",
       component: Search,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/user/:id",
+      name: "User",
+      component: User,
+      props: true,
       meta: {
         requiresAuth: true
       }

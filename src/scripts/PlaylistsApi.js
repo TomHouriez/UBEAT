@@ -13,6 +13,16 @@ export const fetchUserPlaylists = async () => {
   return jsonResponse;
 };
 
+export const fetchFollowerPlaylists = async id => {
+  const response = await fetch(`${UBEAT_BASE_URL}/users/${id}/playlists`, {
+    headers: {
+      Authorization: getToken()
+    }
+  });
+  const jsonResponse = await response.json();
+  return jsonResponse;
+};
+
 export const fetchPlaylistByID = async playlistID => {
   const response = await fetch(`${UBEAT_BASE_URL}/playlists/${playlistID}`, {
     headers: {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Albums</h1>
+    <p class="sectionHeader" v-if="isFilterActive('albums')">Albums:</p>
     <div class="albumsContainer">
       <artistAlbumCard
         v-for="album in albums.results"
@@ -13,7 +13,7 @@
       </artistAlbumCard>
     </div>
 
-    <h1>Tracks</h1>
+    <p class="sectionHeader" v-if="isFilterActive('tracks')">Tracks:</p>
     <!--  @play-track="playTrack" -->
     <div class="tracksContainer">
       <TrackCard
@@ -30,7 +30,10 @@
       </TrackCard>
     </div>
 
-    <h1>Users</h1>
+    <p class="sectionHeader" v-if="isFilterActive('artists')">Artists:</p>
+    <!-- to do -->
+
+    <p class="sectionHeader" v-if="isFilterActive('users')">Users:</p>
     <div class="userContainer">
       <UserCard
         v-for="aUser in users"
@@ -85,12 +88,30 @@ export default {
           this[aFilter] = await searchWithType(aFilter, searchInput, 10);
         });
       }
+    },
+    isFilterActive(aFilter) {
+      let filters = localStorage.getItem("filters").split(",");
+      let isActive = false;
+      if (filters.length > 0) {
+        filters.forEach(filter => {
+          if(filter == aFilter) {
+            isActive = true;
+          }
+        });
+      }
+      return isActive;
     }
   }
 };
 </script>
 
 <style scoped>
+.sectionHeader {
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: 150%;
+}
+
 .tracksContainer {
   display: flex;
   flex-wrap: wrap;

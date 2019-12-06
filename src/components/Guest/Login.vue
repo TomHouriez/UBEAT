@@ -33,7 +33,7 @@
         </button>
         <p class="message">{{ message }}</p>
 
-        <p class="registrationMessage">If you are not registered:</p>
+        <p class="registrationMessage">If you want to sign up:</p>
         <b-button
           type="button"
           class="button is-primary"

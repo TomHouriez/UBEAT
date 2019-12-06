@@ -12,7 +12,7 @@ const getTokenInfo = async token => {
   const response = await fetch(`${UBEAT_BASE_URL}/tokenInfo`, {
     method: "GET",
     headers: {
-      Authorization: getToken()
+      Authorization: token
     }
   });
   const jsonResponse = await response.json();

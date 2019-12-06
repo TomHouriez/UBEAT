@@ -10,7 +10,7 @@
         <div class="playlistsContainer">
             <div v-for="aPlaylist in playlists" v-bind:key="aPlaylist.id">
             <router-link
-                :to="{ name: 'PlaylistDetail', params: { id: aPlaylist.id } }"
+                :to="{ name: 'PlaylistDetail', params: { id: aPlaylist.id, own: false} }"
             >
                 <PlaylistCard :name="aPlaylist.name" :tracks="aPlaylist.tracks">
                 </PlaylistCard

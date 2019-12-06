@@ -44,8 +44,8 @@
             </span>
           </b-table-column>
 
-          <b-table-column field="delete" label="">
-            <a href="#" v-on:click="deleteTrack(props.row.trackId)">
+          <b-table-column field="delete" label="" v-if="own">
+            <a href="#" v-on:click="deleteTrack(props.row.trackId)" >
               <b-icon pack="fas" icon="trash-alt" type="info" />
             </a>
           </b-table-column>
@@ -69,6 +69,7 @@ export default {
   data() {
     return {
       id: null,
+      own: null,
       playlist: {},
 
       // audio
@@ -85,6 +86,8 @@ export default {
   },
   async created() {
     this.id = this.$route.params.id;
+    this.own = this.$route.params.own;
+    console.log(this.$route.params.own);
     this.playlist = await fetchPlaylistByID(this.id);
   },
   methods: {

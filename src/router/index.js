@@ -52,7 +52,7 @@ let router = new Router({
       }
     },
     {
-      path: "/playlist/:id",
+      path: "/playlist/:id/:own",
       name: "PlaylistDetail",
       component: PlaylistDetail,
       meta: {

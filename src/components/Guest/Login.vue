@@ -70,7 +70,7 @@ export default {
           } else {
             this.message = "Login failed";
           }
-        } catch {
+        } catch (err) {
           this.message = "Login failed";
         }
       } else {

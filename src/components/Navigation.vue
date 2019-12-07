@@ -51,7 +51,7 @@
           <b-icon pack="fas" class="fa fa-cog" type="info" />
           <span>Settings</span>
         </b-navbar-item>
-        <router-link v-if="currentUserId" :to="{ name: 'User', params: {id: currentUserId} }">
+        <router-link v-if="currentUserId" :to="{ name: 'User', params: {id: currentUserId, showButton: false} }" :key="currentUserId" >
           <b-navbar-item href="#">
             <b-icon pack="fas" class="fa fa-user" type="info" />
             <span>Profile</span>

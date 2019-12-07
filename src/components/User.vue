@@ -3,6 +3,7 @@
         <UserCard
             v-bind:key="userData.email"
             :userData="userData"
+            :showButton="showButton"
         >
         </UserCard>
         <p class="sectionHeader">Playlists:</p>
@@ -24,6 +25,7 @@
                     v-for="aUser in userData.following"
                     v-bind:key="aUser.email"
                     :userData="aUser"
+                    :showButton="true"
                 >
                 </UserCard>
         </div>
@@ -42,25 +44,37 @@ export default {
         UserCard: UserCard,
         PlaylistCard: PlaylistCard
     },
+    props: { showButton: {
+        type: Boolean
+        }
+    },
     data() {
         return {
             id: null,
+            route: window.location.hash,
             userData: {},
             playlists: [],
             error: "",
         };
     },
     async created() {
-        this.id = this.$route.params.id;
-        this.playlists = await fetchFollowerPlaylists(this.id);
-        try {
-            this.userData = await getUserInfo(this.id);
-        } catch {
-            this.error = "Unable to load user";
-        }
+        this.loadData();
     },
     methods: {
-
+        async loadData() {
+            this.id = this.$route.params.id;
+            this.playlists = await fetchFollowerPlaylists(this.id);
+            try {
+                this.userData = await getUserInfo(this.id);
+            } catch {
+                this.error = "Unable to load user";
+            }
+        }
+    },
+    watch: {
+        async $route(to, from) {
+            this.loadData();
+        }
     }
 
 

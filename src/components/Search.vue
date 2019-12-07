@@ -39,6 +39,7 @@
         v-for="aUser in users"
         v-bind:key="aUser.email"
         :userData="aUser"
+        :showButton="true"
       >
       </UserCard>
     </div>
@@ -47,6 +48,7 @@
 
 <script>
 import { searchWithType } from "../scripts/SearchApi";
+import { getToken, getTokenInfo } from "../scripts/Config";
 
 import ArtistAlbumCard from "./ArtistAlbumCard";
 import TrackCard from "./TrackCard";
@@ -56,7 +58,7 @@ export default {
   components: {
     ArtistAlbumCard: ArtistAlbumCard,
     TrackCard: TrackCard,
-    UserCard: UserCard
+    UserCard: UserCard,
   },
   data() {
     return {
@@ -88,6 +90,7 @@ export default {
           this[aFilter] = await searchWithType(aFilter, searchInput, 10);
         });
       }
+      await this.filterUsers();
     },
     isFilterActive(aFilter) {
       let filters = localStorage.getItem("filters").split(",");
@@ -100,7 +103,22 @@ export default {
         });
       }
       return isActive;
-    }
+    },
+    async filterUsers() {
+
+      const token = getToken();
+      const tokenInfo = await getTokenInfo(token);
+      const myID = tokenInfo.id;
+      let index = 0;
+      this.users.forEach(aUser => {
+        if(aUser.id == myID) {
+          this.users.splice(index,1);
+        }
+        index = index + 1;
+      });
+    },
+
+
   }
 };
 </script>

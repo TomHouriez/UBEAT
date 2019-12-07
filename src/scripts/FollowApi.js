@@ -33,7 +33,6 @@ export const isUserFollowed = async userId => {
   // console.log(tokenInfo.following);
   tokenInfo.following.forEach(async element => {
     if (element.id == userId) {
-      console.log("coucou");
       isFollowed = true;
     }
   });

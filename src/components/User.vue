@@ -17,6 +17,16 @@
             ></router-link>
             </div>
         </div>
+
+        <p class="sectionHeader">Friends:</p>
+        <div class="friendsContainer">
+                <UserCard
+                    v-for="aUser in userData.following"
+                    v-bind:key="aUser.email"
+                    :userData="aUser"
+                >
+                </UserCard>
+        </div>
   </div>
 </template>
 
@@ -71,6 +81,13 @@ export default {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
+    }
+
+    .friendsContainer {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: flex-start;
     }
 
 </style>

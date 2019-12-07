@@ -66,10 +66,12 @@ export default {
   components: {
     PlaylistCard: PlaylistCard
   },
+  props: { own: {
+    type: Boolean
+  }},
   data() {
     return {
       id: null,
-      own: null,
       playlist: {},
 
       // audio
@@ -86,8 +88,8 @@ export default {
   },
   async created() {
     this.id = this.$route.params.id;
-    this.own = this.$route.params.own;
-    console.log(this.$route.params.own);
+    // this.own = this.$route.params.own;
+    console.log(this.own);
     this.playlist = await fetchPlaylistByID(this.id);
   },
   methods: {

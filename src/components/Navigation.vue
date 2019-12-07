@@ -51,10 +51,12 @@
           <b-icon pack="fas" class="fa fa-cog" type="info" />
           <span>Settings</span>
         </b-navbar-item>
-        <b-navbar-item href="#">
-          <b-icon pack="fas" class="fa fa-user" type="info" />
-          <span>Profile</span>
-        </b-navbar-item>
+        <router-link v-if="currentUserId" :to="{ name: 'User', params: {id: currentUserId} }">
+          <b-navbar-item href="#">
+            <b-icon pack="fas" class="fa fa-user" type="info" />
+            <span>Profile</span>
+          </b-navbar-item> 
+        </router-link>
         <b-navbar-item>
           <div v-on:click="logout()">
             <b-icon pack="fas" class="fa fa-times" type="info" />
@@ -68,6 +70,7 @@
 
 <script>
 import { searchGlobal } from "../scripts/SearchApi";
+import { getTokenInfo, getToken } from "../scripts/Config";
 
 export default {
   data() {
@@ -75,10 +78,17 @@ export default {
       filters: ["artists", "albums", "tracks", "users"],
       oldSearchInput: "",
       searchInput: "",
+      currentUserId: null,
 
       searchJsonData: [],
       searchData: []
     };
+  },
+  async created() {
+    // console.log(this.$cookies.set("token"));
+    const token = getToken();
+    const tokenInfo = await getTokenInfo(token);
+    this.currentUserId = await tokenInfo.id;
   },
   methods: {
     async logout() {

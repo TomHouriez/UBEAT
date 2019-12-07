@@ -52,9 +52,10 @@ let router = new Router({
       }
     },
     {
-      path: "/playlist/:id/:own",
+      path: "/playlist/:id",
       name: "PlaylistDetail",
       component: PlaylistDetail,
+      props: true,
       meta: {
         requiresAuth: true
       }

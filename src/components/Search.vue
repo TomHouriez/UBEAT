@@ -32,6 +32,15 @@
 
     <p class="sectionHeader" v-if="isFilterActive('artists')">Artists:</p>
     <!-- to do -->
+    <div class="artistContainer">
+      <ArtistCard
+        v-for="anArtist in artists"
+        v-bind:key="anArtist.artistId"
+        :artistId="anArtist.artistId"
+      >
+      </ArtistCard>
+    </div>
+    
 
     <p class="sectionHeader" v-if="isFilterActive('users')">Users:</p>
     <div class="userContainer">
@@ -47,11 +56,13 @@
 </template>
 
 <script>
-import { searchWithType } from "../scripts/SearchApi";
+import { searchWithType, searchArtists } from "../scripts/SearchApi";
+import { getArtistInfos } from "../scripts/ArtistsApi";
 import { getToken, getTokenInfo } from "../scripts/Config";
 
 import ArtistAlbumCard from "./ArtistAlbumCard";
 import TrackCard from "./TrackCard";
+import ArtistCard from "./ArtistCard";
 import UserCard from "./UserCard";
 
 export default {
@@ -59,6 +70,7 @@ export default {
     ArtistAlbumCard: ArtistAlbumCard,
     TrackCard: TrackCard,
     UserCard: UserCard,
+    ArtistCard: ArtistCard,
   },
   data() {
     return {
@@ -87,10 +99,24 @@ export default {
 
       if (filters.length > 0) {
         filters.forEach(async aFilter => {
-          this[aFilter] = await searchWithType(aFilter, searchInput, 10);
+          if(aFilter != 'artists') {
+            this[aFilter] = await searchWithType(aFilter, searchInput, 10);
+          }
         });
       }
+
       await this.filterUsers();
+
+      if (filters.length > 0) {
+        filters.forEach(async aFilter => {
+         if(aFilter == 'artists') {
+           this.artists = [];
+            await this.filterArtists();
+         }
+        });
+      }
+     
+      
     },
     isFilterActive(aFilter) {
       let filters = localStorage.getItem("filters").split(",");
@@ -113,10 +139,31 @@ export default {
       this.users.forEach(aUser => {
         if(aUser.id == myID) {
           this.users.splice(index,1);
+        } else {
+          index = index + 1;
         }
-        index = index + 1;
       });
     },
+    async filterArtists() {
+      // console.log("coucou");
+      let searchInput = localStorage.getItem("searchInput");
+      let temporaryArtists = [];
+      temporaryArtists = await searchArtists( searchInput, 10);
+      console.log(temporaryArtists);
+      // await console.log(this.artists.results);
+      let index = 0;
+      if(await temporaryArtists.results) {
+        temporaryArtists.results.forEach(async anArtist => {
+          // console.log(index);
+          let test =  await getArtistInfos(anArtist.artistId);
+          // console.log(test);
+          if(test != null) {
+            this.artists.push(anArtist);
+          }
+        });
+      }
+      
+    }
 
 
   }
@@ -150,6 +197,13 @@ export default {
 }
 
 .userContainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.artistContainer {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;

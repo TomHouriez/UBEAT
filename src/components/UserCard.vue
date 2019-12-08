@@ -30,13 +30,6 @@ import { followUser, unfollowUser, isUserFollowed } from "../scripts/FollowApi";
 
 export default {
   props: ["userData","showButton"],
-  // props: {
-  //   userData,
-  //   showButton: {
-  //     type: Boolean,
-  //     default: true,
-  //   },
-  // },
   data() {
     return {
       isFollowed: false

@@ -147,7 +147,6 @@ export default {
       temporaryArtists = await searchArtists(searchInput, 10);
       console.log(temporaryArtists);
       // await console.log(this.artists.results);
-      let index = 0;
       if (await temporaryArtists.results) {
         temporaryArtists.results.forEach(async anArtist => {
           // console.log(index);

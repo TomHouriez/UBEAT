@@ -38,6 +38,9 @@ export default {
       let isFollowed = await isUserFollowed(userID);
       if (!isFollowed) {
         const jsonResponse = await followUser(userID);
+        if (jsonResponse) {
+          //todo
+        }
         this.isFollowed = true;
         this.$buefy.snackbar.open(`User followed`);
       } else {
@@ -53,6 +56,9 @@ export default {
         // this.$buefy.snackbar.open(`User followed`);
       } else {
         const jsonResponse = await unfollowUser(userID);
+        if (jsonResponse) {
+          //to do
+        }
         this.isFollowed = false;
         this.$buefy.snackbar.open(`User unfollowed`);
       }

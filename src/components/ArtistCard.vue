@@ -17,6 +17,7 @@ export default {
   async created() {
     // this.artistData = await getArtistInfos(this.$props.artistId);
     // await console.log(this.artistData);
+    console.log("coucou");
   }
 };
 </script>

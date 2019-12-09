@@ -75,6 +75,7 @@ export default {
   async created() {
     this.topAlbums = await fetchTopAlbums();
     this.topSongs = await fetchTopTracks();
+    await console.log(this.topSongs);
   },
   destroyed() {
     if (this.audio != null) {

@@ -1,7 +1,9 @@
 <template>
   <div>
-    <p class="sectionHeader" v-if="isFilterActive('albums')">Albums:</p>
-    <div class="albumsContainer">
+    <p class="sectionHeader" v-if="showAlbums">
+      Albums:
+    </p>
+    <div class="albumsContainer" v-if="showAlbums">
       <artistAlbumCard
         v-for="album in albums.results"
         v-bind:key="album.collectionId"
@@ -13,9 +15,9 @@
       </artistAlbumCard>
     </div>
 
-    <p class="sectionHeader" v-if="isFilterActive('tracks')">Tracks:</p>
+    <p class="sectionHeader" v-if="showTracks">Tracks:</p>
     <!--  @play-track="playTrack" -->
-    <div class="tracksContainer">
+    <div class="tracksContainer" v-if="showTracks">
       <TrackCard
         v-for="aSong in tracks.results"
         v-bind:key="aSong.trackId"
@@ -30,19 +32,19 @@
       </TrackCard>
     </div>
 
-    <p class="sectionHeader" v-if="isFilterActive('artists')">Artists:</p>
+    <p class="sectionHeader" v-if="showArtists">Artists:</p>
     <!-- to do -->
-    <div class="artistContainer">
+    <div class="artistContainer" v-if="showArtists">
       <ArtistCard
         v-for="anArtist in artists"
         v-bind:key="anArtist.artistId"
-        :artistId="anArtist.artistId"
+        :artistData="anArtist"
       >
       </ArtistCard>
     </div>
 
-    <p class="sectionHeader" v-if="isFilterActive('users')">Users:</p>
-    <div class="userContainer">
+    <p class="sectionHeader" v-if="showUsers">Users:</p>
+    <div class="userContainer" v-if="showUsers">
       <UserCard
         v-for="aUser in users"
         v-bind:key="aUser.email"
@@ -76,6 +78,11 @@ export default {
       searchInput: "",
       filters: [],
 
+      showAlbums: false,
+      showTracks: false,
+      showArtists: false,
+      showUsers: false,
+
       artists: [],
       albums: [],
       tracks: [],
@@ -83,13 +90,17 @@ export default {
     };
   },
   created() {
+    this.artists = [];
+    this.filters = localStorage.getItem("filters").split(",");
+    this.checkFilters();
     this.search();
-    this.$parent.$on("searchApp", this.search);
+    this.$parent.$on("searchApp", this.update);
   },
   methods: {
     async search() {
-      let searchInput = localStorage.getItem("searchInput");
-      let filters = localStorage.getItem("filters").split(",");
+      this.searchInput = localStorage.getItem("searchInput");
+
+      let filters = ["albums", "tracks", "artists", "users"];
 
       this.artists = [];
       this.albums = [];
@@ -99,7 +110,7 @@ export default {
       if (filters.length > 0) {
         filters.forEach(async aFilter => {
           if (aFilter != "artists") {
-            this[aFilter] = await searchWithType(aFilter, searchInput, 10);
+            this[aFilter] = await searchWithType(aFilter, this.searchInput, 10);
           }
         });
       }
@@ -114,6 +125,21 @@ export default {
           }
         });
       }
+      this.checkFilters();
+    },
+    async update() {
+      if (this.searchInput == localStorage.getItem("searchInput")) {
+        this.filters = localStorage.getItem("filters").split(",");
+        this.checkFilters();
+      } else {
+        await this.search();
+      }
+    },
+    checkFilters() {
+      this.showAlbums = this.isFilterActive("albums");
+      this.showTracks = this.isFilterActive("tracks");
+      this.showArtists = this.isFilterActive("artists");
+      this.showUsers = this.isFilterActive("users");
     },
     isFilterActive(aFilter) {
       let filters = localStorage.getItem("filters").split(",");
@@ -141,22 +167,19 @@ export default {
       });
     },
     async filterArtists() {
-      // console.log("coucou");
       let searchInput = localStorage.getItem("searchInput");
       let temporaryArtists = [];
       temporaryArtists = await searchArtists(searchInput, 10);
-      console.log(temporaryArtists);
-      // await console.log(this.artists.results);
       if (await temporaryArtists.results) {
         temporaryArtists.results.forEach(async anArtist => {
-          // console.log(index);
           let test = await getArtistInfos(anArtist.artistId);
-          // console.log(test);
           if (test != null) {
-            this.artists.push(anArtist);
+            test.artistId = anArtist.artistId;
+            this.artists.push(test);
           }
         });
       }
+      temporaryArtists = [];
     }
   }
 };

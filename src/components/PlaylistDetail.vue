@@ -45,7 +45,7 @@
           </b-table-column>
 
           <b-table-column field="delete" label="" v-if="own">
-            <a href="#" v-on:click="deleteTrack(props.row.trackId)" >
+            <a href="#" v-on:click="deleteTrack(props.row.trackId)">
               <b-icon pack="fas" icon="trash-alt" type="info" />
             </a>
           </b-table-column>
@@ -66,9 +66,11 @@ export default {
   components: {
     PlaylistCard: PlaylistCard
   },
-  props: { own: {
-    type: Boolean
-  }},
+  props: {
+    own: {
+      type: Boolean
+    }
+  },
   data() {
     return {
       id: null,

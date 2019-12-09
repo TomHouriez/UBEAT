@@ -40,7 +40,6 @@
       >
       </ArtistCard>
     </div>
-    
 
     <p class="sectionHeader" v-if="isFilterActive('users')">Users:</p>
     <div class="userContainer">
@@ -70,7 +69,7 @@ export default {
     ArtistAlbumCard: ArtistAlbumCard,
     TrackCard: TrackCard,
     UserCard: UserCard,
-    ArtistCard: ArtistCard,
+    ArtistCard: ArtistCard
   },
   data() {
     return {
@@ -99,7 +98,7 @@ export default {
 
       if (filters.length > 0) {
         filters.forEach(async aFilter => {
-          if(aFilter != 'artists') {
+          if (aFilter != "artists") {
             this[aFilter] = await searchWithType(aFilter, searchInput, 10);
           }
         });
@@ -109,21 +108,19 @@ export default {
 
       if (filters.length > 0) {
         filters.forEach(async aFilter => {
-         if(aFilter == 'artists') {
-           this.artists = [];
+          if (aFilter == "artists") {
+            this.artists = [];
             await this.filterArtists();
-         }
+          }
         });
       }
-     
-      
     },
     isFilterActive(aFilter) {
       let filters = localStorage.getItem("filters").split(",");
       let isActive = false;
       if (filters.length > 0) {
         filters.forEach(filter => {
-          if(filter == aFilter) {
+          if (filter == aFilter) {
             isActive = true;
           }
         });
@@ -131,14 +128,13 @@ export default {
       return isActive;
     },
     async filterUsers() {
-
       const token = getToken();
       const tokenInfo = await getTokenInfo(token);
       const myID = tokenInfo.id;
       let index = 0;
       this.users.forEach(aUser => {
-        if(aUser.id == myID) {
-          this.users.splice(index,1);
+        if (aUser.id == myID) {
+          this.users.splice(index, 1);
         } else {
           index = index + 1;
         }
@@ -148,24 +144,21 @@ export default {
       // console.log("coucou");
       let searchInput = localStorage.getItem("searchInput");
       let temporaryArtists = [];
-      temporaryArtists = await searchArtists( searchInput, 10);
+      temporaryArtists = await searchArtists(searchInput, 10);
       console.log(temporaryArtists);
       // await console.log(this.artists.results);
       let index = 0;
-      if(await temporaryArtists.results) {
+      if (await temporaryArtists.results) {
         temporaryArtists.results.forEach(async anArtist => {
           // console.log(index);
-          let test =  await getArtistInfos(anArtist.artistId);
+          let test = await getArtistInfos(anArtist.artistId);
           // console.log(test);
-          if(test != null) {
+          if (test != null) {
             this.artists.push(anArtist);
           }
         });
       }
-      
     }
-
-
   }
 };
 </script>

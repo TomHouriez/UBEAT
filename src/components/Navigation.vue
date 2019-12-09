@@ -25,22 +25,36 @@
 
       <b-navbar-dropdown hoverable label="Filters" class="navbarDropdown">
         <b-navbar-item>
-          <b-checkbox @change.native="search()" v-model="filters" native-value="albums"
+          <b-checkbox
+            @change.native="search()"
+            v-model="filters"
+            native-value="albums"
             >Albums</b-checkbox
           >
         </b-navbar-item>
         <b-navbar-item>
-          <b-checkbox @change.native="search()" v-model="filters" native-value="tracks"
+          <b-checkbox
+            @change.native="search()"
+            v-model="filters"
+            native-value="tracks"
             >Tracks</b-checkbox
           >
         </b-navbar-item>
         <b-navbar-item>
-          <b-checkbox @change.native="search()" v-model="filters" native-value="artists"
+          <b-checkbox
+            @change.native="search()"
+            v-model="filters"
+            native-value="artists"
             >Artists</b-checkbox
           >
         </b-navbar-item>
         <b-navbar-item>
-          <b-checkbox @change.native="search()" v-model="filters" native-value="users">Users</b-checkbox>
+          <b-checkbox
+            @change.native="search()"
+            v-model="filters"
+            native-value="users"
+            >Users</b-checkbox
+          >
         </b-navbar-item>
       </b-navbar-dropdown>
     </template>
@@ -51,11 +65,18 @@
           <b-icon pack="fas" class="fa fa-cog" type="info" />
           <span>Settings</span>
         </b-navbar-item>
-        <router-link v-if="currentUserId" :to="{ name: 'User', params: {id: currentUserId, showButton: false} }" :key="currentUserId" >
+        <router-link
+          v-if="currentUserId"
+          :to="{
+            name: 'User',
+            params: { id: currentUserId, showButton: false }
+          }"
+          :key="currentUserId"
+        >
           <b-navbar-item href="#">
             <b-icon pack="fas" class="fa fa-user" type="info" />
             <span>Profile</span>
-          </b-navbar-item> 
+          </b-navbar-item>
         </router-link>
         <b-navbar-item>
           <div v-on:click="logout()">

@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import { getArtistInfos } from "../scripts/ArtistsApi";
 export default {
   props: ["artistId"],
   data() {

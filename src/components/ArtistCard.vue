@@ -1,11 +1,14 @@
 <template>
   <div class="artistCardContainer">
     <figure>
-      <img
-        :src="artistData.strArtistThumb"
-        alt="Ramdom Accees Memory album cover"
-      />
-      <!-- <figcaption>{{ artistData.artistName }}</figcaption> -->
+      <router-link
+        :to="{ name: 'Artist', params: { id: artistData.artistId } }"
+      >
+        <img
+          :src="artistData.strArtistThumb"
+          alt="Ramdom Accees Memory album cover"
+        />
+      </router-link>
       <router-link
         :to="{ name: 'Artist', params: { id: artistData.artistId } }"
       >
@@ -16,14 +19,8 @@
 </template>
 
 <script>
-// import { getArtistInfos } from "../scripts/ArtistsApi";
 export default {
-  props: ["artistData"],
-  data() {
-    return {
-      // artistData: {}
-    };
-  }
+  props: ["artistData"]
 };
 </script>
 

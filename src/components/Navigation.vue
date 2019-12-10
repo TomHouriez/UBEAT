@@ -60,11 +60,8 @@
     </template>
 
     <template slot="end">
-      <b-navbar-dropdown hoverable label="Joe Blo" style="width:150px">
-        <b-navbar-item href="#">
-          <b-icon pack="fas" class="fa fa-cog" type="info" />
-          <span>Settings</span>
-        </b-navbar-item>
+      <!-- <b-navbar-dropdown hoverable label="Joe Blo" style="width:150px"> -->
+      <b-navbar-dropdown hoverable :label="currentUserName" style="width:150px">
         <router-link
           v-if="currentUserId"
           :to="{
@@ -100,6 +97,7 @@ export default {
       oldSearchInput: "",
       searchInput: "",
       currentUserId: null,
+      currentUserName: "",
 
       searchJsonData: [],
       searchData: []
@@ -110,6 +108,7 @@ export default {
     const token = getToken();
     const tokenInfo = await getTokenInfo(token);
     this.currentUserId = await tokenInfo.id;
+    this.currentUserName = await tokenInfo.name;
   },
   methods: {
     async logout() {

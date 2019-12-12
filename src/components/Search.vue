@@ -45,6 +45,7 @@
 
     <p class="sectionHeader" v-if="showUsers">Users:</p>
     <div class="userContainer" v-if="showUsers">
+      <h2 v-if="this.users.length == 0">No users found</h2>
       <UserCard
         v-for="aUser in users"
         v-bind:key="aUser.email"
@@ -57,7 +58,11 @@
 </template>
 
 <script>
-import { searchWithType, searchArtists } from "../scripts/SearchApi";
+import {
+  searchWithType,
+  searchArtists,
+  searchUsers
+} from "../scripts/SearchApi";
 import { getArtistInfos } from "../scripts/ArtistsApi";
 import { getToken, getTokenInfo } from "../scripts/Config";
 
@@ -109,13 +114,20 @@ export default {
 
       if (filters.length > 0) {
         filters.forEach(async aFilter => {
-          if (aFilter != "artists") {
+          if (aFilter != "artists" && aFilter != "users") {
             this[aFilter] = await searchWithType(aFilter, this.searchInput, 10);
           }
         });
       }
 
-      await this.filterUsers();
+      if (filters.length > 0) {
+        filters.forEach(async aFilter => {
+          if (aFilter == "users") {
+            this.users = [];
+            await this.filterUsers();
+          }
+        });
+      }
 
       if (filters.length > 0) {
         filters.forEach(async aFilter => {
@@ -154,17 +166,19 @@ export default {
       return isActive;
     },
     async filterUsers() {
+      let searchInput = localStorage.getItem("searchInput");
+      let temporaryUsers = [];
+      temporaryUsers = await searchUsers(searchInput, 10);
       const token = getToken();
       const tokenInfo = await getTokenInfo(token);
       const myID = tokenInfo.id;
-      let index = 0;
-      this.users.forEach(aUser => {
-        if (aUser.id == myID) {
-          this.users.splice(index, 1);
-        } else {
-          index = index + 1;
-        }
-      });
+      if (await temporaryUsers) {
+        temporaryUsers.forEach(async aUser => {
+          if (myID != aUser.id) {
+            this.users.push(aUser);
+          }
+        });
+      }
     },
     async filterArtists() {
       let searchInput = localStorage.getItem("searchInput");

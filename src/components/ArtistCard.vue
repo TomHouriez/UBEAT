@@ -5,9 +5,10 @@
         :to="{ name: 'Artist', params: { id: artistData.artistId } }"
       >
         <img
+          v-if="artistData.strArtistThumb"
           :src="artistData.strArtistThumb"
-          alt="Ramdom Accees Memory album cover"
         />
+        <i v-if="!artistData.strArtistThumb" class="fas fa-10x fa-user"></i>
       </router-link>
       <router-link
         :to="{ name: 'Artist', params: { id: artistData.artistId } }"
@@ -48,6 +49,12 @@ figure > img {
   max-width: 200px;
   margin: 0;
   padding: 0;
+}
+
+i {
+  border-radius: 3%;
+  max-width: 200px;
+  padding-bottom: 30px;
 }
 
 figure > figcaption {

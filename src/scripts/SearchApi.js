@@ -54,7 +54,12 @@ export const searchTracks = async (searchInput, limit) => {
 
 export const searchUsers = async searchInput => {
   let response = await fetch(
-    `${UBEAT_BASE_URL}/search/tracks?q=${searchInput}`
+    `${UBEAT_BASE_URL}/search/users?q=${searchInput}`,
+    {
+      headers: {
+        Authorization: getToken()
+      }
+    }
   );
   let jsonResponse = await response.json();
   return jsonResponse;

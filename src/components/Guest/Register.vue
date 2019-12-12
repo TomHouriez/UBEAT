@@ -102,7 +102,7 @@ export default {
           );
           if (jsonResponse.id) {
             this.$buefy.snackbar.open(`Registration successfull`);
-            this.$router.push("/login");
+            this.$router.push({ name: "Login", params: { reg: true } });
           } else {
             this.message = "Registration failed";
           }

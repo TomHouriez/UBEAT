@@ -11,9 +11,20 @@
     <div class="playlistsContainer">
       <div v-for="aPlaylist in playlists" v-bind:key="aPlaylist.id">
         <router-link
+          v-if="aPlaylist.owner.id != owner"
           :to="{
             name: 'PlaylistDetail',
             params: { id: aPlaylist.id, own: false }
+          }"
+        >
+          <PlaylistCard :name="aPlaylist.name" :tracks="aPlaylist.tracks">
+          </PlaylistCard
+        ></router-link>
+        <router-link
+          v-else
+          :to="{
+            name: 'PlaylistDetail',
+            params: { id: aPlaylist.id, own: true }
           }"
         >
           <PlaylistCard :name="aPlaylist.name" :tracks="aPlaylist.tracks">
@@ -40,7 +51,8 @@ import PlaylistCard from "./PlaylistCard.vue";
 import UserCard from "./UserCard";
 import { getUserInfo } from "../scripts/UserApi.js";
 import { fetchFollowerPlaylists } from "../scripts/PlaylistsApi";
-import { followUser, unfollowUser, isUserFollowed } from "../scripts/FollowApi";
+import { getToken, getTokenInfo } from "../scripts/Config";
+//import { followUser, unfollowUser, isUserFollowed } from "../scripts/FollowApi";
 
 export default {
   components: {
@@ -58,11 +70,15 @@ export default {
       route: window.location.hash,
       userData: {},
       playlists: [],
-      error: ""
+      error: "",
+      owner: false
     };
   },
   async created() {
     this.loadData();
+    const token = await getToken();
+    const tokenInfo = await getTokenInfo(token);
+    this.owner = tokenInfo.id;
   },
   methods: {
     async loadData() {
@@ -76,7 +92,7 @@ export default {
     }
   },
   watch: {
-    async $route(to, from) {
+    async $route() {
       this.loadData();
     }
   }

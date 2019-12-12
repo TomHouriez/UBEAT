@@ -3,6 +3,9 @@
     <div class="formContainer">
       <p>f.r@gmail.com</p>
       <p>florian</p>
+      <h1 id="regSuccess" v-if="this.reg">
+        Registration successful. Please login
+      </h1>
       <form action="">
         <b-field label="Email">
           <b-input
@@ -53,8 +56,13 @@ export default {
     return {
       email: "",
       password: "",
-      message: ""
+      message: "",
+      reg: false
     };
+  },
+  async created() {
+    console.log(this.$route.params);
+    this.reg = this.$route.params.reg;
   },
   methods: {
     async login() {
@@ -82,6 +90,12 @@ export default {
 </script>
 
 <style scoped>
+#regSuccess {
+  color: green;
+  font-size: 1.3em;
+  align-content: center;
+}
+
 .container {
   margin-top: 100px;
   display: flex;

@@ -8,13 +8,11 @@ import PlaylistDetail from "@/components/playlist/PlaylistDetail";
 import Search from "@/components/common/Search";
 import User from "@/components/user/User";
 
-//Guest
 import Login from "@/components/user/Login.vue";
 import Register from "@/components/user/Register.vue";
 
 Vue.use(Router);
 
-// cookies
 import VueCookies from "vue-cookies";
 
 let router = new Router({
@@ -78,7 +76,6 @@ let router = new Router({
       }
     },
 
-    //Guest
     {
       path: "/login",
       name: "Login",

@@ -16,9 +16,10 @@
     </div>
 
     <p class="sectionHeader" v-if="showTracks">Tracks:</p>
-    <!--  @play-track="playTrack" -->
     <div class="tracksContainer" v-if="showTracks">
       <TrackCard
+        @play-track="playTrack"
+        @pause-track="pauseTrack"
         v-for="aSong in tracks.results"
         v-bind:key="aSong.trackId"
         :trackName="aSong.trackName"
@@ -28,12 +29,12 @@
         :artistName="aSong.artistName"
         :image="aSong.artworkUrl100"
         :trackData="aSong"
+        :playing="aSong.previewUrl == trackUrlPlaying && audio != null"
       >
       </TrackCard>
     </div>
 
     <p class="sectionHeader" v-if="showArtists">Artists:</p>
-    <!-- to do -->
     <div class="artistContainer" v-if="showArtists">
       <ArtistCard
         v-for="anArtist in artists"
@@ -82,6 +83,9 @@ export default {
     return {
       searchInput: "",
       filters: [],
+
+      audio: null,
+      trackUrlPlaying: null,
 
       showAlbums: false,
       showTracks: false,
@@ -194,6 +198,26 @@ export default {
         });
       }
       temporaryArtists = [];
+    },
+    playTrack(trackUrl) {
+      if (this.audio != null) {
+        this.audio.pause();
+      }
+      if (this.trackUrlPlaying != trackUrl) {
+        this.trackUrlPlaying = trackUrl;
+        this.audio = new Audio(trackUrl);
+        this.audio.addEventListener("ended", () => {
+          this.trackUrlPlaying = null;
+        });
+        this.audio.play();
+      } else {
+        this.audio.play();
+      }
+    },
+    pauseTrack() {
+      if (this.audio != null) {
+        this.audio.pause();
+      }
     }
   }
 };

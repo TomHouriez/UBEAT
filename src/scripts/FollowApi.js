@@ -27,16 +27,12 @@ export const unfollowUser = async userId => {
 };
 
 export const isUserFollowed = async userId => {
-  //doSomething
   let isFollowed = false;
   const tokenInfo = await getTokenInfo(getToken());
-  // console.log(tokenInfo.following);
   tokenInfo.following.forEach(async element => {
     if (element.id == userId) {
       isFollowed = true;
     }
   });
   return isFollowed;
-  // console.log("coucou2");
-  // return true;
 };

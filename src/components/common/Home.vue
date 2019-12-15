@@ -67,7 +67,6 @@ export default {
       topAlbums: [],
       topSongs: [],
 
-      // audio
       audio: null,
       trackUrlPlaying: null
     };
@@ -112,7 +111,6 @@ componentPage {
   width: 100%;
 }
 
-/* Section Title */
 .titleContainer {
   width: 90%;
   margin: 0 auto;
@@ -121,7 +119,6 @@ componentPage {
   padding-top: 20px;
 }
 
-/* Albums */
 .firstContainer {
   display: flex;
   flex-direction: column;
@@ -146,7 +143,6 @@ componentPage {
   flex-basis: 0;
 }
 
-/* Artist */
 .secondContainer {
   display: flex;
   flex-direction: column;

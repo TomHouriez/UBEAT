@@ -75,6 +75,5 @@ export const searchWithType = async (type, searchInput, limit) => {
     }
   );
   let jsonResponse = await response.json();
-  // console.log(jsonResponse);
   return jsonResponse;
 };

@@ -58,12 +58,10 @@ export default {
   opacity: 0.7;
   cursor: pointer;
 }
-/* Description */
 .albumDescription {
   flex: 3;
   padding: 20px;
   min-width: 150px;
-  /* background-color: lightgray; */
 }
 .collectionName {
   font-size: medium;

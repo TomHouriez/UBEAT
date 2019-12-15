@@ -60,7 +60,6 @@
     </template>
 
     <template slot="end">
-      <!-- <b-navbar-dropdown hoverable label="Joe Blo" style="width:150px"> -->
       <b-navbar-dropdown hoverable :label="currentUserName" style="width:150px">
         <router-link
           v-if="currentUserId"
@@ -104,7 +103,6 @@ export default {
     };
   },
   async created() {
-    // console.log(this.$cookies.set("token"));
     const token = getToken();
     const tokenInfo = await getTokenInfo(token);
     this.currentUserId = await tokenInfo.id;

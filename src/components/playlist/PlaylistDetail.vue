@@ -76,7 +76,6 @@ export default {
       id: null,
       playlist: {},
 
-      // audio
       audio: null,
       isPlaying: false,
       trackUrlPlaying: null
@@ -90,8 +89,6 @@ export default {
   },
   async created() {
     this.id = this.$route.params.id;
-    // this.own = this.$route.params.own;
-    // console.log(this.own);
     this.playlist = await fetchPlaylistByID(this.id);
   },
   methods: {

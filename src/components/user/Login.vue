@@ -59,7 +59,6 @@ export default {
     };
   },
   async created() {
-    console.log(this.$route.params);
     this.reg = this.$route.params.reg;
   },
   methods: {

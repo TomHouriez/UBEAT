@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- Modal Add to playlist -->
     <b-modal :active.sync="isModalActive">
       <form action="">
         <div class="modal-card" style="width: auto">
@@ -46,7 +45,6 @@
       </form>
     </b-modal>
 
-    <!-- Modal add new playlist -->
     <b-modal :active.sync="isNewPlaylistModalActive">
       <form action="">
         <div class="modal-card" style="width: auto">
@@ -106,7 +104,6 @@ export default {
 
       isModalActive: JSON.parse(this.isAddToPlaylistModalActive),
 
-      // new playlist
       isNewPlaylistModalActive: false,
       playlistName: ""
     };
@@ -140,7 +137,6 @@ export default {
       this.trackToAdd = null;
     },
 
-    // add to new playlist
     cancelAddPlaylist: function() {
       this.isNewPlaylistModalActive = false;
       this.playlistName = "";

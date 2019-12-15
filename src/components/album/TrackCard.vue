@@ -17,7 +17,6 @@
       </a>
     </figure>
 
-    <!-- Modal add to playlist -->
     <AddToPlaylist
       v-if="isAddToPlaylistModalActive"
       @closeModal="isAddToPlaylistModalActive = false"

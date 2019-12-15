@@ -135,22 +135,18 @@ export default {
     return {
       playlists: [],
 
-      // add playlist
       isAddPlaylistModalActive: false,
       playlistName: "",
 
-      // update playlist
       isUpatePlaylistModalActive: false,
       updatedPlaylistID: null,
       updatedPlaylistTracks: [],
       updatedPlaylistName: "",
 
-      // delete playlist
       isDeletingPlaylist: false
     };
   },
   methods: {
-    // add playlist
     cancelAddPlaylist() {
       this.isAddPlaylistModalActive = false;
       this.playlistName = "";
@@ -164,7 +160,6 @@ export default {
       }
     },
 
-    // delete playlist
     async deleteThisPlaylist(playlistID) {
       if (!this.isDeletingPlaylist) {
         this.isDeletingPlaylist = true;
@@ -174,7 +169,6 @@ export default {
       }
     },
 
-    //update playlist
     updatePlaylistButton: function(playlistID, name, tracks) {
       this.updatedPlaylistName = name;
       this.updatedPlaylistID = playlistID;

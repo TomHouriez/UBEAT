@@ -115,7 +115,6 @@
     <div v-else class="errorContainer">
       {{ error }}
     </div>
-    <!-- Modal add to playlist -->
     <AddToPlaylist
       v-if="isAddToPlaylistModalActive"
       @closeModal="isAddToPlaylistModalActive = false"
@@ -205,7 +204,7 @@ export default {
       this.isAddToPlaylistModalActive = true;
     },
 
-    //play sond
+    //play song
     playTrack: function(trackUrl) {
       if (this.audio != null) {
         this.audio.pause();
@@ -232,7 +231,6 @@ export default {
       }
     },
 
-    //other
     millisToMinutes: function(timeMillis) {
       let result = "";
       let minutes = parseInt(timeMillis / 60000);

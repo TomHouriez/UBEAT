@@ -6,10 +6,10 @@
       <h1 id="regSuccess" v-if="this.reg">
         Registration successful. Please login
       </h1>
-      <form action="">
+      <form action="" id="loginForm">
         <b-field label="Email">
           <b-input
-            type="text"
+            type="email"
             v-model="email"
             placeholder="Email"
             required
@@ -31,7 +31,7 @@
           >
           </b-input>
         </b-field>
-        <button type="submit" class="button is-primary" v-on:click="login()">
+        <button type="button" class="button is-primary" v-on:click="login()">
           Login
         </button>
         <p class="message">{{ message }}</p>
@@ -66,6 +66,7 @@ export default {
   },
   methods: {
     async login() {
+      document.getElementById("loginForm").checkValidity();
       if (this.password.length > 0 && this.email.length > 0) {
         try {
           const jsonResponse = await login(this.email, this.password);

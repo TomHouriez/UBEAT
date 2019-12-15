@@ -38,3 +38,7 @@ Libre à vous de modifier la structure des fichiers.
 ## Notes
 ### ESLint
 ESLint est configuré afin de respecter un certain standard de code à travers votre équipe. Il est basé sur la configuration de Prettier. qui rassemble les règles de base populaires. Libre à vous de modifier cette configuration via `.eslintrc.js`.
+
+### Utilisateur de test pour le livrable 3
+utilisateur  : equipe1@glo3102.net
+mot de passe : 123

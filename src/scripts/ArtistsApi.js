@@ -39,6 +39,8 @@ export const fetchMbzArtist = async mbid => {
 };
 
 export const getArtistInfos = async id => {
+  let artistInfos = new Object();
+
   let artistData = await fetchArtistData(id);
   if (artistData.resultCount !== 0) {
     artistData = artistData.results[0];
@@ -49,8 +51,14 @@ export const getArtistInfos = async id => {
       albums.sort(
         (a, b) => b.releaseDate.substring(0, 4) - a.releaseDate.substring(0, 4)
       );
+      artistInfos.albums = albums;
     }
+    artistInfos.artistName = artistData.artistName;
+    artistInfos.artistItuneLinkUrl = artistData.artistLinkUrl;
+  } else {
+    return null;
   }
+
   // Try to fetch Musicbrainz ID from TADB
   let tadbData = await fetchArtistMBID(
     encodeURIComponent(artistData.artistName)
@@ -59,14 +67,12 @@ export const getArtistInfos = async id => {
   if (tadbData.artists != null) {
     // we assume the first artist is the right one
     tadbData = tadbData.artists[0];
-
+    artistInfos.strCountry = tadbData.strCountry;
+    artistInfos.strBiographyEN = tadbData.strBiographyEN;
     // now that we have a mbid we fetch the infos from MusicBrainz
     let mbData = await fetchMbzArtist(tadbData.strMusicBrainzID);
-
-    let artistInfos = new Object();
-    artistInfos.artistName = artistData.artistName;
+    artistInfos.extendedData = true;
     artistInfos.strArtistThumb = tadbData.strArtistThumb;
-    artistInfos.artistItuneLinkUrl = artistData.artistLinkUrl;
     // artistLife: Object with all artist's life detail (easier to process in the template)
     artistInfos.artistLife = new Object();
     artistInfos.artistLife.begin = mbData["life-span"].begin;
@@ -109,8 +115,8 @@ export const getArtistInfos = async id => {
     if (artistInfos.genres.length > 8) {
       artistInfos.genres.splice(8);
     }
-    return artistInfos;
   } else {
-    return null;
+    artistInfos.extendedData = false;
   }
+  return artistInfos;
 };

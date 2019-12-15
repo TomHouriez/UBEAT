@@ -187,7 +187,7 @@ export default {
       if (await temporaryArtists.results) {
         temporaryArtists.results.forEach(async anArtist => {
           let test = await getArtistInfos(anArtist.artistId);
-          if (test != null) {
+          if (test.extendedData == true) {
             test.artistId = anArtist.artistId;
             this.artists.push(test);
           }

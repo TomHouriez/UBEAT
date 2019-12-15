@@ -1,8 +1,6 @@
 <template>
   <div class="container">
     <div class="formContainer">
-      <p>f.r@gmail.com</p>
-      <p>florian</p>
       <h1 id="regSuccess" v-if="this.reg">
         Registration successful. Please login
       </h1>

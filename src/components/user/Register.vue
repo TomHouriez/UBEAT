@@ -58,7 +58,7 @@
           type="button"
           class="button is-primary"
           v-on:click="$router.push('/login')"
-          >Login</b-button
+          >Back to login</b-button
         >
       </form>
     </div>

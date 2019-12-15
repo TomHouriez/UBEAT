@@ -52,10 +52,10 @@
 </template>
 
 <script>
-import AlbumCard from "@/components/AlbumCard";
-import TrackCard from "@/components/TrackCard";
+import AlbumCard from "@/components/album/AlbumCard";
+import TrackCard from "@/components/album/TrackCard";
 
-import { fetchTopAlbums, fetchTopTracks } from "../scripts/HomeTopsApi";
+import { fetchTopAlbums, fetchTopTracks } from "../../scripts/HomeTopsApi";
 
 export default {
   components: {

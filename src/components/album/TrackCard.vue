@@ -28,9 +28,9 @@
 </template>
 
 <script>
-import { fetchUserPlaylists } from "../scripts/PlaylistsApi.js";
+import { fetchUserPlaylists } from "../../scripts/PlaylistsApi.js";
 
-import AddToPlaylist from "@/components/AddToPlaylist";
+import AddToPlaylist from "@/components/playlist/AddToPlaylist";
 
 export default {
   props: [

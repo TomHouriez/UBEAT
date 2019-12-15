@@ -62,14 +62,14 @@ import {
   searchWithType,
   searchArtists,
   searchUsers
-} from "../scripts/SearchApi";
-import { getArtistInfos } from "../scripts/ArtistsApi";
-import { getToken, getTokenInfo } from "../scripts/Config";
+} from "../../scripts/SearchApi";
+import { getArtistInfos } from "../../scripts/ArtistsApi";
+import { getToken, getTokenInfo } from "../../scripts/Config";
 
-import ArtistAlbumCard from "./ArtistAlbumCard";
-import TrackCard from "./TrackCard";
-import ArtistCard from "./ArtistCard";
-import UserCard from "./UserCard";
+import ArtistAlbumCard from "@/components/artist/ArtistAlbumCard";
+import TrackCard from "@/components/album/TrackCard";
+import ArtistCard from "@/components/artist/ArtistCard";
+import UserCard from "@/components/user/UserCard";
 
 export default {
   components: {

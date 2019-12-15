@@ -126,10 +126,10 @@
 </template>
 
 <script>
-import AddToPlaylist from "@/components/AddToPlaylist";
+import AddToPlaylist from "@/components/playlist/AddToPlaylist";
 
-import { fetchAlbumData, fetchTracks } from "../scripts/AlbumApi.js";
-import { fetchUserPlaylists } from "../scripts/PlaylistsApi.js";
+import { fetchAlbumData, fetchTracks } from "../../scripts/AlbumApi.js";
+import { fetchUserPlaylists } from "../../scripts/PlaylistsApi.js";
 
 export default {
   components: {

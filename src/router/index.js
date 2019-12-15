@@ -1,16 +1,16 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "@/components/Home";
-import Album from "@/components/Album";
-import Artist from "@/components/Artist";
-import Playlists from "@/components/Playlists";
-import PlaylistDetail from "@/components/PlaylistDetail";
-import Search from "@/components/Search";
-import User from "@/components/User";
+import Home from "@/components/common/Home";
+import Album from "@/components/album/Album";
+import Artist from "@/components/artist/Artist";
+import Playlists from "@/components/playlist/Playlists";
+import PlaylistDetail from "@/components/playlist/PlaylistDetail";
+import Search from "@/components/common/Search";
+import User from "@/components/user/User";
 
 //Guest
-import Login from "../components/Guest/Login.vue";
-import Register from "../components/Guest/Register.vue";
+import Login from "@/components/user/Login.vue";
+import Register from "@/components/user/Register.vue";
 
 Vue.use(Router);
 

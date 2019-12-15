@@ -24,7 +24,11 @@
 </template>
 
 <script>
-import { followUser, unfollowUser, isUserFollowed } from "../scripts/FollowApi";
+import {
+  followUser,
+  unfollowUser,
+  isUserFollowed
+} from "../../scripts/FollowApi";
 
 export default {
   props: ["userData", "showButton"],

@@ -109,8 +109,8 @@
 </template>
 
 <script>
-import artistAlbumCard from "@/components/ArtistAlbumCard";
-import { getArtistInfos } from "../scripts/ArtistsApi.js";
+import artistAlbumCard from "@/components/artist/ArtistAlbumCard";
+import { getArtistInfos } from "../../scripts/ArtistsApi.js";
 
 export default {
   components: {

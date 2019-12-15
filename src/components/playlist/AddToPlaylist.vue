@@ -94,7 +94,7 @@ import {
   fetchUserPlaylists,
   addTrackToPlaylist,
   addPlaylist
-} from "../scripts/PlaylistsApi.js";
+} from "../../scripts/PlaylistsApi.js";
 
 export default {
   props: ["tracksToAdd", "isAddToPlaylistModalActive"],

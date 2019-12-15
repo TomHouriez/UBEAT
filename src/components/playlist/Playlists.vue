@@ -118,14 +118,14 @@
   </div>
 </template>
 <script>
-import PlaylistCard from "./PlaylistCard.vue";
+import PlaylistCard from "@/components/playlist/PlaylistCard.vue";
 
 import {
   fetchUserPlaylists,
   addPlaylist,
   deletePlaylist,
   updatePlaylistName
-} from "../scripts/PlaylistsApi";
+} from "../../scripts/PlaylistsApi";
 
 export default {
   components: {

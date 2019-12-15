@@ -87,8 +87,8 @@
 </template>
 
 <script>
-import { searchGlobal } from "../scripts/SearchApi";
-import { getTokenInfo, getToken } from "../scripts/Config";
+import { searchGlobal } from "../../scripts/SearchApi";
+import { getTokenInfo, getToken } from "../../scripts/Config";
 
 export default {
   data() {

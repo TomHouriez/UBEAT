@@ -47,11 +47,11 @@
 </template>
 
 <script>
-import PlaylistCard from "./PlaylistCard.vue";
-import UserCard from "./UserCard";
-import { getUserInfo } from "../scripts/UserApi.js";
-import { fetchFollowerPlaylists } from "../scripts/PlaylistsApi";
-import { getToken, getTokenInfo } from "../scripts/Config";
+import PlaylistCard from "@/components/playlist/PlaylistCard.vue";
+import UserCard from "@/components/user/UserCard";
+import { getUserInfo } from "../../scripts/UserApi.js";
+import { fetchFollowerPlaylists } from "../../scripts/PlaylistsApi";
+import { getToken, getTokenInfo } from "../../scripts/Config";
 //import { followUser, unfollowUser, isUserFollowed } from "../scripts/FollowApi";
 
 export default {

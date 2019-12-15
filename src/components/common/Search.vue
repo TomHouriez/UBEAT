@@ -191,10 +191,8 @@ export default {
       if (await temporaryArtists.results) {
         temporaryArtists.results.forEach(async anArtist => {
           let test = await getArtistInfos(anArtist.artistId);
-          if (test.extendedData == true) {
-            test.artistId = anArtist.artistId;
-            this.artists.push(test);
-          }
+          test.artistId = anArtist.artistId;
+          this.artists.push(test);
         });
       }
       temporaryArtists = [];
@@ -225,9 +223,11 @@ export default {
 
 <style scoped>
 .sectionHeader {
-  text-decoration: underline;
-  font-weight: bold;
-  font-size: 150%;
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: xx-large;
+  padding-top: 20px;
 }
 
 .tracksContainer {

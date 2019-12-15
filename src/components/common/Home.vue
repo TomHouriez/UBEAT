@@ -21,6 +21,9 @@
           <div class="fakeAlbumCard"></div>
           <div class="fakeAlbumCard"></div>
           <div class="fakeAlbumCard"></div>
+          <div class="fakeAlbumCard"></div>
+          <div class="fakeAlbumCard"></div>
+          <div class="fakeAlbumCard"></div>
         </div>
       </div>
     </section>

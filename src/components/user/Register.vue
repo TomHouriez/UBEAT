@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="formContainer">
-      <form action="">
+      <form action="" id="registrationForm">
         <b-field label="Name">
           <b-input
             type="text"
@@ -10,7 +10,8 @@
             required
             oninvalid="this.setCustomValidity('Please fillout this field')"
             oninput="this.setCustomValidity('')"
-            validation-message="An email is required"
+            validation-message="A name without spaces or special characters is required"
+            pattern="[a-zA-Z0-9]*"
           >
           </b-input>
         </b-field>
@@ -50,7 +51,7 @@
           >
           </b-input>
         </b-field>
-        <button type="submit" class="button is-primary" v-on:click="register">
+        <button type="button" class="button is-primary" v-on:click="register">
           Register
         </button>
         <p class="message ">{{ message }}</p>
@@ -89,6 +90,7 @@ export default {
       );
     },
     async register() {
+      document.getElementById("registrationForm").checkValidity();
       if (this.password1 != this.password2) {
         this.message = "Passwords are different";
         return;
